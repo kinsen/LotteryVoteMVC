@@ -1,0 +1,58 @@
+﻿@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = "EachLevelComm";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBaseStyle.css")" rel="stylesheet" type="text/css" />
+}
+@foreach (var item in ViewBag.Comm as IDictionary<Role, IEnumerable<ConcreteCommission>>)
+{ 
+    <h1>@item.Key</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                </td>
+                @foreach (var comType in EnumHelper.GetDescription<CompanyType>())
+                { 
+                    <td colspan="2">@comType.Description
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                </td>
+                @foreach (var comType in EnumHelper.GetDescription<CompanyType>())
+                { 
+                    <td>
+                        Comm
+                    </td>
+                    <td>
+                        Odd
+                    </td>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var gameType in EnumHelper.GetDescription<GameType>())
+            { 
+                <tr>
+                    <td>@gameType.Description
+                    </td>
+                    @foreach (var comType in EnumHelper.GetDescription<CompanyType>())
+                    {
+                        var comm = item.Value.Find(it => it.CompanyTypeId == comType.Value && it.GameId == gameType.Value);
+                        <td>
+                            @comm.Commission
+                        </td>
+                        <td>@comm.Odds
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}

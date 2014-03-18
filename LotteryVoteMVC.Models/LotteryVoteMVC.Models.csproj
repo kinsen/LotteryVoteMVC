@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC230421-0B0E-47C7-8D51-9AC6AD878EB3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LotteryVoteMVC.Models</RootNamespace>
+    <AssemblyName>LotteryVoteMVC.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bet\AutoBetItem.cs" />
+    <Compile Include="Bet\BetItem.cs" />
+    <Compile Include="Bet\BetNumInfo.cs" />
+    <Compile Include="Bet\BetOrder.cs" />
+    <Compile Include="Bet\BetResult.cs" />
+    <Compile Include="Bet\BetSheet.cs" />
+    <Compile Include="Bet\FastBetItem.cs" />
+    <Compile Include="Bet\OrderAncestorCommInfo.cs" />
+    <Compile Include="Bulletin.cs" />
+    <Compile Include="Commission\CommissionGroup.cs" />
+    <Compile Include="Commission\CommissionValue.cs" />
+    <Compile Include="Commission\ConcreteCommission.cs" />
+    <Compile Include="Commission\MemberPackage.cs" />
+    <Compile Include="Commission\UserCommission.cs" />
+    <Compile Include="FreezeFunds.cs" />
+    <Compile Include="FullStatement.cs" />
+    <Compile Include="JsonResultModel.cs" />
+    <Compile Include="Limit\BetUpperLimit.cs" />
+    <Compile Include="Limit\CompanyAmountInfo.cs" />
+    <Compile Include="Limit\DefaultUpperLimit.cs" />
+    <Compile Include="Log\ActionLog.cs" />
+    <Compile Include="Log\SystemError.cs" />
+    <Compile Include="RollbackAmount.cs" />
+    <Compile Include="SettleResult.cs" />
+    <Compile Include="System\BetStatus.cs" />
+    <Compile Include="System\DropType.cs" />
+    <Compile Include="System\ErrorLevel.cs" />
+    <Compile Include="System\WinLost.cs" />
+    <Compile Include="User\ShareRateGroup.cs" />
+    <Compile Include="VietnamLottery\BetAutoDropWater.cs" />
+    <Compile Include="VietnamLottery\CompanyNumLen.cs" />
+    <Compile Include="VietnamLottery\CompanyTypeModel.cs" />
+    <Compile Include="VietnamLottery\CompanyTypeSupportNumLen.cs" />
+    <Compile Include="VietnamLottery\DropInCompany.cs" />
+    <Compile Include="VietnamLottery\DropWater.cs" />
+    <Compile Include="VietnamLottery\GamePlayWay.cs" />
+    <Compile Include="Limit\BetLimit.cs" />
+    <Compile Include="Limit\GameBetLimit.cs" />
+    <Compile Include="ModelParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\AutoBetType.cs" />
+    <Compile Include="VietnamLottery\CompanyLotteryCycle.cs" />
+    <Compile Include="System\CompanyType.cs" />
+    <Compile Include="System\Currency.cs" />
+    <Compile Include="System\GameType.cs" />
+    <Compile Include="System\Language.cs" />
+    <Compile Include="System\LotteryCompany.cs" />
+    <Compile Include="System\LotterySpecies.cs" />
+    <Compile Include="System\PlayWay.cs" />
+    <Compile Include="System\Region.cs" />
+    <Compile Include="User\AgentAuthorizeAction.cs" />
+    <Compile Include="User\AgentAuthorizeInRole.cs" />
+    <Compile Include="Log\LoginFailedLog.cs" />
+    <Compile Include="Log\LoginLog.cs" />
+    <Compile Include="User\Role.cs" />
+    <Compile Include="User\RoleModel.cs" />
+    <Compile Include="User\ShadowAuthorizeAction.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserInfo.cs" />
+    <Compile Include="User\UserState.cs" />
+    <Compile Include="VietnamLottery\LotteryPeriod.cs" />
+    <Compile Include="VietnamLottery\LotteryRecord.cs" />
+    <Compile Include="VietnamLottery\LotteryResult.cs" />
+    <Compile Include="VietnamLottery\NumLength.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LotteryVoteMVC.Resources\LotteryVoteMVC.Resources.csproj">
+      <Project>{5192199C-88B8-45D7-9866-B885B277ED94}</Project>
+      <Name>LotteryVoteMVC.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Utility\LotteryVoteMVC.Utility.csproj">
+      <Project>{2CAD6001-7C7B-45CA-B1C2-67ECF001CB6B}</Project>
+      <Name>LotteryVoteMVC.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

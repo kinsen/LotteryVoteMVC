@@ -1,0 +1,1260 @@
+﻿@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = @Resource.BetRule;
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        table td
+        {
+            font-weight: bold;
+        }
+        table tbody td span
+        {
+            font-weight: normal;
+        }
+        table
+        {
+            margin-top: 5px;
+        }
+        div p
+        {
+            margin-left: 40px;
+        }
+        span.title
+        {
+            color: #8A8A8A;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        div ul
+        {
+            margin-left: 40px;
+            list-style-type: decimal;
+        }
+        li p
+        {
+            margin: 0px;
+        }
+    </style>
+}
+<div>
+    <span class="title">
+        @BetRule.GameDescript
+    </span>
+    <p>
+        @BetRule.GameDescription</p>
+</div>
+<div>
+    <span class="title">
+        @BetRule.BetType</span>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td colspan="3">
+                    @Resource.GameType
+                </td>
+                <td rowspan="2" class="rows">
+                    @Resource.Num
+                </td>
+                <td rowspan="2" class="rows">
+                    @BetRule.WinLaw
+                </td>
+                <td colspan="3">
+                    @Resource.GameType
+                </td>
+                <td rowspan="2" class="rows">
+                    @Resource.Num
+                </td>
+                <td rowspan="2" class="rows">
+                    @BetRule.WinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @BetRule.Length
+                </td>
+                <td colspan="2">
+                    @BetRule.LocationAndRange
+                </td>
+                <td>
+                    @BetRule.Length
+                </td>
+                <td colspan="2">
+                    @BetRule.LocationAndRange
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="8">
+                    2D
+                </td>
+                <td>
+                    @Resource.Head
+                </td>
+                <td colspan="2">
+                    XX(00-99)
+                </td>
+                <td>
+                    @BetRule.D2HeadWinLaw
+                </td>
+                <td rowspan="5">
+                    3D
+                </td>
+                <td>
+                    @Resource.Head
+                </td>
+                <td colspan="2">
+                    XXX(000-999)
+                </td>
+                <td>
+                    @BetRule.D3HeadWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.Last
+                </td>
+                <td colspan="2">
+                    XX(00-99)
+                </td>
+                <td>
+                    @BetRule.D2LastWinLaw
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td colspan="2">
+                    XXX(000-999)
+                </td>
+                <td>
+                    @BetRule.D3LastWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td colspan="2">
+                    XX(00-99)
+                </td>
+                <td>
+                    @BetRule.D2HeadLastWinLaw
+                </td>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td colspan="2">
+                    XXX(000-999)
+                </td>
+                <td>
+                    @BetRule.D3HeadLastWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td colspan="2">
+                    XX(00-99)
+                </td>
+                <td>
+                    @BetRule.D2RollWinLaw
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td colspan="2">
+                    XXX(000-999)
+                </td>
+                <td>
+                    @BetRule.D3RollWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.Roll7
+                </td>
+                <td colspan="2">
+                    XX(00-99)
+                </td>
+                <td>
+                    @BetRule.D2Roll7WinLaw
+                </td>
+                <td>
+                    @Resource.Roll7
+                </td>
+                <td colspan="2">
+                    XXX(000-999)
+                </td>
+                <td>
+                    @BetRule.D3Roll7WinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PL2(@Resource.RollParlay 2)
+                </td>
+                <td colspan="2">
+                    AA#BB
+                </td>
+                <td>
+                    @BetRule.Pl2WinLaw
+                </td>
+                <td rowspan="2">
+                    4D
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td colspan="2">
+                    XXXX(0000-9999)
+                </td>
+                <td>
+                    @BetRule.D4LastWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    PL3(@Resource.RollParlay 3)
+                </td>
+                <td colspan="2">
+                    AA#BB#CC
+                </td>
+                <td>
+                    @BetRule.Pl3WinLaw
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td colspan="2">
+                    XXXX(0000-9999)
+                </td>
+                <td>
+                    @BetRule.D4RollWinLaw
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ABC PL2(ABC @Resource.RollParlay 2)
+                </td>
+                <td colspan="2">
+                    AA#BB
+                </td>
+                <td>
+                    @BetRule.ABPL2WinLaw
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <span class="title">
+        @BetRule.Rule
+    </span>
+    <ul>
+        <li>
+            <p>
+                @BetRule.Rule1</p>
+        </li>
+        <li>
+            <p>
+                @BetRule.Rule2</p>
+        </li>
+        <li>
+            <p>
+                @BetRule.Rule3</p>
+        </li>
+        <li>
+            <p>
+                @BetRule.Rule4</p>
+        </li>
+        <li>
+            <p>
+                @BetRule.Rule5</p>
+        </li>
+        <li>
+            <p>
+                @BetRule.Rule6</p>
+        </li>
+        <li>
+            <p>@BetRule.Rule7</p>
+        </li>
+    </ul>
+</div>
+<div>
+    <span class="title">
+        @BetRule.Example
+    </span>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td colspan="3" rowspan="2" class="rows">
+                    @Resource.Company:Hanoi<br />
+                    @Resource.GameType:@Resource.VietnamLottery
+                </td>
+                <td colspan="4">
+                    2D (@Resource.Odds: 75)
+                </td>
+                <td colspan="4">
+                    3D (@Resource.Odds: 650)
+                </td>
+                <td colspan="2">
+                    4D (@Resource.Odds: 6000)
+                </td>
+                <td colspan="2" rowspan="2" class="rows">
+                    PL2<br />
+                    (@Resource.Odds: 650)
+                </td>
+                <td colspan="3" rowspan="2" class="rows">
+                    PL3<br />
+                    (@Resource.Odds: 3500)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.Head
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td>
+                    @Resource.Head
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.Result
+                </td>
+                <td>
+                    Odd
+                </td>
+                <td>
+                    Big
+                </td>
+                <td>
+                    48
+                </td>
+                <td>
+                    *0
+                </td>
+                <td>
+                    028
+                </td>
+                <td>
+                    706
+                </td>
+                <td>
+                    050-053
+                </td>
+                <td>
+                    249
+                </td>
+                <td>
+                    6036
+                </td>
+                <td>
+                    1218
+                </td>
+                <td colspan="2">
+                    36#46
+                </td>
+                <td colspan="3">
+                    11#24#81
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    2-digit
+                </td>
+                <td colspan="2">
+                    <span>85&nbsp;11&nbsp;87&nbsp;48</span>
+                </td>
+                <td>
+                    <font color="red">85&nbsp;11&nbsp;87</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <font color="red">48</font>
+                </td>
+                @for (int i = 0; i < 9; i++)
+                {
+                    <td>
+                    </td>
+                }
+                <td>
+                    <font color="red">11</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3-digit
+                </td>
+                <td colspan="2">
+                    <span>028&nbsp;051&nbsp;700 </span>
+                </td>
+                @for (int i = 0; i < 3; i++)
+                {
+                    <td>
+                    </td>
+                }
+                <td>
+                    7<font color="red">00</font>
+                </td>
+                <td>
+                    <font color="red">028</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <font color="red">051</font>
+                </td>
+                @for (int i = 0; i < 8; i++)
+                { 
+                    <td>
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    4-digit
+                </td>
+                <td colspan="2">
+                    <span>35610&nbsp;4746&nbsp;6090&nbsp;1846<br />
+                        0624&nbsp;1021&nbsp;7157&nbsp;3797<br />
+                        3194&nbsp;2249</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    56<font color="red">10</font><br />
+                    60<font color="red">90</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    2<font color="red">249</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    47<font color="red">46</font><br />
+                    18<font color="red">46</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    06<font color="red">24</font>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5-digit
+                </td>
+                <td colspan="2">
+                    <span>12336&nbsp;09924&nbsp; 87096<br />
+                        10830&nbsp; 36306&nbsp; 01218<br />
+                        88481&nbsp; 04170&nbsp; 52050<br />
+                    </span>16076(Last)
+                </td>
+                <td>
+                </td>
+                <td>
+                    160<font color="red">76</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    108<font color="red">30</font><br />
+                    041<font color="red">70</font><br />
+                    520<font color="red">50</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    160<font color="red">76</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    0<font color="red">1218</font>
+                </td>
+                <td>
+                    122<font color="red">36</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    099<font color="red">24</font>
+                </td>
+                <td>
+                    884<font color="red">81</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Resource.Turnover
+                    ( @Resource.Bet =10)
+                </td>
+                <td>
+                    2,000
+                </td>
+                <td>
+                    500
+                </td>
+                <td>
+                    50
+                </td>
+                <td>
+                    50
+                </td>
+                <td>
+                    2,700
+                </td>
+                <td>
+                    30
+                </td>
+                <td>
+                    60
+                </td>
+                <td>
+                    200
+                </td>
+                <td>
+                    230
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    200
+                </td>
+                <td colspan="2">
+                    540
+                </td>
+                <td colspan="3">
+                    810
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.Multiple
+                </td>
+                <td>
+                    x3
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x6
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    --
+                </td>
+                <td>
+                    x1
+                </td>
+                <td colspan="2">
+                    x1
+                </td>
+                <td colspan="3">
+                    x1
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.WinAmount
+                    (@BetRule.Bet =10)
+                </td>
+                <td>
+                    2,250
+                </td>
+                <td>
+                    750
+                </td>
+                <td>
+                    750
+                </td>
+                <td>
+                    4,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    --
+                </td>
+                <td>
+                    60,000
+                </td>
+                <td colspan="2">
+                    6,500
+                </td>
+                <td colspan="3">
+                    35,000
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr align="left">
+                <td colspan="18">
+                    @BetRule.Remark
+                    :
+                    @BetRule.Formula
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <span class="splitor"></span>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td colspan="3" rowspan="2" class="rows">
+                    @Resource.Company:Ben Tre<br />
+                    @Resource.GameType:@Resource.VietnamLottery
+                </td>
+                <td colspan="5">
+                    2D (@Resource.Odds: 75)
+                </td>
+                <td colspan="5">
+                    3D (@Resource.Odds: 650)
+                </td>
+                <td colspan="2">
+                    4D (@Resource.Odds: 6000)
+                </td>
+                <td colspan="2" rowspan="2" class="rows">
+                    PL2<br />
+                    (@Resource.Odds: 750)
+                </td>
+                <td colspan="3" rowspan="2" class="rows">
+                    PL3<br />
+                    (@Resource.Odds: 3500)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resource.Head
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td>
+                    @Resource.Roll7
+                </td>
+                <td>
+                    @Resource.Head
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.HeadAndLast
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+                <td>
+                    @Resource.Roll7
+                </td>
+                <td>
+                    @Resource.Last
+                </td>
+                <td>
+                    @Resource.Roll
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.Result
+                </td>
+                <td>
+                    06
+                </td>
+                <td>
+                    Big
+                </td>
+                <td>
+                    Even
+                </td>
+                <td>
+                    *0
+                </td>
+                <td>
+                    *4
+                </td>
+                <td>
+                    327
+                </td>
+                <td>
+                    746
+                </td>
+                <td>
+                    320~330
+                </td>
+                <td>
+                    992
+                </td>
+                <td>
+                    340~350
+                </td>
+                <td>
+                    6036
+                </td>
+                <td>
+                    5288
+                </td>
+                <td colspan="2">
+                    24#89
+                </td>
+                <td colspan="3">
+                    06#50#82
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    2-digit
+                </td>
+                <td colspan="2">
+                    <span>06</span>
+                </td>
+                <td>
+                    <font color="red">06</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <font color="red">06</font>
+                </td>
+                @for (int i = 0; i < 11; i++)
+                {
+                    <td>
+                    </td>
+                }
+                <td>
+                    <font color="red">06</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3-digit
+                </td>
+                <td colspan="2">
+                    <span>327</span>
+                </td>
+                @for (int i = 0; i < 5; i++)
+                { 
+                    <td>
+                    </td>
+                }
+                <td>
+                    <font color="red">327</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <font color="red">327</font>
+                </td>
+                @for (int i = 0; i < 9; i++)
+                { 
+                    <td>
+                    </td>
+                    
+                }
+            </tr>
+            <tr>
+                <td>
+                    4-digit
+                </td>
+                <td colspan="2">
+                    <span>3804&nbsp;6350&nbsp;3992&nbsp;0389</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    63<font color="red">50</font>
+                </td>
+                <td>
+                    38<font color="red">04</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    3<font color="red">992</font>
+                </td>
+                <td>
+                    6<font color="red">350</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    03<font color="red">89</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    63<font color="red">50</font>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5-digit
+                </td>
+                <td colspan="2">
+                    <span>81340&nbsp;46996&nbsp;17361<br />
+                        93071&nbsp;60900&nbsp;33910<br />
+                        55288&nbsp;09682&nbsp;22024<br />
+                        11650&nbsp;98163&nbsp;</span> 16674(Last)<br />
+                </td>
+                <td>
+                </td>
+                <td>
+                    166<font color="red">74</font>
+                </td>
+                <td>
+                    166<font color="red">74</font>
+                </td>
+                <td>
+                    813<font color="red">30</font><br />
+                    609<font color="red">00</font><br />
+                    339<font color="red">10</font><br />
+                    116<font color="red">50</font>
+                </td>
+                <td>
+                    116<font color="red">74</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    16<font color="red">674</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    81<font color="red">340</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                    5<font color="red">5288</font>
+                </td>
+                <td>
+                    220<font color="red">24</font>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    116<font color="red">50</font>
+                </td>
+                <td>
+                    096<font color="red">82</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Resource.Turnover
+                    (@Resource.Bet =10)
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    500
+                </td>
+                <td>
+                    1000
+                </td>
+                <td>
+                    1,800
+                </td>
+                <td>
+                    700
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    60
+                </td>
+                <td>
+                    220
+                </td>
+                <td>
+                    170
+                </td>
+                <td>
+                    770
+                </td>
+                <td>
+                    10
+                </td>
+                <td>
+                    160
+                </td>
+                <td colspan="2">
+                    360
+                </td>
+                <td colspan="3">
+                    810
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.Multiple
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x2
+                </td>
+                <td>
+                    x5
+                </td>
+                <td>
+                    x2
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x1
+                </td>
+                <td>
+                    x2
+                </td>
+                <td>
+                    --
+                </td>
+                <td>
+                    x1
+                </td>
+                <td colspan="2">
+                    x1
+                </td>
+                <td colspan="3">
+                    x1
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.WinAmount
+                    ( @BetRule.Bet =10)
+                </td>
+                <td>
+                    750
+                </td>
+                <td>
+                    750
+                </td>
+                <td>
+                    1,500
+                </td>
+                <td>
+                    3,750
+                </td>
+                <td>
+                    1,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    6,500
+                </td>
+                <td>
+                    13,000
+                </td>
+                <td>
+                    --
+                </td>
+                <td>
+                    60,000
+                </td>
+                <td colspan="2">
+                    7,500
+                </td>
+                <td colspan="3">
+                    35,000
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr align="left">
+                <td colspan="20">
+                    @BetRule.Remark
+                    :
+                    @BetRule.Formula
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <span class="splitor"></span>
+    <table>
+        <thead>
+            <tr>
+                <td colspan="3" class="rows">
+                    @Resource.Company:TP HCM<br />
+                    @Resource.GameType:@Resource.VietnamLottery
+                </td>
+                <td colspan="3" class="rows">
+                    @Resource.Company:DT<br />
+                    @Resource.GameType:@Resource.VietnamLottery
+                </td>
+                <td colspan="2" class="rows">
+                    A&B PL2<br />
+                    (@Resource.Odds: 580)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @BetRule.Result
+                </td>
+                <td colspan="3">
+                    @BetRule.Result
+                </td>
+                <td colspan="2">
+                    13#18
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    2-digit
+                </td>
+                <td colspan="2">
+                    <span>29</span>
+                </td>
+                <td colspan="2">
+                    2-digit
+                </td>
+                <td>
+                    <span>12</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    3-digit
+                </td>
+                <td colspan="2">
+                    <span>327</span>
+                </td>
+                <td colspan="2">
+                    3-digit
+                </td>
+                <td>
+                    <span>413</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                    4<font color="red">13</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    4-digit
+                </td>
+                <td colspan="2">
+                    <span>9664&nbsp;2737&nbsp;3890&nbsp;3515</span>
+                </td>
+                <td colspan="2">
+                    4-digit
+                </td>
+                <td>
+                    <span>3382&nbsp;2791&nbsp;3710&nbsp;2018</span>
+                </td>
+                <td>
+                </td>
+                <td>
+                    20<font color="red">18</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5-digit
+                </td>
+                <td colspan="2">
+                    <span>51516&nbsp;45116&nbsp;04483<br />
+                        46217&nbsp;57157&nbsp;56452<br />
+                        56275&nbsp;43653&nbsp;34235<br />
+                        56375&nbsp;56437</span>&nbsp;15713(Last)
+                </td>
+                <td colspan="2">
+                    5-digit
+                </td>
+                <td>
+                    <span>81369&nbsp;57112&nbsp; 20361<br />
+                        27389&nbsp;61838&nbsp;34567<br />
+                        63013&nbsp;44482&nbsp;61164<br />
+                        59510&nbsp;38118</span>&nbsp;93486(Last)
+                </td>
+                <td>
+                    157<font color="red">13</font>
+                </td>
+                <td>
+                    63013<br />
+                    381<font color="red">18</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">@Resource.Turnover
+                    (@Resource.Bet =10)
+                </td>
+                <td colspan="2">
+                    720
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">@BetRule.Multiple
+                </td>
+                <td colspan="2">
+                    x2
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">@BetRule.WinAmount
+                    ( @BetRule.Bet =10)
+                </td>
+                <td colspan="2">
+                    11,600
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr align="left">
+                <td colspan="8">
+                    @BetRule.Remark
+                    :
+                    @BetRule.Formula
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

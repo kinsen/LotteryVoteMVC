@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.DefaultUpperLimit>
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Core.Application
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = Resource.DefaultUpperLimit;
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+}
+@{int index = 1;}
+<div id="searchBar">
+    @using (Html.BeginForm("AddDefault", "Limit"))
+    {
+        <span>@Resource.CompanyType</span>
+        @Html.Partial("~/Views/Partial/CompanyType.cshtml")
+        <span>@Resource.GameType</span>
+        @Html.Partial("~/Views/Partial/GamePlayWay.cshtml", LotterySystem.Current.GamePlayWays)
+        <span>@Resource.Amount</span>
+        @Html.TextBox("Amount")
+        @Html.ValidationMessage("Amount")
+        <input type="submit" name="Add" id="Add" value="@Resource.Add" />
+    }
+</div>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td colspan="5">
+                @Resource.DefaultUpperLimit
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Resource.No
+            </td>
+            <td>
+                @Resource.CompanyType
+            </td>
+            <td>
+                @Resource.GameType
+            </td>
+            <td>
+                @Resource.Amount
+            </td>
+            <td>
+                @Resource.Function
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var limit in Model)
+        { 
+            <tr>
+                <td>
+                    @(index++)
+                </td>
+                <td>
+                    @limit.CompanyType.GetDesc()
+                </td>
+                <td>
+                    @Extended.GetGPWDescription(limit.GamePlayWayId)
+                </td>
+                <td>
+                    @limit.LimitAmount.ToString("N")
+                </td>
+                <td>
+                    @Html.ActionLink(Resource.Delete, "RemoveDefault", new { Id = limit.LimitId }, new { onclick = "return confirm('Are you sure?')" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

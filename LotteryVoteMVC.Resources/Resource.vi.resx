@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Abbreviation" xml:space="preserve">
+    <value>VIẾT TẮT</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Thao tác</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Hoạt động bình thường</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Thêm vào</value>
+  </data>
+  <data name="AddLimit" xml:space="preserve">
+    <value>Add Limit</value>
+  </data>
+  <data name="AddLotteryResult" xml:space="preserve">
+    <value>Add Lottery Result</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>đại lý</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Thành tiền</value>
+  </data>
+  <data name="Asc" xml:space="preserve">
+    <value>Giảm dần</value>
+  </data>
+  <data name="AutoDropWater" xml:space="preserve">
+    <value>Tự động trừ cò</value>
+  </data>
+  <data name="AutoRefresh" xml:space="preserve">
+    <value>Auto Refresh</value>
+  </data>
+  <data name="AvailableGivenCredit" xml:space="preserve">
+    <value>Tài khoản có thể cược</value>
+  </data>
+  <data name="BalReport" xml:space="preserve">
+    <value>báo cáo tiền mặt</value>
+  </data>
+  <data name="BatterBetLimit" xml:space="preserve">
+    <value>Batter BetLimit</value>
+  </data>
+  <data name="Bet" xml:space="preserve">
+    <value>cá cược</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Số phiếu</value>
+  </data>
+  <data name="BetLimit" xml:space="preserve">
+    <value>Giới hạn cược</value>
+  </data>
+  <data name="BetList" xml:space="preserve">
+    <value>danh sách cược</value>
+  </data>
+  <data name="BetRule" xml:space="preserve">
+    <value>loại trừ</value>
+  </data>
+  <data name="BetSheetList" xml:space="preserve">
+    <value>Bet Sheet List</value>
+  </data>
+  <data name="BetVote" xml:space="preserve">
+    <value>Bet</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="CancelList" xml:space="preserve">
+    <value>hủy bỏ phiếu cược</value>
+  </data>
+  <data name="CancelTime" xml:space="preserve">
+    <value>Cancel Time</value>
+  </data>
+  <data name="CashBalance" xml:space="preserve">
+    <value>Lãi / lỗ</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Đống cửa</value>
+  </data>
+  <data name="CloseTime" xml:space="preserve">
+    <value>Giờ Đống Cửa</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>Tiền cò</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>Tiền cò</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Công ty</value>
+  </data>
+  <data name="CompanyDescription" xml:space="preserve">
+    <value>Diển giải</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>CÔNG TY XỔ SỐ</value>
+  </data>
+  <data name="CompanyType" xml:space="preserve">
+    <value>Loại hình công ty</value>
+  </data>
+  <data name="CompanyWasSettled" xml:space="preserve">
+    <value>This company was settled,please select other company or resette</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="CreateTime" xml:space="preserve">
+    <value>Cài đặt giờ mới</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Tiền tệ</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Ngày tháng</value>
+  </data>
+  <data name="DefaultUpperLimit" xml:space="preserve">
+    <value>Upper Limit Setting</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Desc" xml:space="preserve">
+    <value>Tăng dần</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>chi tiết</value>
+  </data>
+  <data name="DropWater" xml:space="preserve">
+    <value>Trừ cò</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Chỉnh sửa</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Hộp thư</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Sai</value>
+  </data>
+  <data name="EvenEven" xml:space="preserve">
+    <value>Chẳn chẳn</value>
+  </data>
+  <data name="EvenOdd" xml:space="preserve">
+    <value>Chẳn lẻ</value>
+  </data>
+  <data name="FirstNum" xml:space="preserve">
+    <value>Num1</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Thứ Sáu</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Thao tác</value>
+  </data>
+  <data name="GameLimit" xml:space="preserve">
+    <value>Giới hạn trò chơi</value>
+  </data>
+  <data name="GameType" xml:space="preserve">
+    <value>Cách chơi</value>
+  </data>
+  <data name="GivenCredit" xml:space="preserve">
+    <value>Tín dụng</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>nhóm</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Phân chia tên nhóm</value>
+  </data>
+  <data name="Guest" xml:space="preserve">
+    <value>Hội viên</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Đầu</value>
+  </data>
+  <data name="HeadAndLast" xml:space="preserve">
+    <value>Đầu đuôi</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Chưa kích hoạt</value>
+  </data>
+  <data name="IPAddress" xml:space="preserve">
+    <value>Địa chỉ IP</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Đuôi</value>
+  </data>
+  <data name="LastLoginTime" xml:space="preserve">
+    <value>Thời gian đăng nhập sau cùng</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Tháng trước</value>
+  </data>
+  <data name="LastWeek" xml:space="preserve">
+    <value>Tuần trước</value>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>Hạn chế</value>
+  </data>
+  <data name="LimitMonitor" xml:space="preserve">
+    <value>Upper Limit Monitor</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>thoát ra</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>lỗ</value>
+  </data>
+  <data name="LotteryResult" xml:space="preserve">
+    <value>Kết quả xổ số</value>
+  </data>
+  <data name="Market" xml:space="preserve">
+    <value>Thị trường</value>
+  </data>
+  <data name="Master" xml:space="preserve">
+    <value>Tổng đại lý</value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>Tối đa</value>
+  </data>
+  <data name="MemberBetLimit" xml:space="preserve">
+    <value>Member BetLimit</value>
+  </data>
+  <data name="MemberGameLimit" xml:space="preserve">
+    <value>Member GameLimit</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Tin nhắn</value>
+  </data>
+  <data name="Middle" xml:space="preserve">
+    <value>Middle</value>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>Tối thiểu</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Thứ hai</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Họ tên</value>
+  </data>
+  <data name="Net" xml:space="preserve">
+    <value>Net</value>
+  </data>
+  <data name="NetAmount" xml:space="preserve">
+    <value>Tiền cược ròng</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
+  <data name="NextLimit" xml:space="preserve">
+    <value>Giới hạn kế tiếp</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Thứ tự</value>
+  </data>
+  <data name="NoPermission" xml:space="preserve">
+    <value>Bạn không có quyền</value>
+  </data>
+  <data name="North" xml:space="preserve">
+    <value>Miền Bắc</value>
+  </data>
+  <data name="NotAccept" xml:space="preserve">
+    <value>Not Accept</value>
+  </data>
+  <data name="NotCloseTime" xml:space="preserve">
+    <value>Company still can accept bet!</value>
+  </data>
+  <data name="Null" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Num" xml:space="preserve">
+    <value>Mã số</value>
+  </data>
+  <data name="NumberStatistics" xml:space="preserve">
+    <value>thống kê số</value>
+  </data>
+  <data name="NumberWildcard" xml:space="preserve">
+    <value>Số thay thế</value>
+  </data>
+  <data name="OddEven" xml:space="preserve">
+    <value>lẻ Chẳn</value>
+  </data>
+  <data name="OddOdd" xml:space="preserve">
+    <value>lẻ lẻ</value>
+  </data>
+  <data name="Odds" xml:space="preserve">
+    <value>Trúng thưởng</value>
+  </data>
+  <data name="OnLine" xml:space="preserve">
+    <value>OnLine</value>
+  </data>
+  <data name="OpenTime" xml:space="preserve">
+    <value>Giờ Mở Cửa</value>
+  </data>
+  <data name="OrderList" xml:space="preserve">
+    <value>Bet Order List</value>
+  </data>
+  <data name="OrderNo" xml:space="preserve">
+    <value>OrderNo</value>
+  </data>
+  <data name="OrderNum" xml:space="preserve">
+    <value>OrderNo</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Chia nhóm</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="PleaseSelecte" xml:space="preserve">
+    <value>Please Select</value>
+  </data>
+  <data name="PleaseSelectedCorrectGameType" xml:space="preserve">
+    <value>Please Selected Correct GameType</value>
+  </data>
+  <data name="PleaseSelectGamePlayWay" xml:space="preserve">
+    <value>Please select a game play way!</value>
+  </data>
+  <data name="QuickBet" xml:space="preserve">
+    <value>Quick Bet</value>
+  </data>
+  <data name="ReallyDelete" xml:space="preserve">
+    <value>Khẳng định xóa?</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Làm mới</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Miền</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Thiết lập lại</value>
+  </data>
+  <data name="ReSettle" xml:space="preserve">
+    <value>tái định cư</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Trở về</value>
+  </data>
+  <data name="Roll" xml:space="preserve">
+    <value>Bao lô</value>
+  </data>
+  <data name="Roll7" xml:space="preserve">
+    <value>Roll7</value>
+  </data>
+  <data name="RollParlay" xml:space="preserve">
+    <value>Số đá</value>
+  </data>
+  <data name="Running" xml:space="preserve">
+    <value>Đang mở</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>thứ bảy</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>lưu</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>lịch trình xổ số</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="SecondNum" xml:space="preserve">
+    <value>Num2</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="Settle" xml:space="preserve">
+    <value>Settle</value>
+  </data>
+  <data name="ShareRate" xml:space="preserve">
+    <value>Chia phần trăm</value>
+  </data>
+  <data name="ShareRateLimit" xml:space="preserve">
+    <value>Giới hạn chia phần trăm</value>
+  </data>
+  <data name="SheetNum" xml:space="preserve">
+    <value>mã phiếu</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Phân loại</value>
+  </data>
+  <data name="South" xml:space="preserve">
+    <value>Miền Nam</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="Statement" xml:space="preserve">
+    <value>lịch sự tk</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Ngưng</value>
+  </data>
+  <data name="StopAcceptBet" xml:space="preserve">
+    <value>Stop Accept Bet Limit</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
+  <data name="SubmitDataError" xml:space="preserve">
+    <value>Your post date error,please check!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Thành công</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Chủ Nhật</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Đại lý cấp 1</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Tạm ngưng</value>
+  </data>
+  <data name="ThirdNum" xml:space="preserve">
+    <value>Num3</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>Tháng này</value>
+  </data>
+  <data name="ThisWeek" xml:space="preserve">
+    <value>Tuần này</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>thứ năm</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Thời gian</value>
+  </data>
+  <data name="TimeLeft" xml:space="preserve">
+    <value>Time Left</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>tiêu đề</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Tới</value>
+  </data>
+  <data name="ToalWinLost" xml:space="preserve">
+    <value>Tổng lãi lỗ</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="TodayLotteryCompany" xml:space="preserve">
+    <value>Cty xổ số hôm nay</value>
+  </data>
+  <data name="TodayWater" xml:space="preserve">
+    <value>Trừ cò hôm nay</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>tổng cộng</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Tổng cược</value>
+  </data>
+  <data name="TotalBetAmount" xml:space="preserve">
+    <value>Tổng cược</value>
+  </data>
+  <data name="TotalCommission" xml:space="preserve">
+    <value>Tiền cò gộp</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Thứ ba</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Tiền cược</value>
+  </data>
+  <data name="TwelveZodiac" xml:space="preserve">
+    <value>12 con giáp</value>
+  </data>
+  <data name="UpdateLotteryCompany" xml:space="preserve">
+    <value>UpdateLotteryCompany</value>
+  </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
+  </data>
+  <data name="UpperLimit" xml:space="preserve">
+    <value>Giới hạn sau cùng</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Hội viên</value>
+  </data>
+  <data name="UserManager" xml:space="preserve">
+    <value>Quản lý hội viên</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>VerifyCode</value>
+  </data>
+  <data name="VerifyCodeError" xml:space="preserve">
+    <value>VerifyCode was error!</value>
+  </data>
+  <data name="VietnameseZodiac" xml:space="preserve">
+    <value>vn 12 con giáp</value>
+  </data>
+  <data name="VietnamLottery" xml:space="preserve">
+    <value>Số đề VN</value>
+  </data>
+  <data name="Wager" xml:space="preserve">
+    <value>Thành tiền</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Thứ tư</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>chào mừng</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>Lãi</value>
+  </data>
+  <data name="WinLost" xml:space="preserve">
+    <value>Lãi / lỗ</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>Hôm qua</value>
+  </data>
+  <data name="YourPassword" xml:space="preserve">
+    <value>Mật khẩu của bạn</value>
+  </data>
+  <data name="Zodiac" xml:space="preserve">
+    <value>12 con giáp</value>
+  </data>
+  <data name="UserAlreadyExist" xml:space="preserve">
+    <value>The user was already exist.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>You're password is not correct.</value>
+  </data>
+  <data name="SubUser" xml:space="preserve">
+    <value>tài khoản phụ</value>
+  </data>
+  <data name="BetCredit" xml:space="preserve">
+    <value>Tính dụng Cược</value>
+  </data>
+  <data name="Outstanding" xml:space="preserve">
+    <value>Đang xử lý</value>
+  </data>
+  <data name="D" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Valid" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="AlreadyExist" xml:space="preserve">
+    <value>Already exist.</value>
+  </data>
+  <data name="NoLotteryNum" xml:space="preserve">
+    <value>không số xổ số kiến ​​thiết</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>mục tiêu</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="ActionLog" xml:space="preserve">
+    <value>Thao tác</value>
+  </data>
+  <data name="LoginLog" xml:space="preserve">
+    <value>đăng nhập</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>trở lại trang chủ</value>
+  </data>
+  <data name="CheckUrlCorrect" xml:space="preserve">
+    <value>Xin vui lòng kiểm tra lại địa chỉ URL đầu vào là chính xác.</value>
+  </data>
+  <data name="NoWay" xml:space="preserve">
+    <value>không phải là một lựa chọn khả thi -_- !</value>
+  </data>
+  <data name="PageNotExist" xml:space="preserve">
+    <value>Xin lỗi, bạn hãy truy cập vào địa chỉ trang không chính xác, hoặc các trang web không tồn tại.</value>
+  </data>
+  <data name="YouCan" xml:space="preserve">
+    <value>bạn có thể</value>
+  </data>
+  <data name="LoginFailed" xml:space="preserve">
+    <value>Login Failed</value>
+  </data>
+  <data name="WrongMessage" xml:space="preserve">
+    <value>Các hoạt động không thành công, xin vui lòng thử lại, hoặc cố gắng liên hệ với quản trị giám sát của bạn!</value>
+  </data>
+  <data name="NewPwdCantEqualsOlds1" xml:space="preserve">
+    <value>Mật khẩu mới có thể là mật khẩu ban đầu phù hợp</value>
+  </data>
+  <data name="TomorrowDropWater" xml:space="preserve">
+    <value>Tomorrow Drop Water</value>
+  </data>
+  <data name="LoginByOtherOne" xml:space="preserve">
+    <value>Ở những nơi khác, đăng nhập tài khoản của bạn, đăng nhập trên một lần nữa!</value>
+  </data>
+  <data name="TimeoutError" xml:space="preserve">
+    <value>Hệ thống này là bận rộn, xin vui lòng thử lại!</value>
+  </data>
+  <data name="UserWasLock" xml:space="preserve">
+    <value>Your status was locked,if you want to use,please contact your agent.</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>kê số</value>
+  </data>
+  <data name="FastBet" xml:space="preserve">
+    <value> nhanh chóng cược</value>
+  </data>
+  <data name="FastBet2D" xml:space="preserve">
+    <value>2D nhanh chóng cược</value>
+  </data>
+  <data name="FastBet3D" xml:space="preserve">
+    <value>3D nhanh chóng cược</value>
+  </data>
+  <data name="Collapse" xml:space="preserve">
+    <value>Thu gọn</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Mở rộng</value>
+  </data>
+  <data name="ChildsTotalComm" xml:space="preserve">
+    <value>của Ủy Hội Tổng cộng</value>
+  </data>
+  <data name="FullStatements" xml:space="preserve">
+    <value>hoàn toàn báo cáo</value>
+  </data>
+  <data name="SystemMaintenance" xml:space="preserve">
+    <value>Bảo trì hệ thống</value>
+  </data>
+</root>

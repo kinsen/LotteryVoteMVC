@@ -1,0 +1,70 @@
+﻿@model LotteryVoteMVC.Models.User
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@{var authManager = ManagerHelper.Instance.GetManager<ShadowAuthManager>();}
+<div id="menubar" class="menubar">
+    <ul id="menus" class="menus">
+        <li>@Html.ActionLink(Resource.Message, "", "Message")
+            <ul class="children" style="display: none">
+                <li>@Html.ActionLink(Resource.LoginLog, "Login", "Log") </li>
+                <li>@Html.ActionLink(Resource.ActionLog, "Action", "Log") </li>
+                <li>@Html.ActionLink(Resource.LoginFailed, "LoginFailed", "Log")</li>
+            </ul>
+        </li>
+        @if (authManager.HasLicense("AccountController", "Index"))
+        {
+            <li>@Html.ActionLink(Resource.User, "", "Account")</li>
+        }
+        @if (authManager.HasLicense("CommissionController", "Index"))
+        { 
+            <li>@Html.ActionLink(Resource.Commission, "", "Commission")</li>
+        }
+        @if (authManager.HasLicense("SheetController", "Index"))
+        {
+            <li>@Html.ActionLink(Resource.BetList, "", "Sheet")
+                <ul class="children" style="display: none">
+                    @if (authManager.HasLicense("OrderController", "All"))
+                    {
+                        <li>@Html.ActionLink(Resource.OrderList, "All", "Order") </li>
+                    }
+                    @if (authManager.HasLicense("ReportController", "NumAmountRanking"))
+                    {
+                        <li>@Html.ActionLink("2D" + Resource.NumberStatistics, "NumAmountRanking", "Report")</li>
+                        <li>@Html.ActionLink("3D" + Resource.NumberStatistics, "ThreeDNumAmountRanking", "Report")</li>
+                    }
+                    @if (authManager.HasLicense("ReportController", "Cancel"))
+                    {
+                        <li>@Html.ActionLink(Resource.CancelList, "Cancel", "Report")</li>
+                    }
+                    @if (authManager.HasLicense("ReportController", "EachLevel"))
+                    {
+                        for (int i = (int)ViewBag.MatrixUser.RoleId + 1; i <= (int)Role.Guest; i++)
+                        { 
+                        <li>@Html.ActionLink(Resource.ResourceManager.GetString(((Role)i).ToString()), "EachLevel", "Report", new { RoleId = i }, null)</li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+        <li><a href="#" title="Balance Report">@Resource.Report</a>
+            <ul class="children" style="display: none;">
+                @if (authManager.HasLicense("ReportController", "Index"))
+                {
+                    <li>@Html.ActionLink(Resource.WinLost, "", "Report")</li>
+                }
+                @if (authManager.HasLicense("LogController", "DropWater"))
+                {
+                    <li>@Html.ActionLink(Resource.DropWater, "DropWater", "Log")</li>
+                }
+            </ul>
+        </li>
+        <li>@Html.ActionLink(Resource.LotteryResult, "LotteryResult", "Company")
+            <ul class="children" style="display: none">
+                <li>@Html.ActionLink(Resource.Schedule, "", "Company") </li>
+            </ul>
+        </li>
+        <li><a href="javascript:updatePwd();" class="updatePassWord">@Resource.Password</a></li>
+        <li style="border: none">@Html.ActionLink(Resource.Logout, "Logout", "Member")</li>
+    </ul>
+</div>

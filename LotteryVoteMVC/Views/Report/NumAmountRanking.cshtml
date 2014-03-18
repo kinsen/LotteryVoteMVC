@@ -1,0 +1,108 @@
+﻿@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@model PagedList<BetNumInfo>
+@{
+    ViewBag.Title = @Resource.NumberStatistics;
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header
+{
+    <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Pager/pagerGray.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        table#outTb tr:hover
+        {
+            background: none;
+        }
+        table#outTb tr table tr:hover
+        {
+            background: #67ACE5;
+        }
+    </style>
+}
+@{
+    var supportPlayWay = new[] { PlayWay.Head, PlayWay.Last, PlayWay.Roll };
+    Func<IDictionary<int, List<BetNumContent>>, MvcHtmlString> GetAmountHtml = (contentDic) =>
+        {
+            string htmlFormat = "<td>{0:N}</td>";
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (LotteryCompany company in ViewBag.Companys)
+            {
+                if (!contentDic.ContainsKey(company.CompanyId))
+                {
+                    for (int i = 0; i < 3; i++)
+                        sb.AppendFormat(htmlFormat, 0);
+                }
+                else
+                {
+                    var numContent = contentDic[company.CompanyId].OrderBy(it => it.GamePlayWayId);
+                    foreach (var pw in supportPlayWay)
+                    {
+
+                        var nc = numContent.Find(it => LotteryVoteMVC.Core.Application.LotterySystem.Current.FindGamePlayWay(it.GamePlayWayId).PlayWay == pw);
+                        sb.AppendFormat(htmlFormat, nc == null ? 0 : nc.Amount);
+                    }
+                }
+            }
+            return MvcHtmlString.Create(sb.ToString());
+        };
+}
+<h3>
+    @(Extended.GetDesc(ViewBag.GameType) + Resource.NumberStatistics)
+</h3>
+<table class="innerTable">
+    <thead>
+        <tr>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                @Resource.No
+            </td>
+            <td rowspan="2">
+                @Resource.Num
+            </td>
+            <td rowspan="2">
+                @Resource.Amount
+            </td>
+            @foreach (LotteryCompany company in ViewBag.Companys)
+            {
+                <td colspan="3">
+                    @company.Abbreviation
+                </td>
+            }
+        </tr>
+        <tr>
+            @foreach (var company in ViewBag.Companys)
+            {
+                foreach (var pw in supportPlayWay)
+                {
+                <td>
+                    @Resource.ResourceManager.GetString(pw.ToString())
+                </td>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{int index = 1;}
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td>
+                    @(index++)
+                </td>
+                <td>
+                    <strong>@item.Num</strong>
+                </td>
+                <td>
+                    <strong>@item.Amount.ToString("N")</strong>
+                </td>
+                @GetAmountHtml(item.Contents)
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Pager(Model)

@@ -1,0 +1,34 @@
+﻿.innerTable
+{
+    border: none;
+    font-size: 12px;
+    text-align: center;
+}
+.innerTable thead td
+{
+    font-size: 14px;
+    font-weight: bold;
+    background: #F7F5CE;
+    color: #8F3425;
+    text-decoration: none;
+}
+.innerTable .head
+{
+    color: #FA8657;
+}
+.innerTable .head td
+{
+    border: dotted 1px #E4E4D8;
+}
+.innerTable td
+{
+    min-width: 20px;
+    border: none;
+    background: #fff;
+    color: #696969;
+}
+table tbody td
+{
+    margin: 0px;
+    padding: 0px;
+}

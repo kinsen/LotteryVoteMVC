@@ -1,0 +1,17 @@
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\obj\Debug\ResolveAssemblyReference.cache
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Core.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Core.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Data.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Models.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Resources.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Utility.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\log4net.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Data.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Models.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Resources.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\LotteryVoteMVC.Utility.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\log4net.xml
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\en\LotteryVoteMVC.Resources.resources.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\bin\Debug\vi\LotteryVoteMVC.Resources.resources.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\obj\Debug\LotteryVoteMVC.Core.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\obj\Debug\LotteryVoteMVC.Core.pdb

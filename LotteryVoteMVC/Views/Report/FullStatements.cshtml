@@ -1,0 +1,271 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.FullStatement>
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = Resource.FullStatements;
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header{
+    <script src="@Url.Content("~/Scripts/Customer/SearchHelper.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker-" + CultureHelper.GetCurrentCulture() + ".js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        span.expand
+        {
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FromDate").attr("readonly", "readonly").datepicker();
+            $("#ToDate").attr("readonly", "readonly").datepicker();
+            $("#today").click(function () {
+                var date = new Date();
+                var dateFormat = parseDateFormat(date);
+                $("#FromDate").val(dateFormat);
+                $("#ToDate").val(dateFormat);
+            });
+            $("#yesterday").click(function () {
+                var date = new Date();
+                var yesterday = new Date();
+                yesterday.setDate(date.getDate() - 1);
+                var dateFormat = parseDateFormat(yesterday);
+                $("#FromDate").val(dateFormat);
+                $("#ToDate").val(dateFormat);
+            });
+            $("#thisweek").click(function () {
+                var date = new Date();
+                var today = date.getDay();
+                var diff = 0;
+                if (today > 1)
+                    diff = today - 1;
+                else if (today == 0)
+                    diff = 6;
+                var fromDate = new Date();
+                fromDate.setDate(date.getDate() + diff * -1);
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("#lastweek").click(function () {
+                var date = new Date();
+                var today = date.getDay();
+                var diff = 0;
+                if (today > 1)
+                    diff = today - 1;
+                else if (today == 0)
+                    diff = 6;
+                var fromDate = new Date();
+                fromDate.setDate(date.getDate() + diff * -1 - 7);
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("#thismon").click(function () {
+                var date = new Date();
+                var fromDate = new Date();
+                fromDate.setDate(1);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(date));
+            });
+            $("#lastmon").click(function () {
+                var date = new Date();
+                var fromDate = new Date();
+                fromDate.setMonth(date.getMonth() - 1);
+                fromDate.setDate(1);
+                var days = new Date(date.getFullYear(), date.getMonth(), 0).getDate() - 1;
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + days * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("input[type='button']").click(function () {
+                $("form").submit();
+            });
+
+            var expand = function () {
+                var $this = $(this);
+                var index = $.trim($this.parent().parent().find("td").first().text());
+                var isLoadExpand = $this.attr("expand") == "1"; //是否已经加载了数据
+                var isShow = $this.attr("show") == "1";
+                if (isLoadExpand && isShow) {
+                    $(".from_" + index).fadeOut("slow");
+                    $this.attr("show", "0").text(resource.Expand);
+                    return;
+                }
+                else if (isLoadExpand && !isShow) {
+                    $(".from_" + index).fadeIn("slow");
+                    $this.attr("show", "1").text(resource.Collapse);
+                    return;
+                }
+
+
+                var id = $this.parent().parent().attr("id");
+                var fromDate = $("#FromDate").val();
+                var toDate = $("#ToDate").val();
+                var url = "GetChildStates/{0}?FromDate={1}&ToDate={2}".format(id, fromDate, toDate);
+                $.get(url, function (json) {
+                    var data = eval(json);
+                    var lastTr = null;
+                    var totalComm = 0;
+                    $(data).each(function (i, item) {
+                        totalComm += parseFloat(item.TotalCommission.replace(",", ""));
+                        var indexId = index + "-" + (i + 1);
+                        var tr = $("<tr id=" + item.UserId + " class='from_" + index + "' style='display:none'></tr>").click(function () { $(this).toggleClass("hang"); });
+                        tr.append($("<td>" + indexId + "</td>"));
+                        var isFirst = true;
+                        for (var d in item) {
+                            if (isFirst) isFirst = false;
+                            else
+                                if (d != "HasChild")
+                                    tr.append($("<td>" + item[d] + "</td>"));
+                        }
+                        tr.append($("<td></td><td>{0}</td>".format(item.HasChild ? "<span class='expand'>" + resource.Expand + "</span>" : "")));
+                        if (lastTr == null)
+                            $this.parent().parent().after(tr);
+                        else
+                            lastTr.after(tr);
+                        lastTr = tr;
+                    })
+                    $(".expand").unbind("click").bind("click", expand);
+                    $(".from_" + index).fadeIn("slow");
+                    $this.attr("expand", "1").attr("show", "1").text(resource.Collapse);
+                    $this.parent().prev().text(toDecimal2(totalComm));
+                });
+            }
+
+            $(".expand").click(expand);
+        });
+
+        //制保留2位小数，如：2，会在2后面补上00.即2.00  
+        function toDecimal2(x) {
+            var f = parseFloat(x);
+            if (isNaN(f)) {
+                return false;
+            }
+            var f = Math.round(x * 100) / 100;
+            var s = f.toString();
+            var rs = s.indexOf('.');
+            if (rs < 0) {
+                rs = s.length;
+                s += '.';
+            }
+            while (s.length <= rs + 2) {
+                s += '0';
+            }
+            return s;
+        }  
+    </script>
+}
+@{
+    User TargetUser = ViewBag.User;
+    int index = 1;
+}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.From</span>
+        @Html.TextBox("FromDate", DateTime.Today.ToShortDateString())
+        <span>@Resource.To</span>
+        @Html.TextBox("ToDate", DateTime.Today.ToShortDateString())
+        <input type="submit" name="search" id="search" value="@Resource.Search" />
+        <input type="button" name="today" id="today" value="@Resource.Today" />
+        <input type="button" name="yesterday" id="yesterday" value="@Resource.Yesterday" />
+        <input type="button" name="thisweek" id="thisweek" value="@Resource.ThisWeek" />
+        <input type="button" name="lastweek" id="lastweek" value="@Resource.LastWeek" />
+        <input type="button" name="thismon" id="thismon" value="@Resource.ThisMonth" />
+        <input type="button" name="lastmon" id="lastmon" value="@Resource.LastMonth" />
+        if (TargetUser.Role > Role.Company)
+        {
+        @Html.ActionLink(Resource.Return, "Index", new { Id = TargetUser.ParentId, FromDate = ViewBag.From.ToShortDateString(), ToDate = ViewBag.To.ToShortDateString() }, new { @class = "button" })
+        }
+    }
+</div>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td rowspan="2" class="rows">
+                @Resource.No
+            </td>
+            <td rowspan="2" class="rows">
+                @Resource.UserName
+            </td>
+            <td rowspan="2" class="rows">
+                @Resource.BetCount
+            </td>
+            <td rowspan="2" class="rows">
+                @Resource.Turnover
+            </td>
+            <td class="rows">
+                @Resource.WinLost
+            </td>
+            <td class="rows">
+                上级总佣金
+            </td>
+            <td rowspan="2" class="rows">
+                @Resource.TotalCommission
+            </td>
+            <td rowspan="2" class="rows">
+                @Resource.ChildsTotalComm
+            </td>
+            <td class="rows">@Resource.Function
+            </td>
+        </tr>
+    </thead>
+    <tr>
+        <td>@(index++)
+        </td>
+        <td>@ViewBag.FullStatement.UserName
+        </td>
+        <td>@ViewBag.FullStatement.OrderCount
+        </td>
+        <td>@ViewBag.FullStatement.BetTurnover.ToString("N")
+        </td>
+        <td @(ViewBag.FullStatement.WinLost < 0 ? "class=red" : string.Empty)>@ViewBag.FullStatement.WinLost.ToString("N")
+        </td>
+        <td>
+        </td>
+        <td>@ViewBag.FullStatement.TotalCommission.ToString("N")
+        </td>
+        <td>
+            @Model.Sum(it=>it.TotalCommission).ToString("N")
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="7">
+        </td>
+    </tr>
+    @foreach (var result in Model)
+    { 
+        <tr id="@result.UserId">
+            <td>@(index++)
+            </td>
+            <td>@result.UserName
+            </td>
+            <td>@result.OrderCount
+            </td>
+            <td>@result.BetTurnover.ToString("N")
+            </td>
+            <td @(result.WinLost < 0 ? "class=red" : string.Empty)>@result.WinLost.ToString("N")
+            </td>
+            <td>@result.ParentCommission.ToString("N")
+            </td>
+            <td>@result.TotalCommission.ToString("N")
+            </td>
+            <td>
+            </td>
+            <td>
+                <span class="expand">@Resource.Expand</span>
+            </td>
+        </tr>
+    }
+</table>

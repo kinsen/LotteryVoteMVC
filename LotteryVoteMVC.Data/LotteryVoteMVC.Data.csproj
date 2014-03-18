@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B572B893-F1C8-4654-906F-6C4667B2A443}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LotteryVoteMVC.Data</RootNamespace>
+    <AssemblyName>LotteryVoteMVC.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionLogDataAccess.cs" />
+    <Compile Include="AgentAuthorizeActionDataAccess.cs" />
+    <Compile Include="AgentAuthorizeInRoleDataAccess.cs" />
+    <Compile Include="Base\DataBase.cs" />
+    <Compile Include="Base\DBManager.cs" />
+    <Compile Include="BetAutoDropWaterDataAccess.cs" />
+    <Compile Include="BetOrderDataAccess.cs" />
+    <Compile Include="BetSheetDataAccess.cs" />
+    <Compile Include="CompanyDataAccess.cs" />
+    <Compile Include="CompanyLotteryCycleDataAccess.cs" />
+    <Compile Include="DropWaterDataAccess.cs" />
+    <Compile Include="FreezeFundsDataAccess.cs" />
+    <Compile Include="GamePlayWayDataAccess.cs" />
+    <Compile Include="Limit\BetLimitDataAccess.cs" />
+    <Compile Include="Commission\CommissionGroupDataAccess.cs" />
+    <Compile Include="Commission\CommissionValueDataAccess.cs" />
+    <Compile Include="Commission\ConcreteCommissionDataAccess.cs" />
+    <Compile Include="Commission\MemberPackageDataAccess.cs" />
+    <Compile Include="Commission\UserCommissionDataAccess.cs" />
+    <Compile Include="Limit\BetUpperLimitDataAccess.cs" />
+    <Compile Include="Limit\DefaultUpperLimitDataAccess.cs" />
+    <Compile Include="Limit\GameBetLimitDataAccess.cs" />
+    <Compile Include="LotteryResultDataAccess.cs" />
+    <Compile Include="NumLengthDataAccess.cs" />
+    <Compile Include="OrderAncestorCommInfoDataAccess.cs" />
+    <Compile Include="RollbackAmountDataAccess.cs" />
+    <Compile Include="SettleResultDataAccess.cs" />
+    <Compile Include="ShadowAuthorizeActionDataAccess.cs" />
+    <Compile Include="SystemErrorDataAccess.cs" />
+    <Compile Include="User\LoginFailedLogDataAccess.cs" />
+    <Compile Include="User\LoginLogDataAccess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\SQLHelper.cs" />
+    <Compile Include="User\UserDataAccess.cs" />
+    <Compile Include="User\UserInfoDataAccess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LotteryVoteMVC.Models\LotteryVoteMVC.Models.csproj">
+      <Project>{FC230421-0B0E-47C7-8D51-9AC6AD878EB3}</Project>
+      <Name>LotteryVoteMVC.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Utility\LotteryVoteMVC.Utility.csproj">
+      <Project>{2CAD6001-7C7B-45CA-B1C2-67ECF001CB6B}</Project>
+      <Name>LotteryVoteMVC.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

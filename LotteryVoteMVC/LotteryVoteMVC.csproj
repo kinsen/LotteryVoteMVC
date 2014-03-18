@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9CCA42B6-4C8D-413D-9A32-EFDFE157EA2C}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LotteryVoteMVC</RootNamespace>
+    <AssemblyName>LotteryVoteMVC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RouteDebug">
+      <HintPath>..\Lib\RouteDebug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BetController.cs" />
+    <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DropWaterController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LimitController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PartialController.cs" />
+    <Compile Include="Controllers\PromptController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SettleController.cs" />
+    <Compile Include="Controllers\ShadowAuthorizeController.cs" />
+    <Compile Include="Controllers\SheetController.cs" />
+    <Compile Include="Controllers\ValidateController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AutoDropWaterModel.cs" />
+    <Compile Include="Models\BetAutoDropModel.cs" />
+    <Compile Include="Models\CommGroupModel.cs" />
+    <Compile Include="Models\DefaultUpperLimitModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PwdModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\ShadowAuthModel.cs" />
+    <Compile Include="Models\ShadowModel.cs" />
+    <Compile Include="Models\TodayDropWaterModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\BetBase.css" />
+    <Content Include="Content\BetSheet.css" />
+    <Content Include="Content\error.css" />
+    <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\Images\betBarBg.gif" />
+    <Content Include="Content\Images\betBoardBg.gif" />
+    <Content Include="Content\Images\body_bg.gif" />
+    <Content Include="Content\Images\btn2.png" />
+    <Content Include="Content\Images\btn21.png" />
+    <Content Include="Content\Images\button_down.gif" />
+    <Content Include="Content\Images\button_on.gif" />
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\flag_CN.gif" />
+    <Content Include="Content\Images\flag_EN.gif" />
+    <Content Include="Content\Images\flag_VN.gif" />
+    <Content Include="Content\Images\footer.gif" />
+    <Content Include="Content\Images\loginBG4.jpg" />
+    <Content Include="Content\Images\loginBG_blue.gif" />
+    <Content Include="Content\Images\loginBG_orange.gif" />
+    <Content Include="Content\Images\loginBtn_blue.gif" />
+    <Content Include="Content\Images\loginBtn_orange.gif" />
+    <Content Include="Content\Images\logo.gif" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\logo_fff.gif" />
+    <Content Include="Content\Images\maintenance.jpg" />
+    <Content Include="Content\Images\menuBG.gif" />
+    <Content Include="Content\Images\new.png" />
+    <Content Include="Content\Images\shadow1.gif" />
+    <Content Include="Content\Images\shadow2.gif" />
+    <Content Include="Content\Images\shadow3.gif" />
+    <Content Include="Content\inputs.css" />
+    <Content Include="Content\comm.css" />
+    <Content Include="Content\commission.css" />
+    <Content Include="Content\Images\404_h1.png" />
+    <Content Include="Content\Images\404_tips.png" />
+    <Content Include="Content\Images\add.png" />
+    <Content Include="Content\Images\amountBoard.jpg" />
+    <Content Include="Content\Images\banner.gif" />
+    <Content Include="Content\Images\banner.jpg" />
+    <Content Include="Content\Images\btn-round.png" />
+    <Content Include="Content\Images\btn1.png" />
+    <Content Include="Content\Images\cellBg.jpg" />
+    <Content Include="Content\Images\dateTitleBg.jpg" />
+    <Content Include="Content\Images\flag_CN.JPG" />
+    <Content Include="Content\Images\flag_EN.JPG" />
+    <Content Include="Content\Images\flag_VN.JPG" />
+    <Content Include="Content\Images\loginBG.gif" />
+    <Content Include="Content\Images\loginBG3.jpg" />
+    <Content Include="Content\Images\no.jpg" />
+    <Content Include="Content\Images\title.jpg" />
+    <Content Include="Content\agentLogin.css" />
+    <Content Include="Content\jquery.cluetip.css" />
+    <Content Include="Content\login1.css" />
+    <Content Include="Content\Pager\pager.css" />
+    <Content Include="Content\Pager\pagerGray.css" />
+    <Content Include="Content\Pager\pagerGreen.css" />
+    <Content Include="Content\RollParlay.css" />
+    <Content Include="Content\TableBase.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\Zodiac.css" />
+    <Content Include="Content\login2.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\Customer\ABRollParlay.js" />
+    <Content Include="Scripts\Customer\addUser.js" />
+    <Content Include="Scripts\Customer\ajaxHelper.js" />
+    <Content Include="Scripts\Customer\BetComm.js" />
+    <Content Include="Scripts\Customer\BetOrder.js" />
+    <Content Include="Scripts\Customer\BetZodiac.js" />
+    <Content Include="Scripts\Customer\comm.js" />
+    <Content Include="Scripts\Customer\DynamicRange.js" />
+    <Content Include="Scripts\Customer\FastBet.js" />
+    <Content Include="Scripts\Customer\loginBase.js" />
+    <Content Include="Scripts\Customer\multipleSubmit.js" />
+    <Content Include="Scripts\Customer\resource_en.js" />
+    <Content Include="Scripts\Customer\resource_vi.js" />
+    <Content Include="Scripts\Customer\resource_zh.js" />
+    <Content Include="Scripts\Customer\BetRollParlay.js" />
+    <Content Include="Scripts\Customer\SearchHelper.js" />
+    <Content Include="Scripts\Customer\Shadow.js" />
+    <Content Include="Scripts\Customer\TableBase.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.18.custom.min.js" />
+    <Content Include="Scripts\jquery.base64.min.js" />
+    <Content Include="Scripts\jquery.cluetip.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-en.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-vi.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-zh.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\Customer\main.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LotteryVoteMVC.Core\LotteryVoteMVC.Core.csproj">
+      <Project>{BFDC19DB-1279-4929-8822-3DA98A9D802A}</Project>
+      <Name>LotteryVoteMVC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Models\LotteryVoteMVC.Models.csproj">
+      <Project>{FC230421-0B0E-47C7-8D51-9AC6AD878EB3}</Project>
+      <Name>LotteryVoteMVC.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Resources\LotteryVoteMVC.Resources.csproj">
+      <Project>{5192199C-88B8-45D7-9866-B885B277ED94}</Project>
+      <Name>LotteryVoteMVC.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Utility\LotteryVoteMVC.Utility.csproj">
+      <Project>{2CAD6001-7C7B-45CA-B1C2-67ECF001CB6B}</Project>
+      <Name>LotteryVoteMVC.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Main.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\NavMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\Agent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\EditUserComm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\CommValueEditor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\LimitItem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\SearchBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShadowAuthorize\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShadowAuthorize\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShadowAuthorize\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\AddShadow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\EditShadow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\NoPermissions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\AmountBoard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\OpenCompany.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\BetMain.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\RollParlay.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\EachLevelComm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\Zodiac.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sheet\Bet.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Order\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\TodayCompany.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\GamePlayWay.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\Statement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\MemberWL.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\Cancel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\Rule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\EditCycle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\LotteryResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Company\AddLotteryResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\AddGroup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Commission\EditGroup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Order\Manager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Sheet\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\NumAmountRanking.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\EachLevel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\Today.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\BetAuto.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\DefaultUpper.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\CompanyType.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prompt\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\UpperMonitor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\UpperMonitorDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\EditUpperLimit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\AddTodayDrop.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Settle\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\WinLost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\DropWater.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\Action.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Message\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\Language.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\Agreement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Limit\StopUpperLimits.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\System.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\DetailSystem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\ShadowNavMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Order\Win.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Member\ChangePassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Order\WinReport.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\Log.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Log\LoginFailed.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\DropWaterList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DropWater\Tomorrow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\CompanyAmountRanking.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\FastBet2D.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\FastBet3D.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\FullStatements.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Report\Member.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\ABRollParlay.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prompt\Maintenance.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bet\Roll7.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2870</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2870/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

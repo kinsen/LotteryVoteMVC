@@ -1,0 +1,11 @@
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Debug\ResolveAssemblyReference.cache
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Data.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Data.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Models.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Utility.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\log4net.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Models.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\LotteryVoteMVC.Utility.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Debug\log4net.xml
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Debug\LotteryVoteMVC.Data.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Debug\LotteryVoteMVC.Data.pdb

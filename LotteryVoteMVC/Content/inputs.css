@@ -1,0 +1,37 @@
+﻿input[type='text'].auto
+{
+    width: 100%;
+    border: solid 1px #B3B3B3;
+    height: 100%;
+    text-align: center;
+    background: #777;
+    color: #fff;
+}
+input[type='text'].auto:focus
+{
+    background: #fff;
+    color: #696969;
+}
+
+body.long input[type='text'], input[type='password']
+{
+    width: 200px;
+    height: 20px;
+}
+body.long select
+{
+    width: 100px;
+    height: 25px;
+}
+
+body input[type='submit'],body  input[type='button'],body input[type='reset']
+{
+    clear: both;
+    padding: 0px;
+    height: 25px;
+    border: solid 1px #FC8100;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #FC8002;
+    color: #fff;
+}

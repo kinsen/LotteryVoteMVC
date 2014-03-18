@@ -1,0 +1,33 @@
+﻿#pager
+{
+    font-size: 12;
+    display: inline;
+}
+#pager a
+{
+    float: left;
+    display: inline;
+    padding: 3px 6px;
+    margin-right: 3px;
+    background: #EDF2FF;
+    border: 1px solid #EAEFF3;
+    color: #2E6A00;
+}
+#pager a:hover
+{
+    border: 1px solid #EAEFF3;
+    color: #FFFFFF;
+    background-color: #2E6A00;
+}
+#pager span
+{
+    float: left;
+    display: inline;
+}
+#pager span.current
+{
+    background: #2E6A00;
+    color: #fff;
+    border: 1px solid #EAEFF3;
+    padding: 3px 6px;
+}

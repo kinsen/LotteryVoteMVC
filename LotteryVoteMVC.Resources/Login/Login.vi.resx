@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="agree" xml:space="preserve">
+    <value>Đồng Ý</value>
+  </data>
+  <data name="Agreement1" xml:space="preserve">
+    <value>Quý khách đã mở tài khoản của công ty hoặc đã đặt cược, thì coi như đã đọc và hiểu rõ đồng thời đã chấp nhận theo các qui luật dưới đây.</value>
+  </data>
+  <data name="Agreement10" xml:space="preserve">
+    <value>ất cả mọi phiên dịch trong Website này, đều lấy tiếng hoa làm chuẩn.</value>
+  </data>
+  <data name="Agreement11" xml:space="preserve">
+    <value>Quý khách sau khi đặt cược, xin chờ hiện thị,”Tổng tiền cược là : …. Chấp nhận tiền là: (Tiền chấp nhận cược phải bằng tiền cược) mới thành công.</value>
+  </data>
+  <data name="Agreement2" xml:space="preserve">
+    <value>Nếu quý khách phát hiện và hoài nghi mật khẩu bạn thân bị đánh cắp dùng, nên lập tức tự thây đổi mật khẩu bạn thân ngay hoặc thông báo cho công ty .công ty sẽ giúp bạn thây đổi mật khậu hoặc vô hiệu hoá tài khoản đó.</value>
+  </data>
+  <data name="Agreement3" xml:space="preserve">
+    <value>Quý khách có trách nhiệm bảo mật tài khoản,mật mã bạn thân. Nếu bị ngừoi khác đánh cắp và đã đặt cược trong tài khoản quý khách,Thì các số đã đặt cược đều có hiệu lực.</value>
+  </data>
+  <data name="Agreement4" xml:space="preserve">
+    <value>Cũng bởi vì tránh tình trạng tranh luận, khi quý khách đặt cược xong phải kiểm tra lại “Danh sách cược”.</value>
+  </data>
+  <data name="Agreement5" xml:space="preserve">
+    <value>Các cược đã đặt được chấp nhận sau khi đã có kết quả xổ số đều bị coi là không có hiệu quả.</value>
+  </data>
+  <data name="Agreement6" xml:space="preserve">
+    <value>Tất cả môi vấn đề khiếu nại nhất định phải trước giờ xổ số, công ty sẽ không chấp nhận giải quyết mọi vấn đề khiếu nại sau khi xổ số.</value>
+  </data>
+  <data name="Agreement7" xml:space="preserve">
+    <value>Trong lúc công bố bồi đền xuất hiện mọi chữ số đánh sai hoặc người sơ ý vô tình đánh sai, công ty sẽ bảo lưu cải chánh sự sai và được quyền theo bồi đền chính xác để kết toán các tài khoản đã đặt cược.</value>
+  </data>
+  <data name="Agreement8" xml:space="preserve">
+    <value>Nếu công ty phát hiện quý khách có tình trạng đặt cược không bình thường,công ty có quyền ngưng ngay tài khoản quý khách đang đặt cược, các cược đã đặt trước khi công ty ngưng đều có hiệu quả, không được yêu cầu hủy bỏ hoặc gia hạn thời gian và không được khiếu nại bất cứ vấn đề gì.</value>
+  </data>
+  <data name="Agreement9" xml:space="preserve">
+    <value>Nếu bạn chấp nhận đặt cược tại Website này mà vi phạm pháp luật thuộc địa không cho phép, công ty hoàn toàn khộng chịu trách nhiệm.</value>
+  </data>
+  <data name="Disagree" xml:space="preserve">
+    <value>Không đồng ý</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LoginField" xml:space="preserve">
+    <value>Đồng Ý</value>
+  </data>
+  <data name="LoginFaild" xml:space="preserve">
+    <value>Login Faild</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="reset" xml:space="preserve">
+    <value>Hồi phục</value>
+  </data>
+  <data name="UserNameLabel" xml:space="preserve">
+    <value>Tài khởan</value>
+  </data>
+  <data name="UserNamePasswordFaild" xml:space="preserve">
+    <value>User name or password faild,Please retry!</value>
+  </data>
+  <data name="VerifyCode" xml:space="preserve">
+    <value>verify code</value>
+  </data>
+  <data name="VerifyCodeError" xml:space="preserve">
+    <value>VerifyCode was error!</value>
+  </data>
+  <data name="WelcomeString" xml:space="preserve">
+    <value>Chào mừng với đăng nhập của thành viên</value>
+  </data>
+  <data name="AgentWelcomeString" xml:space="preserve">
+    <value>Chào mừng với đăng nhập của Agent</value>
+  </data>
+</root>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFDC19DB-1279-4929-8822-3DA98A9D802A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LotteryVoteMVC.Core</RootNamespace>
+    <AssemblyName>LotteryVoteMVC.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionLogger.cs" />
+    <Compile Include="Application\ControllerEx.cs" />
+    <Compile Include="Application\ExceptionProcessor.cs" />
+    <Compile Include="Application\Extended.cs" />
+    <Compile Include="Application\LotterySystem.cs" />
+    <Compile Include="Authorizes\AgentAuthorizeAttribute.cs" />
+    <Compile Include="Authorizes\UserAuthorizeAttribute.cs" />
+    <Compile Include="BackupManager.cs" />
+    <Compile Include="BetManager.cs" />
+    <Compile Include="Bet\BetOrderBuilder.cs" />
+    <Compile Include="Bet\MultipleCalculator\2DMultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\3DMultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\4DMultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\5DMultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\A_BPL2MultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\DigitMultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\MultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\MultipleCalculatorFactory.cs" />
+    <Compile Include="Bet\MultipleCalculator\PL2MultipleCalculator.cs" />
+    <Compile Include="Bet\MultipleCalculator\PL3MultipleCalculator.cs" />
+    <Compile Include="Bet\NumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantityCounterFactory.cs" />
+    <Compile Include="Bet\NumQuantity\2DNumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\3DNumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\4DNumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\5DNumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\A_B_PL2NumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\DigitNumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\PL2NumQuantityCounter.cs" />
+    <Compile Include="Bet\NumQuantity\PL3NumQuantityCounter.cs" />
+    <Compile Include="Bet\OrderBuilder.cs" />
+    <Compile Include="Bet\OrderBuilder\AutoBetOrderBuilder.cs" />
+    <Compile Include="Bet\OrderBuilder\A_BPL2OrderBuilder.cs" />
+    <Compile Include="Bet\OrderBuilder\CommOrderBuilder.cs" />
+    <Compile Include="Bet\OrderBuilder\FastBetOrderBuilder.cs" />
+    <Compile Include="Bet\OrderBuilder\OrderBuilderBase.cs" />
+    <Compile Include="Bet\OrderBuilder\UnionPL2OrderBuilder.cs" />
+    <Compile Include="BulletinManager.cs" />
+    <Compile Include="CommManager.cs" />
+    <Compile Include="CompanyManager.cs" />
+    <Compile Include="DropWaterManager.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\InvalidDataException.cs" />
+    <Compile Include="Exceptions\NoPermissionException.cs" />
+    <Compile Include="FreezeFundsManager.cs" />
+    <Compile Include="GPWManager.cs" />
+    <Compile Include="LimitManager.cs" />
+    <Compile Include="Limit\AutoDropLimiter.cs" />
+    <Compile Include="Limit\ILimitCheck.cs" />
+    <Compile Include="Limit\LimitChecker.cs" />
+    <Compile Include="Limit\UpperLimiter.cs" />
+    <Compile Include="Limit\UserLimiter.cs" />
+    <Compile Include="LogManager.cs" />
+    <Compile Include="ManagerHelper.cs" />
+    <Compile Include="OrderManager.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="SettleManager.cs" />
+    <Compile Include="StopAcceptBetSettings.cs" />
+    <Compile Include="UserLimitManager.cs" />
+    <Compile Include="LoginCenter.cs" />
+    <Compile Include="ManagerBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShadowAuthManager.cs" />
+    <Compile Include="TodayLotteryCompany.cs" />
+    <Compile Include="UpperLimitManager.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="UserNameBuilder.cs" />
+    <Compile Include="User\MemberStrategy.cs" />
+    <Compile Include="User\ProxyStrategy.cs" />
+    <Compile Include="User\ShadowStrategy.cs" />
+    <Compile Include="User\UserStrategy.cs" />
+    <Compile Include="User\UserStrategyFactory.cs" />
+    <Compile Include="Validator\DynamicRangeAttribute.cs" />
+    <Compile Include="Validator\ModelStateHelper.cs" />
+    <Compile Include="Web\BaseController.cs" />
+    <Compile Include="Web\FixModelFilterAttribute.cs" />
+    <Compile Include="Web\JsonBinder.cs" />
+    <Compile Include="Web\NoCacheFilterAttribute.cs" />
+    <Compile Include="Web\RequestCostTimeFilterAttribute.cs" />
+    <Compile Include="Web\SingleLoginFilterAttribute.cs" />
+    <Compile Include="Web\VerifyCodeResult.cs" />
+    <Compile Include="WinMultipleCalculator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LotteryVoteMVC.Data\LotteryVoteMVC.Data.csproj">
+      <Project>{B572B893-F1C8-4654-906F-6C4667B2A443}</Project>
+      <Name>LotteryVoteMVC.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Models\LotteryVoteMVC.Models.csproj">
+      <Project>{FC230421-0B0E-47C7-8D51-9AC6AD878EB3}</Project>
+      <Name>LotteryVoteMVC.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Resources\LotteryVoteMVC.Resources.csproj">
+      <Project>{5192199C-88B8-45D7-9866-B885B277ED94}</Project>
+      <Name>LotteryVoteMVC.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LotteryVoteMVC.Utility\LotteryVoteMVC.Utility.csproj">
+      <Project>{2CAD6001-7C7B-45CA-B1C2-67ECF001CB6B}</Project>
+      <Name>LotteryVoteMVC.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

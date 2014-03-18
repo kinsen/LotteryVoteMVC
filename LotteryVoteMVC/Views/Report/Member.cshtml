@@ -1,0 +1,181 @@
+﻿@model PagedList<LotteryVoteMVC.Models.SettleResult>
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = Resource.Guest +" "+ Resource.WinLost;
+    Layout = "~/Views/Shared/Main.cshtml";
+    int index = 1;
+}
+@section Header{
+    <script src="@Url.Content("~/Scripts/Customer/SearchHelper.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.datepicker-" + CultureHelper.GetCurrentCulture() + ".js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Pager/pagerGray.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FromDate").attr("readonly", "readonly").datepicker();
+            $("#ToDate").attr("readonly", "readonly").datepicker();
+            $("#today").click(function () {
+                var date = new Date();
+                var dateFormat = parseDateFormat(date);
+                $("#FromDate").val(dateFormat);
+                $("#ToDate").val(dateFormat);
+            });
+            $("#yesterday").click(function () {
+                var date = new Date();
+                var yesterday = new Date();
+                yesterday.setDate(date.getDate() - 1);
+                var dateFormat = parseDateFormat(yesterday);
+                $("#FromDate").val(dateFormat);
+                $("#ToDate").val(dateFormat);
+            });
+            $("#thisweek").click(function () {
+                var date = new Date();
+                var today = date.getDay();
+                var diff = 0;
+                if (today > 1)
+                    diff = today - 1;
+                else if (today == 0)
+                    diff = 6;
+                var fromDate = new Date();
+                fromDate.setDate(date.getDate() + diff * -1);
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("#lastweek").click(function () {
+                var date = new Date();
+                var today = date.getDay();
+                var diff = 0;
+                if (today > 1)
+                    diff = today - 1;
+                else if (today == 0)
+                    diff = 6;
+                var fromDate = new Date();
+                fromDate.setDate(date.getDate() + diff * -1 - 7);
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + 6 * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("#thismon").click(function () {
+                var date = new Date();
+                var fromDate = new Date();
+                fromDate.setDate(1);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(date));
+            });
+            $("#lastmon").click(function () {
+                var date = new Date();
+                var fromDate = new Date();
+                fromDate.setMonth(date.getMonth() - 1);
+                fromDate.setDate(1);
+                var days = new Date(date.getFullYear(), date.getMonth(), 0).getDate() - 1;
+                var toDate = new Date();
+                toDate.setTime(fromDate.getTime() + days * 24 * 60 * 60 * 1000);
+                $("#FromDate").val(parseDateFormat(fromDate));
+                $("#ToDate").val(parseDateFormat(toDate));
+            });
+            $("input[type='button']").click(function () {
+                $("form").submit();
+            });
+        });
+    </script>
+    <style type="text/css">
+        div.main
+        {
+            overflow: scroll;
+            overflow-y: visible;
+            overflow-x: visible;
+        }
+    </style>
+}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.From</span>
+        @Html.TextBox("FromDate", DateTime.Today.ToShortDateString())
+        <span>@Resource.To</span>
+        @Html.TextBox("ToDate", DateTime.Today.ToShortDateString())
+        <span>@Resource.Sort</span>
+        <select id="Sort" name="Sort">
+            <option value="@SettleResult.WINLOST">@Resource.WinLost</option>
+            <option vlaue="@SettleResult.TOTALWINLOST">@Resource.ToalWinLost</option>
+            <option value="@SettleResult.COMMISSION">@Resource.Comm</option>
+            <option value="@SettleResult.TOTALCOMMISSION">@Resource.TotalCommission</option>
+            <option value="@SettleResult.BETTURNOVER">@Resource.Turnover</option>
+            <option value="@SettleResult.ORDERCOUNT">@Resource.BetCount</option>
+        </select>
+        <select id="SortType" name="SortType">
+            <option value="DESC">@Resource.Desc</option>
+            <option value="ASC">@Resource.Asc</option>
+        </select>
+        <input type="submit" name="search" id="search" value="@Resource.Search" />
+        <input type="button" name="today" id="today" value="@Resource.Today" />
+        <input type="button" name="yesterday" id="yesterday" value="@Resource.Yesterday" />
+        <input type="button" name="thisweek" id="thisweek" value="@Resource.ThisWeek" />
+        <input type="button" name="lastweek" id="lastweek" value="@Resource.LastWeek" />
+        <input type="button" name="thismon" id="thismon" value="@Resource.ThisMonth" />
+        <input type="button" name="lastmon" id="lastmon" value="@Resource.LastMonth" />
+    }
+</div>
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td rowspan="2" class="rows">
+                @Resource.No
+            </td>
+            <td class="rows">
+                @Resource.UserName
+            </td>
+            <td class="rows">
+                @Resource.Currency
+            </td>
+            <td class="rows">
+                @Resource.BetCount
+            </td>
+            <td class="rows">
+                @Resource.Turnover
+            </td>
+            <td class="rows">
+                @Resource.WinLost
+            </td>
+            <td class="rows">
+                @Resource.Comm
+            </td>
+            <td class="rows">
+                @Resource.ToalWinLost
+            </td>
+        </tr>
+    </thead>
+    @foreach (var settle in Model)
+    { 
+        <tr>
+            <td>@(index++)
+            </td>
+            <td>@settle.Name
+            </td>
+            <td>
+                VND
+            </td>
+            <td>@settle.OrderCount
+            </td>
+            <td>
+            @Html.ActionLink(settle.BetTurnover.ToString("N"), "WinLost", new { Id = settle.UserId, FromDate = ViewBag.From.ToShortDateString(), ToDate = ViewBag.To.ToShortDateString() }, new { target = "_blank" })
+            </td>
+            <td @(settle.WinLost < 0 ? "class=red" : string.Empty)>@settle.WinLost
+            </td>
+            <td>@settle.Commission
+            </td>
+            <td @(settle.TotalWinLost < 0 ? "class=red" : string.Empty)>@settle.TotalWinLost
+            </td>
+        </tr>
+    }
+</table>
+@Html.Pager(Model)

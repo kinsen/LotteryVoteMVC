@@ -1,0 +1,14 @@
+﻿@using LotteryVoteMVC.Resources
+@{
+    Layout = null;
+}
+<div id="amountBoard">
+    <div id="date">
+        <span style="width: 77px; font-size: 16px;" id="dateTime"></span><span style="width: 40px; font-size: 10px" id="dayOfWeek"></span>
+    </div>
+    <div id="timeBar"><span id="currentTime">
+            @DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")
+        </span></div>
+        <div class="abMount"><span>@Resource.BetCredit:</span><span id="betCredit">@ViewBag.BetCredit.ToString("N")</span></div>
+        <div class="abMount"><span>@Resource.Outstanding:</span><span style="color: Red" id="outstanding">@ViewBag.Outstanding.ToString("N")</span></div>
+</div>

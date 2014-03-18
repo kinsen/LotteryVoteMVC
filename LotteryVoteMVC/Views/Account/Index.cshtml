@@ -1,0 +1,171 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.User>
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = Resource.UserManager;
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+@section Header{
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #userMenu
+        {
+            padding-bottom: 10px;
+            padding-left: 20px;
+        }
+        #userMenu span
+        {
+            padding: 0px 5px;
+            font-weight: bold;
+        }
+        #userMenu span a
+        {
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+        var editAccount = function (userId) {
+            buildFrame("editAccount", 500, 800, "/Account/Edit/{0}".format(userId), "Edit", reloadPage);
+        }
+        var addAccount = function (userId) {
+            buildFrame("addAccount", 550, 800, "/Account/Add", "Add", reloadPage);
+        }
+        var addShadow = function (userId) {
+            buildFrame("addShadow", 550, 800, "/Account/AddShadow", "Add", reloadPage);
+        }
+        var editShadow = function (userId) {
+            buildFrame("editShadow", 500, 800, "/Account/EditShadow/{0}".format(userId), "Edit");
+        }
+        var editComm = function (userId, name) {
+            buildFrame("editComm", 550, 800, "/Commission/EditUserComm/{0}".format(userId), name);
+        }
+        var editLimit = function (userId, name) {
+            buildFrame("editComm", 550, 990, "/Limit/Index/{0}".format(userId), name, reloadPage);
+            $("#editComm").bind("load", function () {
+                $("#editComm").contents().find("body").css("width", "980px");
+            });
+        }
+    </script>
+}
+@Html.Partial("SearchBar", (bool)(ViewBag.IsShadow ?? false))
+@if (!(ViewBag.IsShadow ?? false) && ViewBag.Family != null)
+{
+    bool isFirst = true;
+    <div id="userMenu">
+        @foreach (User usr in ViewBag.Family)
+        {
+            if (isFirst) { isFirst = false; }
+            else
+            {<span>-></span>}
+            <span>@Html.ActionLink(usr.UserName, "Child", new { Id = usr.UserId })</span>
+        }
+    </div>
+}
+<table>
+    <thead>
+        <tr>
+            <td>@Resource.No
+            </td>
+            <td>@Resource.Name
+            </td>
+            <td>@Resource.UserName
+            </td>
+            <td>@Resource.Currency
+            </td>
+            <td>@Resource.GivenCredit
+            </td>
+            <td>@Resource.AvailableGivenCredit
+            </td>
+            @if (ViewBag.User.Role < Role.Agent)
+            {
+                <td>@Resource.ShareRate
+                </td>
+            }
+            <td>@Resource.LastLoginTime
+            </td>
+            <td>@Resource.CreateTime
+            </td>
+            <td>@Resource.Status
+            </td>
+            <td>@Resource.Function
+            </td>
+        </tr>
+    </thead>
+    @{int index = 1;}
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @(index++)
+            </td>
+            <td>@user.UserInfo.Name
+            </td>
+            <td>
+                @if (user.Role <= Role.Agent)
+                {
+                    @Html.ActionLink(user.UserName, "Child", new { Id = user.UserId });
+                }
+                else
+                {
+                    @user.UserName
+                }
+            </td>
+            <td>
+                VND
+            </td>
+            <td>@user.UserInfo.GivenCredit.ToString("N")
+            </td>
+            <td>@user.UserInfo.AvailableGivenCredit.ToString("N")
+            </td>
+            @if (ViewBag.User.Role < Role.Agent)
+            {
+                <td>@string.Format("{0:P0}", user.UserInfo.ShareRate)
+                </td>
+            }
+            <td>@user.LastLoginTime.ToFormat()
+            </td>
+            <td>@user.UserInfo.CreateTime.ToFormat()
+            </td>
+            <td style="color:@(user.UserInfo.State == UserState.Active ? "Green" : "Red")">@Resource.ResourceManager.GetString(user.UserInfo.State.ToString())
+            </td>
+            <td>
+                <a class="edit" href="javascript:@(user.Role == Role.Shadow ? "editShadow" : "editAccount")(@user.UserId)">@Resource.Edit</a>
+                @if (user.Role <= Role.Guest)
+                {
+                    <span>/</span>
+                    <a class="edit" href="javascript:editComm(@user.UserId,'@user.UserName')">@Resource.Comm</a> 
+                    <span>/</span>
+                    <a class="edit" href="javascript:editLimit(@user.UserId,'@user.UserName')">@Resource.Limit</a> 
+                }
+                @if (ViewBag.Matrix.UserId == user.ParentId)
+                {
+                    <span>/</span>
+                    <a class="edit" href="javascript:updatePwd(@user.UserId)">@Resource.Password</a>
+                }
+                <span>/</span>
+                @if (user.UserInfo.State == UserState.Active)
+                {
+                    @Html.ActionLink(Resource.Stop, "Stop", new { Id = user.UserId }, new { @class = "edit",onclick="return confirm('Are you sure?')" })
+                }
+                else
+                {
+                    @Html.ActionLink(Resource.Start, "Start", new { Id = user.UserId }, new { @class = "edit", onclick = "return confirm('Are you sure?')" })
+                }
+                @if (user.Role < Role.Guest && LoginCenter.CurrentUser.Role != Role.Shadow)
+                {
+                    <span>/</span>
+                    @Html.ActionLink(Resource.SubUser, "Shadow", "Account", new { Id = user.UserId }, new { @class = "edit" })
+                }
+                /
+                @Html.ActionLink(Resource.LoginLog, "Login", "Log", new { Id = user.UserId }, new { target = "_blank" })
+                /
+                @Html.ActionLink(Resource.ActionLog, "Action", "Log", new { Id = user.UserId }, new { target = "_blank" })
+            </td>
+        </tr>
+    }
+</table>

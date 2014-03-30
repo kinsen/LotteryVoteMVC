@@ -16,8 +16,8 @@ namespace LotteryVoteMVC.Core
 
         public override void AddUser(Models.User user)
         {
-            if (user.UserInfo.ShareRate > 1)
-                user.UserInfo.ShareRate = user.UserInfo.ShareRate.PercentageToDecimal(2);
+            if (user.UserInfo.RateGroupId > 1)
+                user.UserInfo.RateGroupId = user.UserInfo.RateGroupId;
             species = this.ParseParam<IEnumerable<LotterySpecies>>(SPECIES);
             groupIds = this.ParseParam<int[]>(GROUPIDS);
 

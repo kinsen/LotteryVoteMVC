@@ -35,3 +35,10 @@ var editComLimit = function () {
         $("#editComLimit").contents().find("body").css("width", "780px");
     });
 }
+
+var editGroupLimit = function (groupId) {
+    buildFrame("editGroupLimit", 550, 800, "/ShareRateGroup/Limit/" + groupId, "EditGroupLimit");
+    $("#editGroupLimit").bind("load", function () {
+        $("#editGroupLimit").contents().find("body").css("width", "780px");
+    });
+}

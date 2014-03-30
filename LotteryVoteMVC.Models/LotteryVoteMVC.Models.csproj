@@ -65,6 +65,8 @@
     <Compile Include="Limit\BetUpperLimit.cs" />
     <Compile Include="Limit\CompanyAmountInfo.cs" />
     <Compile Include="Limit\DefaultUpperLimit.cs" />
+    <Compile Include="Limit\RateGroupBetLimit.cs" />
+    <Compile Include="Limit\RateGroupGameBetLimit.cs" />
     <Compile Include="Log\ActionLog.cs" />
     <Compile Include="Log\SystemError.cs" />
     <Compile Include="RollbackAmount.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="VietnamLottery\LotteryRecord.cs" />
     <Compile Include="VietnamLottery\LotteryResult.cs" />
     <Compile Include="VietnamLottery\NumLength.cs" />
+    <Compile Include="VietnamLottery\UserBetAutoDropWater.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LotteryVoteMVC.Resources\LotteryVoteMVC.Resources.csproj">

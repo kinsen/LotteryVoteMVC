@@ -15,6 +15,7 @@ namespace LotteryVoteMVC.Core
     {
         private DropWaterDataAccess _daDropWater;
         private BetAutoDropWaterDataAccess _daAutoDrop;
+        private UserBetAutoDropWaterDataAccess _daUserAutoDrop;
         public DropWaterDataAccess DaDropWater
         {
             get
@@ -31,6 +32,15 @@ namespace LotteryVoteMVC.Core
                 if (_daAutoDrop == null)
                     _daAutoDrop = new BetAutoDropWaterDataAccess();
                 return _daAutoDrop;
+            }
+        }
+        private UserBetAutoDropWaterDataAccess DaUserAutoDrop
+        {
+            get
+            {
+                if (_daUserAutoDrop == null)
+                    _daUserAutoDrop = new UserBetAutoDropWaterDataAccess();
+                return _daUserAutoDrop;
             }
         }
 
@@ -281,6 +291,45 @@ namespace LotteryVoteMVC.Core
 
             return new PagedList<BetAutoDropWater>(DaAutoDrop.ListByCondition(companyType, gameplayway, amount, dropValue, start, end), pageIndex, pageSize
                 , DaAutoDrop.CountByCondition(companyType, gameplayway, amount, dropValue));
+        }
+        #endregion
+
+        #region UserBetAutoDrop
+        public void AddUserBetAutoDrop(int userId, CompanyType companyType, int gameplaywayId, decimal amount, double dropValue)
+        {
+            if (DaUserAutoDrop.GetDrops(companyType, gameplaywayId, userId, amount).Count() > 0)
+                throw new BusinessException(Resource.AlreadyExist);
+            UserBetAutoDropWater drop = new UserBetAutoDropWater
+            {
+                UserId = userId,
+                CompanyType = companyType,
+                GamePlayWayId = gameplaywayId,
+                Amount = amount,
+                DropValue = dropValue
+            };
+            DaUserAutoDrop.Insert(drop);
+        }
+        public IEnumerable<UserBetAutoDropWater> GetAutoDrops(int userId, CompanyType companyType, int gameplaywayId)
+        {
+            return DaUserAutoDrop.GetFamilyDrops(companyType, gameplaywayId, userId);
+        }
+        public void RemoveUserBetAutoDrop(int dropId)
+        {
+            DaUserAutoDrop.Delete(dropId);
+        }
+        public PagedList<UserBetAutoDropWater> GetUserAutoBetDrop(int userId, int pageIndex)
+        {
+            int start = GetStart(pageIndex);
+            int end = GetEnd(pageIndex);
+            return new PagedList<UserBetAutoDropWater>(DaUserAutoDrop.ListDrop(userId, start, end), pageIndex, pageSize, DaUserAutoDrop.CountAllDrop());
+        }
+        public PagedList<UserBetAutoDropWater> SearchUserAutoBetDrop(int userId, int companyType, int gameplayway, decimal amount, double dropValue, int pageIndex)
+        {
+            int start = GetStart(pageIndex);
+            int end = GetEnd(pageIndex);
+
+            return new PagedList<UserBetAutoDropWater>(DaUserAutoDrop.ListByCondition(userId, companyType, gameplayway, amount, dropValue, start, end), pageIndex, pageSize
+                , DaUserAutoDrop.CountByCondition(userId, companyType, gameplayway, amount, dropValue));
         }
         #endregion
 

@@ -12,7 +12,7 @@ namespace LotteryVoteMVC.Data
         public void Insert(UserInfo userInfo)
         {
             string sql = string.Format(@"Insert into tb_UserInfo ({0},{1},{2},{3},{4},{5},{6},{7}) values(@{0},@{1},@{2},@{3},@{4},@{5},@{6},@{7})",
-                UserInfo.USERID, UserInfo.PASSWORD, UserInfo.NAME, UserInfo.STATE, UserInfo.GIVENCREDIT, UserInfo.AVAILABLEGIVENCREDIT, UserInfo.SHARERATE, UserInfo.EMAIL);
+                UserInfo.USERID, UserInfo.PASSWORD, UserInfo.NAME, UserInfo.STATE, UserInfo.GIVENCREDIT, UserInfo.AVAILABLEGIVENCREDIT, UserInfo.RATEGROUPID, UserInfo.EMAIL);
             base.ExecuteNonQuery(sql,
             new SqlParameter(UserInfo.USERID, userInfo.UserId),
             new SqlParameter(UserInfo.PASSWORD, userInfo.Password),
@@ -20,14 +20,14 @@ namespace LotteryVoteMVC.Data
             new SqlParameter(UserInfo.STATE, (int)userInfo.State),
             new SqlParameter(UserInfo.GIVENCREDIT, userInfo.GivenCredit),
             new SqlParameter(UserInfo.AVAILABLEGIVENCREDIT, userInfo.AvailableGivenCredit),
-            new SqlParameter(UserInfo.SHARERATE, userInfo.ShareRate),
+            new SqlParameter(UserInfo.RATEGROUPID, userInfo.RateGroupId),
             new SqlParameter(UserInfo.EMAIL, userInfo.Email));
         }
         public void Update(UserInfo userInfo)
         {
             string sql = string.Format(@"UPDATE {0} SET {1}=@{1},{2}=@{2},{3}=@{3},{4}=@{4},{5}=@{5},{6}=@{6},{7}=@{7},{8}=@{8} WHERE {9}=@{9}",
                 UserInfo.TABLENAME, UserInfo.PASSWORD, UserInfo.NAME, UserInfo.STATE,
-                UserInfo.GIVENCREDIT, UserInfo.AVAILABLEGIVENCREDIT, UserInfo.SHARERATE, UserInfo.EMAIL, UserInfo.LASTCHANGEPWD, UserInfo.USERID);
+                UserInfo.GIVENCREDIT, UserInfo.AVAILABLEGIVENCREDIT, UserInfo.RATEGROUPID, UserInfo.EMAIL, UserInfo.LASTCHANGEPWD, UserInfo.USERID);
             base.ExecuteNonQuery(sql,
                 new SqlParameter(UserInfo.USERID, userInfo.UserId),
                 new SqlParameter(UserInfo.PASSWORD, userInfo.Password),
@@ -35,7 +35,7 @@ namespace LotteryVoteMVC.Data
                 new SqlParameter(UserInfo.STATE, (int)userInfo.State),
                 new SqlParameter(UserInfo.GIVENCREDIT, userInfo.GivenCredit),
                 new SqlParameter(UserInfo.AVAILABLEGIVENCREDIT, userInfo.AvailableGivenCredit),
-                new SqlParameter(UserInfo.SHARERATE, userInfo.ShareRate),
+                new SqlParameter(UserInfo.RATEGROUPID, userInfo.RateGroupId),
                 new SqlParameter(UserInfo.EMAIL, userInfo.Email),
                 new SqlParameter(UserInfo.LASTCHANGEPWD, userInfo.LastChangePwd));
         }
@@ -64,8 +64,8 @@ update tb_UserInfo set {1}=@{1} where UserId in (select UserId from CTE)", User.
         /// 更新家族树的分成（以传入User为根）
         /// </summary>
         /// <param name="user">The user.</param>
-        /// <param name="shareRate">The share rate.</param>
-        public void UpdateFamilyShareRate(User user, double shareRate)
+        /// <param name="groupId">The share rate.</param>
+        public void UpdateFamilyShareRate(User user, int groupId)
         {
             string sql = string.Format(@";WITH CTE AS
 (
@@ -73,9 +73,9 @@ SELECT * FROM tb_User  WHERE {0}=@{0}
 UNION ALL
 SELECT B.* FROM tb_User AS B,CTE AS C WHERE B.parentId=C.UserId and B.UserId>C.UserId
 )
-update tb_UserInfo set {1}=@{1} where UserId in ( SELECT UserId FROM CTE)", User.USERID, UserInfo.SHARERATE);
+update tb_UserInfo set {1}=@{1} where UserId in ( SELECT UserId FROM CTE)", User.USERID, UserInfo.RATEGROUPID);
             base.ExecuteNonQuery(sql, new SqlParameter(User.USERID, user.UserId),
-                new SqlParameter(UserInfo.SHARERATE, shareRate));
+                new SqlParameter(UserInfo.RATEGROUPID, groupId));
         }
 
         public UserInfo GetUserInfo(int userId)

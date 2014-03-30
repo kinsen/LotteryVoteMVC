@@ -52,8 +52,8 @@
                         @Resource.UserName
                     </td>
                     <td>
-                    <strong>
-                        @Html.DisplayTextFor(it => it.UserName)</strong>
+                        <strong>
+                            @Html.DisplayTextFor(it => it.UserName)</strong>
                         @Html.HiddenFor(it => it.UserName)
                     </td>
                 </tr>
@@ -109,25 +109,14 @@
                         @Html.CheckBoxList("Species", ViewBag.Species as MultiSelectList, new { disabled = "disabled" })
                     </td>
                 </tr>
-                @if (Model.Role <= Role.Agent && ViewBag.CanEditShareRate)
+                @if (ViewBag.CurrentUser.Role == Role.Company)
                 {
-                    <tr>
-                        <td>
-                            @Resource.ShareRateLimit
-                        </td>
-                        <td>
-                            @Resource.Min
-                            0%
-                            @Resource.Max
-                            @CultureHelper.ToPercent(ViewBag.CurrentUser.UserInfo.ShareRate)
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             @Resource.ShareRate
                         </td>
                         <td>
-                            @Html.TextBox("UserInfo.ShareRate", Model.UserInfo.ShareRate * 100)%
+                            @Html.DropDownListFor(it => it.UserInfo.RateGroupId, ViewBag.RateGroups as IEnumerable<SelectListItem>)
                         </td>
                     </tr>
                 }
@@ -142,7 +131,7 @@
                         </td>
                     </tr>
                 }
-                @if (this.HasRight(Model.Role - 1, "AccountController", "Edit"))
+                @if (this.HasRight(Model.Role - 1, "AccountController", "Edit") || ViewBag.CurrentUser.Role == Role.Company)
                 {
                     <tr>
                         <td colspan="2">
@@ -152,10 +141,6 @@
                 }
             </tbody>
         </table>
-                if (!ViewBag.CanEditShareRate)
-                { 
-        @Html.Hidden("UserInfo.ShareRate", Model.UserInfo.ShareRate * 100)
-                }
     }
 </body>
 </html>

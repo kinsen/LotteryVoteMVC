@@ -29,7 +29,7 @@ namespace LotteryVoteMVC.Models
             get
             {
                 if (_userInfo == null && this.DataRow != null)
-                    _userInfo = ModelParser<UserInfo>.ParseModel(DataRow);
+                    _userInfo = ModelParser<UserInfo>.GetParser()(DataRow);
                 return _userInfo;
             }
             set

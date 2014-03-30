@@ -96,6 +96,7 @@
     <Compile Include="Exceptions\NoPermissionException.cs" />
     <Compile Include="FreezeFundsManager.cs" />
     <Compile Include="GPWManager.cs" />
+    <Compile Include="GroupLimitManager.cs" />
     <Compile Include="LimitManager.cs" />
     <Compile Include="Limit\AutoDropLimiter.cs" />
     <Compile Include="Limit\ILimitCheck.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="OrderManager.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="SettleManager.cs" />
+    <Compile Include="ShareRateGroupManager.cs" />
     <Compile Include="StopAcceptBetSettings.cs" />
     <Compile Include="UserLimitManager.cs" />
     <Compile Include="LoginCenter.cs" />

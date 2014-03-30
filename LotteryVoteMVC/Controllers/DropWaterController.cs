@@ -86,6 +86,43 @@ namespace LotteryVoteMVC.Controllers
                 return BetAuto();
         }
 
+
+        [UserAuthorize(UserState.Active, Role.Company, Role.Shadow)]
+        public ActionResult UserBetAuto(int Id)
+        {
+            var drops = this.IsSearch() ?
+                DropManager.SearchUserAutoBetDrop(Id, this.CompanyType(), this.GamePlayWay(), this.Amount(), this.DropValue(), CurrentPage)
+                : DropManager.GetUserAutoBetDrop(Id, CurrentPage);
+            return View("UserBetAuto", drops);
+        }
+
+        [UserAuthorize(UserState.Active, Role.Company, Role.Shadow), HttpPost]
+        public ActionResult AddUserBetAuto(int Id, BetAutoDropModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                string error = ModelState.ToErrorString();
+                ModelState.Clear();
+                ModelState.AddModelError("Error", error);
+            }
+            if (model.CompanyType == default(CompanyType))
+                ModelState.AddModelError("CompanyType", string.Format(ModelResource.PleaseSelected, Resource.CompanyType));
+            if (model.GamePlayWay == 0)
+                ModelState.AddModelError("GamePlayWay", string.Format(ModelResource.PleaseSelected, Resource.GameType));
+            if (model.Amount == 0)
+                ModelState.AddModelError("Amount", string.Format(ModelResource.MustGreatThan, Resource.Amount, 0));
+            if (model.DropWater == 0)
+                ModelState.AddModelError("DropWater", string.Format(ModelResource.MustGreatThan, Resource.DropWater, 0));
+            if (ModelState.Sum(it => it.Value.Errors.Count) == 0)
+            {
+                DropManager.AddUserBetAutoDrop(Id, model.CompanyType, model.GamePlayWay, model.Amount, model.DropWater);
+                ModelState.AddModelError("Success", Resource.Success);
+                return RedirectToAction("UserBetAuto", new { Id = Id });
+            }
+            else
+                return UserBetAuto(Id);
+        }
+
         [UserAuthorize(UserState.Active, Role.Company, Role.Shadow)]
         public string GetDropByLimit(int? Id)
         {
@@ -193,6 +230,14 @@ namespace LotteryVoteMVC.Controllers
         {
             if (!Id.HasValue) PageNotFound();
             DropManager.RemoveBetAutoDrop(Id.Value);
+            return SuccessAction();
+        }
+
+        [UserAuthorize(UserState.Active, Role.Company, Role.Shadow)]
+        public ActionResult RemoveUserBetAuto(int? Id)
+        {
+            if (!Id.HasValue) PageNotFound();
+            DropManager.RemoveUserBetAutoDrop(Id.Value);
             return SuccessAction();
         }
     }

@@ -78,6 +78,13 @@ namespace LotteryVoteMVC.Core
                 return _commManager;
             }
         }
+        public ShareRateGroupManager ShareRateGroupManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<ShareRateGroupManager>();
+            }
+        }
         #endregion
 
         private IDictionary<string, object> _params;
@@ -207,7 +214,9 @@ namespace LotteryVoteMVC.Core
         }
         protected void CheckShareRate(User parent, User user)
         {
-            if (user.UserInfo.ShareRate > parent.UserInfo.ShareRate)
+            if (user.UserInfo.RateGroup == null)
+                user.UserInfo.RateGroup = ShareRateGroupManager.GetGroup(user.UserInfo.RateGroupId);
+            if (user.UserInfo.RateGroup.ShareRate > parent.UserInfo.RateGroup.ShareRate)
                 throw new BusinessException(Resource.ShareRate);
         }
     }

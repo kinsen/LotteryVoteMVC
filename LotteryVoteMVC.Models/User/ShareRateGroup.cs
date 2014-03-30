@@ -15,7 +15,7 @@ namespace LotteryVoteMVC.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public float ShareRate { get; set; }
+        public double ShareRate { get; set; }
         public DateTime CreateTime { get; set; }
     }
 }

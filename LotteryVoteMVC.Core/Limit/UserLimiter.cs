@@ -30,6 +30,20 @@ namespace LotteryVoteMVC.Core.Limit
                 return _userLimitManager;
             }
         }
+        public GroupLimitManager GroupLimitManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<GroupLimitManager>();
+            }
+        }
+        public UserManager UserManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<UserManager>();
+            }
+        }
 
         private IList<LotteryCompany> _todayCompany;
         protected IList<LotteryCompany> TodayCompany
@@ -64,6 +78,39 @@ namespace LotteryVoteMVC.Core.Limit
             }
         }
 
+        private IDictionary<int, IList<RateGroupBetLimit>> _rateGroupBetLimits;
+        protected IDictionary<int, IList<RateGroupBetLimit>> RateGroupBetLimits
+        {
+            get
+            {
+                if (_rateGroupBetLimits == null)
+                    _rateGroupBetLimits = new Dictionary<int, IList<RateGroupBetLimit>>();
+                return _rateGroupBetLimits;
+            }
+        }
+
+        private IDictionary<int, IList<RateGroupGameBetLimit>> _rateGroupGameLimits;
+        protected IDictionary<int, IList<RateGroupGameBetLimit>> RateGroupGameLimits
+        {
+            get
+            {
+                if (_rateGroupGameLimits == null)
+                    _rateGroupGameLimits = new Dictionary<int, IList<RateGroupGameBetLimit>>();
+                return _rateGroupGameLimits;
+            }
+        }
+
+        private IDictionary<int, User> _userDict;
+        protected IDictionary<int, User> UserDict
+        {
+            get
+            {
+                if (_userDict == null)
+                    _userDict = new Dictionary<int, User>();
+                return _userDict;
+            }
+        }
+
         public bool IsDrop
         {
             get { throw new NotImplementedException(); }
@@ -88,11 +135,33 @@ namespace LotteryVoteMVC.Core.Limit
                 BetLimitDic.Add(userId, limits = UserLimitManager.GetLimits(userId).ToList());
             return limits;
         }
+        protected IList<RateGroupBetLimit> GetRateGroupLimitByUser(int userId)
+        {
+            User user = null;
+            if (!UserDict.TryGetValue(userId, out user))
+                UserDict.Add(userId, user = UserManager.GetUser(userId));
+            IList<RateGroupBetLimit> limits = null;
+            var groupId = UserDict[userId].UserInfo.RateGroupId;
+            if (!RateGroupBetLimits.TryGetValue(groupId, out limits))
+                RateGroupBetLimits.Add(groupId, limits = GroupLimitManager.GetLimits(groupId).ToList());
+            return limits;
+        }
         protected IList<GameBetLimit> GetGameLimitByUser(int userId)
         {
             IList<GameBetLimit> limits = null;
             if (!GameBetLimitDic.TryGetValue(userId, out limits))
                 GameBetLimitDic.Add(userId, limits = UserLimitManager.GetGameLimits(userId).ToList());
+            return limits;
+        }
+        protected IList<RateGroupGameBetLimit> GetRateGroupGameLimitByUser(int userId)
+        {
+            User user = null;
+            if (!UserDict.TryGetValue(userId, out user))
+                UserDict.Add(userId, user = UserManager.GetUser(userId));
+            IList<RateGroupGameBetLimit> limits;
+            var groupId = user.UserInfo.RateGroupId;
+            if (!RateGroupGameLimits.TryGetValue(groupId, out limits))
+                RateGroupGameLimits.Add(groupId, limits = GroupLimitManager.GetGameLimits(groupId).ToList());
             return limits;
         }
         /// <summary>
@@ -108,8 +177,11 @@ namespace LotteryVoteMVC.Core.Limit
             var betlimit = betLimitList.Find(it => it.GameType == gameplayway.GameType);   //找出单注限制
             if (order.Amount < betlimit.LeastLimit || order.Amount > betlimit.LargestLimit)
                 return false;
-            else
-                return true;
+            var groupLimitList = GetRateGroupLimitByUser(order.UserId);
+            var groupBetLimit = groupLimitList.Find(it => it.GameType == gameplayway.GameType);
+            if (order.Amount < groupBetLimit.LeastLimit || order.Amount > groupBetLimit.LargestLimit)
+                return false;
+            return true;
         }
         protected bool CheckGameLimit(BetOrder order)
         {
@@ -182,6 +254,15 @@ namespace LotteryVoteMVC.Core.Limit
                 throw new ApplicationException(string.Format("不存在GamePlayWayId为{0}的游戏限制!", order.GamePlayWayId));
 
             if (totalAmount > gameLimit.LimitValue)
+                return false;
+
+            var rateGroupGamelimits = GetRateGroupGameLimitByUser(order.UserId);
+            //找出游戏限制
+            var groupGameLimit = rateGroupGamelimits.Find(it => it.CompanyType == companyType && it.GamePlayWayId == order.GamePlayWayId);
+            if (groupGameLimit == null)
+                throw new ApplicationException(string.Format("不存在GamePlayWayId为{0}的分成组游戏限制!", order.GamePlayWayId));
+
+            if (totalAmount > groupGameLimit.LimitValue)
                 return false;
 
             return true;

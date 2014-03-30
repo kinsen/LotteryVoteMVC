@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LotteryVoteMVC.Resources.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace LotteryVoteMVC.Models
 {
@@ -17,10 +18,11 @@ namespace LotteryVoteMVC.Models
         public const string EMAIL = "Email";
         public const string GIVENCREDIT = "GivenCredit";
         public const string AVAILABLEGIVENCREDIT = "AvailableGivenCredit";
-        public const string SHARERATE = "ShareRate";
+        public const string RATEGROUPID = "RateGroupId";
         public const string CREATETIME = "CreateTime";
         public const string LASTCHANGEPWD = "LastChangePwd";
 
+        public DataRow DataRow { get; set; }
         public int UserId { get; set; }
         [Required(ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "Required"),
         StringLength(20, ErrorMessageResourceType = (typeof(ModelResource)), ErrorMessageResourceName = "StringLengthRange", MinimumLength = 6)]
@@ -49,7 +51,23 @@ namespace LotteryVoteMVC.Models
         /// </value>
         [Required(ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "Required")]
         [RegularExpression(@"^\d+$", ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "MustBeNum")]
-        public double ShareRate { get; set; }
+        public int RateGroupId { get; set; }
+
+        private ShareRateGroup _rateGroup;
+        public ShareRateGroup RateGroup
+        {
+            get
+            {
+                if (_rateGroup == null && this.DataRow != null)
+                    _rateGroup = ModelParser<ShareRateGroup>.ParseModel(DataRow);
+                return _rateGroup;
+            }
+            set
+            {
+                _rateGroup = value;
+            }
+        }
+
         [RegularExpression(@"^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$", ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "EmailError")]
         public string Email { get; set; }
         public DateTime CreateTime { get; set; }

@@ -34,6 +34,9 @@ namespace LotteryVoteMVC
             routes.MapRoute("GameLimit",
                 "Limit/GameLimit/{id}/{companytype}",
                 new { controller = "Limit", action = "GameLimit", id = UrlParameter.Optional, companytype = UrlParameter.Optional });
+            routes.MapRoute("RateGroupGameLimit",
+                "ShareRateGroup/GameLimit/{id}/{companytype}",
+                new { controller = "ShareRateGroup", action = "GameLimit", id = UrlParameter.Optional, companytype = UrlParameter.Optional });
             routes.MapRoute("EachLevelReport",
                 "Report/EachLevel/{RoleId}/{UserId}",
                 new { controller = "Report", action = "EachLevel", UserId = UrlParameter.Optional, RoleId = UrlParameter.Optional });

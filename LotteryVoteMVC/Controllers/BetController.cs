@@ -253,7 +253,7 @@ namespace LotteryVoteMVC.Controllers
                     Num = it.Num,
                     Company = companys.Find(x => x.CompanyId == it.CompanyId).Abbreviation,
                     GameType = Extended.GetGPWDescription(it.GamePlayWayId),
-                    Drop = it.DropWater,
+                    Drop = it.DropWater.ToString("0.00"),
                     Net = it.Net.ToString("N")
                 }),
                 NotAccept = result.NotAcceptOrderList.Select(it => new

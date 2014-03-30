@@ -136,24 +136,10 @@
                 {
                     <tr>
                         <td>
-                            @Resource.ShareRateLimit
-                        </td>
-                        <td>
-                            @Resource.Min
-                            0%
-                            @Html.HiddenFor(it => it.MinShareRate)
-                            @Resource.Max
-                            @CultureHelper.ToPercent(ViewBag.User.UserInfo.ShareRate)
-                            @Html.HiddenFor(it => it.MaxShareRate)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             @Resource.ShareRate
                         </td>
                         <td>
-                            @Html.TextBoxFor(it => it.ShareRate)
-                            @Html.ValidationMessageFor(it => it.ShareRate)
+                            @Html.DropDownListFor(it=>it.RateGroupId,(IEnumerable<SelectListItem>)ViewBag.RateGroups)
                         </td>
                     </tr>
                 }@if (ViewBag.User.Role == LotteryVoteMVC.Models.Role.Agent)

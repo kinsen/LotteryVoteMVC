@@ -13,8 +13,8 @@ namespace LotteryVoteMVC.Core
         private Role role;
         public override void AddUser(Models.User user)
         {
-            if (user.UserInfo.ShareRate > 1)
-                user.UserInfo.ShareRate = user.UserInfo.ShareRate.PercentageToDecimal(2);
+            if (user.UserInfo.RateGroupId > 1)
+                user.UserInfo.RateGroupId = user.UserInfo.RateGroupId;
             InitParams();
             var parent = UserManager.GetUser(user.ParentId);
             user.Role = parent.Role + 1;

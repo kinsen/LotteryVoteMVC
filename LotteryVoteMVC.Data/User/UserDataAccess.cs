@@ -10,7 +10,9 @@ namespace LotteryVoteMVC.Data
 {
     public class UserDataAccess : DataBase
     {
-        private readonly string _JoinUserInfoSql = @"select u.*,ui.*,(select top 1 ll.LastLoginTime from tb_LoginLog ll where ll.UserId=u.UserId order by ll.LoginId desc) as LastLoginTime from tb_User as u join tb_UserInfo as ui on ui.UserId=u.UserId";
+        private readonly string _JoinUserInfoSql = @"select u.*,ui.*,g.*,(select top 1 ll.LastLoginTime from tb_LoginLog ll where ll.UserId=u.UserId order by ll.LoginId desc) as LastLoginTime from tb_User as u 
+join tb_UserInfo as ui on ui.UserId=u.UserId
+join tb_ShareRateGroup g on g.Id=ui.RateGroupId";
 
         public void Insert(User user)
         {

@@ -67,6 +67,8 @@
     <Compile Include="Limit\BetUpperLimitDataAccess.cs" />
     <Compile Include="Limit\DefaultUpperLimitDataAccess.cs" />
     <Compile Include="Limit\GameBetLimitDataAccess.cs" />
+    <Compile Include="Limit\RateGroupBetLimitDataAccess.cs" />
+    <Compile Include="Limit\RateGroupGameBetLimitDataAccess.cs" />
     <Compile Include="LotteryResultDataAccess.cs" />
     <Compile Include="NumLengthDataAccess.cs" />
     <Compile Include="OrderAncestorCommInfoDataAccess.cs" />
@@ -74,10 +76,12 @@
     <Compile Include="SettleResultDataAccess.cs" />
     <Compile Include="ShadowAuthorizeActionDataAccess.cs" />
     <Compile Include="SystemErrorDataAccess.cs" />
+    <Compile Include="UserBetAutoDropWaterDataAccess.cs" />
     <Compile Include="User\LoginFailedLogDataAccess.cs" />
     <Compile Include="User\LoginLogDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\SQLHelper.cs" />
+    <Compile Include="User\ShareRateGroupDataAccess.cs" />
     <Compile Include="User\UserDataAccess.cs" />
     <Compile Include="User\UserInfoDataAccess.cs" />
   </ItemGroup>

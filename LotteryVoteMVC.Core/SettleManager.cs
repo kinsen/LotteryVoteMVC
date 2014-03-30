@@ -316,7 +316,7 @@ namespace LotteryVoteMVC.Core
                 parent = UserManager.GetUser(user.ParentId);
                 UserDic.Add(user.ParentId, parent);
             }
-            return parent.UserInfo.ShareRate - user.UserInfo.ShareRate;
+            return parent.UserInfo.RateGroup.ShareRate - user.UserInfo.RateGroup.ShareRate;
         }
         private IEnumerable<BetOrder> GetOrders(User user)
         {

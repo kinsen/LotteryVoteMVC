@@ -53,6 +53,13 @@ namespace LotteryVoteMVC.Core
                 return _authManger;
             }
         }
+        public ShareRateGroupManager ShareRateGroupManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<ShareRateGroupManager>();
+            }
+        }
 
         #region Select
         public bool IsExsit(string userName)
@@ -168,7 +175,7 @@ namespace LotteryVoteMVC.Core
         {
             var originalUser = GetUser(user.UserId);
             var parent = GetUser(originalUser.ParentId);
-            user.UserInfo.ShareRate /= 100; //先将百分比转换成小数
+            //user.UserInfo.RateGroupId /= 100; //先将百分比转换成小数
             //1.检查信用额
             CheckGivenCredit(ref originalUser, user, parent);
             //2.检查分成
@@ -279,16 +286,20 @@ namespace LotteryVoteMVC.Core
         /// <param name="updateUser">The update user.</param>
         private bool CheckShareRate(ref User originalUser, User updateUser, User parent)
         {
+            if (updateUser.UserInfo.RateGroup == null)
+                updateUser.UserInfo.RateGroup = ShareRateGroupManager.GetGroup(updateUser.UserInfo.RateGroupId);
             //如果大于父级的分成，则不变
-            if (updateUser.UserInfo.ShareRate > parent.UserInfo.ShareRate)
+            if (updateUser.UserInfo.RateGroup.ShareRate > parent.UserInfo.RateGroup.ShareRate)
                 return false;
-            if (updateUser.UserInfo.ShareRate < originalUser.UserInfo.ShareRate)
+            if (updateUser.UserInfo.RateGroup.ShareRate < originalUser.UserInfo.RateGroup.ShareRate)
             {
                 //如果回收的分成比原来分成少。则子用户分成全部回收
-                DaUserInfo.UpdateFamilyShareRate(originalUser, 0);
+                //DaUserInfo.UpdateFamilyShareRate(originalUser, 0);
+                //如果回收的部分原来的分成少，则子用户分成全部都一致
+                DaUserInfo.UpdateFamilyShareRate(originalUser, updateUser.UserInfo.RateGroupId);
             }
-            bool change = originalUser.UserInfo.ShareRate != updateUser.UserInfo.ShareRate;
-            originalUser.UserInfo.ShareRate = updateUser.UserInfo.ShareRate;
+            bool change = originalUser.UserInfo.RateGroup.ShareRate != updateUser.UserInfo.RateGroup.ShareRate;
+            originalUser.UserInfo.RateGroupId = updateUser.UserInfo.RateGroupId;
             return change;
         }
         #endregion

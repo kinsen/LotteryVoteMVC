@@ -46,6 +46,13 @@ namespace LotteryVoteMVC.Controllers
                 return _unBuilder;
             }
         }
+        public ShareRateGroupManager RateGroupManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<ShareRateGroupManager>();
+            }
+        }
 
         [AgentAuthorize(UserState.Active)]
         public ActionResult Index()
@@ -127,11 +134,12 @@ namespace LotteryVoteMVC.Controllers
                     Text = it.GroupName,
                     Value = it.GroupId.ToString()
                 });
+            ViewBag.RateGroups = RateGroupManager.ListChildGroup(MatrixUser.UserInfo.RateGroup.ShareRate).Select(it => new SelectListItem { Text = it.Name, Value = it.Id.ToString() });
             var model = new RegisterModel
             {
                 MinShareRate = 0,
                 MinGivenCredit = 0,
-                MaxShareRate = MatrixUser.UserInfo.ShareRate * 100,
+                MaxShareRate = MatrixUser.UserInfo.RateGroupId * 100,
                 MaxGivenCredit = MatrixUser.UserInfo.AvailableGivenCredit
             };
             return View(model);
@@ -229,6 +237,9 @@ namespace LotteryVoteMVC.Controllers
                 it => it == user.UserInfo.State,
                 it => Resource.ResourceManager.GetString(it.ToString()),
                 it => it.ToString()).ToList();
+            var parent = user.ParentId != 0 ? UserManager.GetUser(user.ParentId) : MatrixUser;
+            ViewBag.RateGroups = RateGroupManager.ListChildGroup(parent.UserInfo.RateGroup.ShareRate).Select(it =>
+                new SelectListItem { Text = it.Name, Value = it.Id.ToString(), Selected = it.Id == user.UserInfo.RateGroupId });
             ViewBag.CanEditShareRate = CanEditShareRate();
             if (user.Role == Role.Guest)
             {
@@ -254,11 +265,12 @@ namespace LotteryVoteMVC.Controllers
             else
             {
                 var user = UserManager.GetUser(Id);
-                var shareRate = user.UserInfo.ShareRate;
+                var shareRate = user.UserInfo.RateGroupId;
                 if (user.ParentId != MatrixUser.UserId) throw new NoPermissionException("Update User");
                 if (result.IsSuccess = EncryptHelper.Equal(model.UserInfo.Password, CurrentUser.UserInfo.Password))
                 {
                     UpdateModel(user);
+                    user.UserInfo.RateGroup = RateGroupManager.GetGroup(model.UserInfo.RateGroupId);
                     Dictionary<LotterySpecies, int> groups = null;
                     if (user.Role == Role.Guest)
                     {
@@ -270,7 +282,7 @@ namespace LotteryVoteMVC.Controllers
                     var change_rate_str = changeShareRate ? string.Format(", Change Share Rate : from {0}", shareRate) : string.Empty;
                     ActionLogger.Log(CurrentUser, user, LogResources.EditUser, LogResources.GetEditUser(user.UserName) + change_rate_str);
                     result.Message = Resource.Success;
-                    if (user.UserInfo.ShareRate > update_user.UserInfo.ShareRate)
+                    if (user.UserInfo.RateGroupId > update_user.UserInfo.RateGroupId)
                     {
                         result.Message = Resource.ShareRate + " " + Resource.Error;
                         return Json(result);

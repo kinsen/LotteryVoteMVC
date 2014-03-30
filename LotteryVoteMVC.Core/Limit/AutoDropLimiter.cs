@@ -43,6 +43,17 @@ namespace LotteryVoteMVC.Core.Limit
             }
         }
 
+        private IDictionary<string, IEnumerable<UserBetAutoDropWater>> _userAutoDropDic;
+        internal IDictionary<string, IEnumerable<UserBetAutoDropWater>> UserAutoDropDic
+        {
+            get
+            {
+                if (_userAutoDropDic == null)
+                    _userAutoDropDic = new Dictionary<string, IEnumerable<UserBetAutoDropWater>>();
+                return _userAutoDropDic;
+            }
+        }
+
         /// <summary>
         /// 上一级的检查器
         /// </summary>
@@ -61,7 +72,8 @@ namespace LotteryVoteMVC.Core.Limit
 
             //计算要跌水的值
 
-            var drops = GetDropWater(order);
+            //var drops = GetDropWater(order);
+            var drops = GetAutoDropWater(order);
             double dropValue = 0; //drops.Where(it => it.Amount < totalAmount).Sum(it => it.DropValue);
             foreach (var d in drops)
                 if (d.Amount < totalAmount) dropValue += d.DropValue;
@@ -94,6 +106,23 @@ namespace LotteryVoteMVC.Core.Limit
         {
         }
 
+        private IEnumerable<BetAutoDropWater> GetAutoDropWater(BetOrder order)
+        {
+            var dropDict = GetDropWater(order).ToDictionary(it => it.Amount, it => it);
+            foreach (var drop in GetUserDropWater(order))
+            {
+                dropDict[drop.Amount] = new BetAutoDropWater
+                {
+                    Amount = drop.Amount,
+                    DropValue = drop.DropValue,
+                    CompanyType = drop.CompanyType,
+                    CompanyTypeId = drop.CompanyTypeId,
+                    GamePlayWayId = drop.GamePlayWayId
+                };
+            }
+            return dropDict.Values.ToList();
+        }
+
         private IEnumerable<BetAutoDropWater> GetDropWater(BetOrder order)
         {
             var company = TodayCompany.Find(it => it.CompanyId == order.CompanyId);
@@ -109,6 +138,23 @@ namespace LotteryVoteMVC.Core.Limit
             return drops;
 
         }
+
+        private IEnumerable<UserBetAutoDropWater> GetUserDropWater(BetOrder order)
+        {
+            var company = TodayCompany.Find(it => it.CompanyId == order.CompanyId);
+            if (company == null)
+                throw new ArgumentException("找不到开奖公司,CompanyId:" + order.CompanyId);
+            string key = string.Format("{0}_{1}_{2}", order.UserId, (int)company.CompanyType, order.GamePlayWayId);
+            IEnumerable<UserBetAutoDropWater> drops;
+            if (!UserAutoDropDic.TryGetValue(key, out drops))
+            {
+                drops = DwManager.GetAutoDrops(order.UserId, company.CompanyType, order.GamePlayWayId);
+                UserAutoDropDic.Add(key, drops);
+            }
+            return drops;
+
+        }
+
         private decimal GetUserBetedAmountByOrder(BetOrder order)
         {
             string key = BaseChecker.GetBetAmountDicKey(order);

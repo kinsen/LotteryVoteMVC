@@ -33,9 +33,8 @@ namespace LotteryVoteMVC.Models
         public string Email { get; set; }
         public LotterySpecies[] Species { get; set; }
         public int CommGroup { get; set; }
-        [Required(ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "Required"),
-        DynamicRange("MinShareRate", "MaxShareRate", ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "DynamicRange")]
-        public double ShareRate { get; set; }
+        [Required(ErrorMessageResourceType = typeof(ModelResource), ErrorMessageResourceName = "Required")]
+        public int RateGroupId { get; set; }
         public double MinShareRate { get; set; }
         public double MaxShareRate { get; set; }
 
@@ -51,7 +50,7 @@ namespace LotteryVoteMVC.Models
                     State = this.State,
                     GivenCredit = this.GivenCredit,
                     AvailableGivenCredit = this.GivenCredit,
-                    ShareRate = this.ShareRate / 100
+                    RateGroupId = this.RateGroupId
                 }
             };
             return user;

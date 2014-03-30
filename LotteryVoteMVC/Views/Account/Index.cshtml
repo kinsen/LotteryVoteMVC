@@ -124,7 +124,7 @@
             </td>
             @if (ViewBag.User.Role < Role.Agent)
             {
-                <td>@string.Format("{0:P0}", user.UserInfo.ShareRate)
+                <td>@string.Format("{0:P0}", user.UserInfo.RateGroup.ShareRate)
                 </td>
             }
             <td>@user.LastLoginTime.ToFormat()
@@ -142,6 +142,8 @@
                     <span>/</span>
                     <a class="edit" href="javascript:editLimit(@user.UserId,'@user.UserName')">@Resource.Limit</a> 
                 }
+                <span>/</span>
+                <a target="_blank" href="/DropWater/UserBetAuto/@user.UserId">连注</a>
                 @if (ViewBag.Matrix.UserId == user.ParentId)
                 {
                     <span>/</span>

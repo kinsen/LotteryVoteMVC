@@ -36,7 +36,7 @@ namespace LotteryVoteMVC.Data
         }
         public IEnumerable<OrderAncestorCommInfo> GetAncestorComms(User user, int companyId, BetStatus status, DateTime date)
         {
-            string sql = string.Format(@"select oac.* from tb_BetOrder bo
+            string sql = string.Format(@"select oac.* from tb_BetOrder bo WITH (NOLOCK)
 join tb_BetSheet bs on bs.SheetId=bo.SheetId
 join tb_OrderAncestorCommInfo oac on oac.OrderId=bo.OrderId
 where bs.{0}=@{0} and bo.{1}=@{1} and bo.{2}=@{2} and CAST(bo.{3} as DATE)=CAST(@{3} as DATE)", BetSheet.USERID, BetOrder.COMPANYID,

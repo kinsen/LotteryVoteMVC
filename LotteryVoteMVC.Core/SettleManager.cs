@@ -324,6 +324,7 @@ namespace LotteryVoteMVC.Core
                 AllOrders = OrderManager.DaOrder.GetOrders(BetStatus.Settled, SettleCompany, DateTime.Today);
             return AllOrders.Where(it => it.UserId == user.UserId);
         }
+
         /// <summary>
         /// 获取指定注单，角色的注单分成信息
         /// </summary>

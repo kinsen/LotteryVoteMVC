@@ -449,6 +449,7 @@ namespace LotteryVoteMVC.Core
         {
             return DaOAC.GetAncestorComms(orderId);
         }
+
         /// <summary>
         /// 获取今日指定用户，公司的注单分成信息
         /// </summary>

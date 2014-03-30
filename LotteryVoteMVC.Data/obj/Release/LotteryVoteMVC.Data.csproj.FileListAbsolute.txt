@@ -1,0 +1,11 @@
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Data.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Data.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Models.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Utility.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\log4net.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Models.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Utility.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\log4net.xml
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\ResolveAssemblyReference.cache
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.pdb

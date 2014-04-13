@@ -374,11 +374,11 @@ where RowNumber between {12} and {13}", User.TABLENAME, User.USERID, User.PARENT
  SUM(Turnover) as Turnover,SUM(Amount) as Amount,
  SUM(Commission) as Commission,SUM(DrawResult) as DrawResult,
  SUM(case when DrawResult>0 then DrawResult else 0 end) as NetWin,
-(select SUM(ibo.Turnover) from tb_BetOrder ibo
-join tb_BetSheet ibs on ibs.SheetId=ibo.SheetId
+(select SUM(ibo.Turnover) from tb_BetOrder ibo WITH (NOLOCK)
+join tb_BetSheet ibs WITH (NOLOCK) on ibs.SheetId=ibo.SheetId
  where ibs.{0}=@{0} and ibo.Status=0 and CAST(ibo.CreateTime as date)=CAST(bo.CreateTime as date)) as CancelAmount
-from tb_BetOrder bo
-join tb_BetSheet bs on bs.SheetId=bo.SheetId
+from tb_BetOrder bo WITH (NOLOCK)
+join tb_BetSheet bs WITH (NOLOCK) on bs.SheetId=bo.SheetId
 where bo.Status<>{1} and bs.{0}=@{0}
 group by CAST(bo.CreateTime as date)
 having 1=1 order by CreateTime desc", BetSheet.USERID, (int)BetStatus.Invalid, itemCount);
@@ -595,8 +595,8 @@ where bo.{8}=@{8} and CONVERT(char(10),bs.{9},120) BETWEEN CONVERT(char(10),@{10
 		UNION ALL
 		SELECT B.* FROM tb_User AS B,USERTABLE AS C WHERE B.parentId=C.UserId and B.UserId>C.UserId
 	)
-select COUNT(Distinct(bo.Num)) from tb_BetOrder bo
-join tb_BetSheet bs on bs.SheetId=bo.SheetId
+select COUNT(Distinct(bo.Num)) from tb_BetOrder bo WITH (NOLOCK)
+join tb_BetSheet bs WITH (NOLOCK) on bs.SheetId=bo.SheetId
 join USERTABLE u on u.UserId=bs.UserId
 where bo.{1}<>@{1} and GamePlayWayId in ({2}) and
 CONVERT(char(10),bo.{3},120)=CONVERT(char(10),@{3},120) ", User.USERID, BetOrder.STATUS, gpwCondition, BetOrder.CREATETIME);

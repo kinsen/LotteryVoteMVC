@@ -210,14 +210,14 @@ WHERE RowNumber BETWEEN {5} AND {6}", BetSheet.STATUS, User.USERNAME, BetSheet.C
         /// <returns></returns>
         public IEnumerable<BetSheet> GetCanSettleSheetByCompany(int companyId, DateTime date)
         {
-            string sql = string.Format(@"select * from tb_BetSheet bs
+            string sql = string.Format(@"select * from tb_BetSheet bs WITH (NOLOCK)
 where (
-(select COUNT(0) from tb_BetOrder bo1 where bo1.SheetId=bs.SheetId)=
-(select COUNT(0) from tb_BetOrder bo2 where bo2.SheetId=bs.SheetId and bo2.{0}=@{0}))
+(select COUNT(0) from tb_BetOrder bo1 WITH (NOLOCK) where bo1.SheetId=bs.SheetId)=
+(select COUNT(0) from tb_BetOrder bo2 WITH (NOLOCK) where bo2.SheetId=bs.SheetId and bo2.{0}=@{0}))
 and DATEDIFF(DD,bs.CreateTime,GETDATE())=0
 UNION
-select * from tb_BetSheet bs
-where ((select COUNT(0) from tb_BetOrder bo3 where bo3.SheetId=bs.SheetId and bo3.{0}<>@{0} and bo3.{1}=@{1})=0)
+select * from tb_BetSheet bs WITH (NOLOCK)
+where ((select COUNT(0) from tb_BetOrder bo3 WITH (NOLOCK) where bo3.SheetId=bs.SheetId and bo3.{0}<>@{0} and bo3.{1}=@{1})=0)
 and DATEDIFF(DD,bs.{2},@{2})=0", BetOrder.COMPANYID, BetOrder.STATUS, BetSheet.CREATETIME);
             return base.ExecuteDataTable(sql, new SqlParameter(BetOrder.COMPANYID, companyId),
                 new SqlParameter(BetOrder.STATUS, (int)BetStatus.Valid),

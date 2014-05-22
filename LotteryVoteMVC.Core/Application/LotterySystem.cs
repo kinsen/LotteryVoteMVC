@@ -28,6 +28,11 @@ namespace LotteryVoteMVC.Core.Application
         private const string M_ODDODD = "OddOdd";
         private const string M_SMALL = "Small";
         private const string M_BIG = "Big";
+        private const string M_CENTER = "Center";
+        private const string M_ODDHEAD = "OddHead";
+        private const string M_EVENHEAD = "EvenHead";
+        private const string M_ODDLAST = "OddLast";
+        private const string M_EVENLAST = "EvenLast";
         private const string M_ALLCOMPANYLIST = "AllCompanylist";
         private const string M_QUICKADDDROPAMOUNT = "QuckAddDropAmount";
         private const string M_STATEMENTORDERCOUNT = "StatementOrderCount";
@@ -403,6 +408,120 @@ namespace LotteryVoteMVC.Core.Application
                 return returnVal;
             }
         }
+        /// <summary>
+        /// 单头（十位是奇数）.
+        /// </summary>
+        public int[] OddHead
+        {
+            get
+            {
+                string appSettingStr = ConfigurationManager.AppSettings[M_ODDHEAD];
+                int[] returnVal;
+                if (string.IsNullOrEmpty(appSettingStr))
+                {
+                    List<int> vals = new List<int>();
+                    for (var i = 0; i < 9; i = i + 2)
+                        for (int j = 0; j < 10; j++)
+                            vals.Add(int.Parse(string.Format("{0}{1}", i, j)));
+
+                    returnVal = vals.ToArray();
+                }
+                else
+                {
+                    var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    returnVal = new int[strArr.Length];
+                    for (int i = 0; i < strArr.Length; i++)
+                        returnVal[i] = int.Parse(strArr[i]);
+                }
+                return returnVal;
+            }
+        }
+
+        /// <summary>
+        /// 双头（十位是偶数）.
+        /// </summary>
+        public int[] EvenHead
+        {
+            get
+            {
+                string appSettingStr = ConfigurationManager.AppSettings[M_EVENHEAD];
+                int[] returnVal;
+                if (string.IsNullOrEmpty(appSettingStr))
+                {
+                    List<int> vals = new List<int>();
+                    for (var i = 1; i < 10; i = i + 2)
+                        for (int j = 0; j < 10; j++)
+                            vals.Add(int.Parse(string.Format("{0}{1}", i, j)));
+
+                    returnVal = vals.ToArray();
+                }
+                else
+                {
+                    var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    returnVal = new int[strArr.Length];
+                    for (int i = 0; i < strArr.Length; i++)
+                        returnVal[i] = int.Parse(strArr[i]);
+                }
+                return returnVal;
+            }
+        }
+
+        /// <summary>
+        /// 单尾（奇数）.
+        /// </summary>
+        public int[] OddLast
+        {
+            get
+            {
+                string appSettingStr = ConfigurationManager.AppSettings[M_ODDLAST];
+                int[] returnVal;
+                if (string.IsNullOrEmpty(appSettingStr))
+                {
+                    List<int> vals = new List<int>();
+                    for (int i = 1; i < 100; i = i + 2)
+                        vals.Add(i);
+
+                    returnVal = vals.ToArray();
+                }
+                else
+                {
+                    var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    returnVal = new int[strArr.Length];
+                    for (int i = 0; i < strArr.Length; i++)
+                        returnVal[i] = int.Parse(strArr[i]);
+                }
+                return returnVal;
+            }
+        }
+
+        /// <summary>
+        /// 双尾（偶数）
+        /// </summary>
+        public int[] EvenLast
+        {
+            get
+            {
+                string appSettingStr = ConfigurationManager.AppSettings[M_EVENLAST];
+                int[] returnVal;
+                if (string.IsNullOrEmpty(appSettingStr))
+                {
+                    List<int> vals = new List<int>();
+                    for (int i = 0; i < 100; i = i + 2)
+                        vals.Add(i);
+
+                    returnVal = vals.ToArray();
+                }
+                else
+                {
+                    var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    returnVal = new int[strArr.Length];
+                    for (int i = 0; i < strArr.Length; i++)
+                        returnVal[i] = int.Parse(strArr[i]);
+                }
+                return returnVal;
+            }
+        }
+
         public int[] Small
         {
             get
@@ -429,6 +548,24 @@ namespace LotteryVoteMVC.Core.Application
                 int[] returnVal;
                 if (string.IsNullOrEmpty(appSettingStr))
                     returnVal = Enumerable.Range(50, 50).ToArray();
+                else
+                {
+                    var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    returnVal = new int[strArr.Length];
+                    for (int i = 0; i < strArr.Length; i++)
+                        returnVal[i] = int.Parse(strArr[i]);
+                }
+                return returnVal;
+            }
+        }
+        public int[] Center
+        {
+            get
+            {
+                string appSettingStr = ConfigurationManager.AppSettings[M_CENTER];
+                int[] returnVal;
+                if (string.IsNullOrEmpty(appSettingStr))
+                    returnVal = Enumerable.Range(30, 50).ToArray();
                 else
                 {
                     var strArr = appSettingStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

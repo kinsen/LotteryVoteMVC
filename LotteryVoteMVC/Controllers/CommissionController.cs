@@ -179,5 +179,15 @@ namespace LotteryVoteMVC.Controllers
             else
                 return RedirectToAction("Index");
         }
+
+
+        [UserAuthorize(UserState.Active, Role.Guest)]
+        public ActionResult GetCommission(int companyId, GameType gameType)
+        {
+            var company = TodayLotteryCompany.Instance.GetTodayCompany().Find(it => it.CompanyId == companyId);
+            var comms = CommManager.GetMemberCommissionInSession(CurrentUser, LotterySpecies.VietnamLottery);
+            var comm = comms.Value.Find(it => it.CompanyType == company.CompanyType && it.GameType == gameType);
+            return Json(comm.Commission / 100, JsonRequestBehavior.AllowGet);
+        }
     }
 }

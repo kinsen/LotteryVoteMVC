@@ -30,6 +30,20 @@ namespace LotteryVoteMVC
             routes.MapRoute("AccountShadow",
                 "Account/Search/{Id}/{shadow}",
                 new { controller = "Account", action = "Search", Id = UrlParameter.Optional, shadow = false });
+
+            routes.MapRoute("Bet2D",
+                "Bet/2D/{region}",
+                new { controller = "Bet", action = "Index", region = UrlParameter.Optional });
+            routes.MapRoute("Bet345D",
+                "Bet/345D/{region}",
+                new { controller = "Bet", action = "MultiD", region = UrlParameter.Optional });
+            routes.MapRoute("BetRollParlay",
+                "Bet/RollParlay/{region}",
+                new { controller = "Bet", action = "RollParlay", region = UrlParameter.Optional });
+
+            routes.MapRoute("GetCommission",
+                "Commission/GetCommission/{companyId}/{gameType}",
+                new { controller = "Commission", action = "GetCommission", companyId = UrlParameter.Optional, gameType = UrlParameter.Optional });
             #region Limit
             routes.MapRoute("GameLimit",
                 "Limit/GameLimit/{id}/{companytype}",
@@ -78,6 +92,9 @@ namespace LotteryVoteMVC
 
             IDictionary<int, Pair<string, Role>> onLineList = new Dictionary<int, Pair<string, Role>>();
             Application.Add(LotterySystem.M_ONLINEUSERCOUNT, onLineList);
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorThemeViewEngine());
         }
 
         protected void Session_End(object sender, EventArgs e)

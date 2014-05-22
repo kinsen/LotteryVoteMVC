@@ -1,0 +1,186 @@
+﻿@model IEnumerable<FileInfo>
+@{
+    ViewBag.Title = "日志查看器";
+}
+<!--ICON-->
+<link rel="shortcut icon" href="favicon.ico" />
+<style type="text/css">
+        div,pre{display:block; overflow:hidden;}
+        input{border:none; background:none;color:Green;}
+        .listTable
+        {
+            border-right:3px solid #000;
+        }
+        td
+        {
+            font-family: "lucida Grande" ,Verdana;
+            font-size: 12px;
+        }
+        .listTable th
+        {
+            text-align: left;
+            font-size: 12px;
+            background: #f1f1f1;
+            border-top: 1px solid #d6d6d6;
+            border-bottom: 1px solid #d6d6d6;
+            font-weight: normal;
+            padding: 6px 12px !important;
+        }
+        .listTable tr:hover
+        {
+            background-color: #ebf0f5; !important;}
+        .listTable tr.onfocus
+        {
+            background-color: #ebf0f5; !important;}
+        .listTable td
+        {
+            overflow: hidden;
+            padding: 6px 12px !important;
+            white-space: nowrap;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        .listTable tfoot td
+        {
+            font-size: 14px;
+            border-bottom: none;
+        }
+        .listTable tfoot tr:hover
+        {
+            background-color: #fff;
+        }
+    </style>
+<script type="text/javascript">
+
+    // 说明 ：用 Javascript 实现锚点(Anchor)间平滑跳转 
+    // 来源 ：ThickBox 2.1 
+    // 整理 ：Yanfu Xie [xieyanfu@yahoo.com.cn] 
+    // 网址 ：http://www.codebit.cn 
+    // 日期 ：07.01.17 
+
+    // 转换为数字 
+    function intval(v) {
+        v = parseInt(v);
+        return isNaN(v) ? 0 : v;
+    }
+
+    // 获取元素信息 
+    function getPos(e) {
+        var l = 0;
+        var t = 0;
+        var w = intval(e.style.width);
+        var h = intval(e.style.height);
+        var wb = e.offsetWidth;
+        var hb = e.offsetHeight;
+        while (e.offsetParent) {
+            l += e.offsetLeft + (e.currentStyle ? intval(e.currentStyle.borderLeftWidth) : 0);
+            t += e.offsetTop + (e.currentStyle ? intval(e.currentStyle.borderTopWidth) : 0);
+            e = e.offsetParent;
+        }
+        l += e.offsetLeft + (e.currentStyle ? intval(e.currentStyle.borderLeftWidth) : 0);
+        t += e.offsetTop + (e.currentStyle ? intval(e.currentStyle.borderTopWidth) : 0);
+        return { x: l, y: t, w: w, h: h, wb: wb, hb: hb };
+    }
+
+    // 获取滚动条信息 
+    function getScroll() {
+        var t, l, w, h;
+
+        if (document.documentElement && document.documentElement.scrollTop) {
+            t = document.documentElement.scrollTop;
+            l = document.documentElement.scrollLeft;
+            w = document.documentElement.scrollWidth;
+            h = document.documentElement.scrollHeight;
+        } else if (document.body) {
+            t = document.body.scrollTop;
+            l = document.body.scrollLeft;
+            w = document.body.scrollWidth;
+            h = document.body.scrollHeight;
+        }
+        return { t: t, l: l, w: w, h: h };
+    }
+
+    // 锚点(Anchor)间平滑跳转 
+    function scroller(el, duration) {
+        if (typeof el != 'object') { el = document.getElementById(el); }
+
+        if (!el) return;
+
+        var z = this;
+        z.el = el;
+        z.p = getPos(el);
+        z.s = getScroll();
+        z.clear = function () { window.clearInterval(z.timer); z.timer = null };
+        z.t = (new Date).getTime();
+
+        z.step = function () {
+            var t = (new Date).getTime();
+            var p = (t - z.t) / duration;
+            if (t >= duration + z.t) {
+                z.clear();
+                window.setTimeout(function () { z.scroll(z.p.y, z.p.x) }, 13);
+            } else {
+                st = ((-Math.cos(p * Math.PI) / 2) + 0.5) * (z.p.y - z.s.t) + z.s.t;
+                sl = ((-Math.cos(p * Math.PI) / 2) + 0.5) * (z.p.x - z.s.l) + z.s.l;
+                z.scroll(st, sl);
+            }
+        };
+        z.scroll = function (t, l) { window.scrollTo(l, t) };
+        z.timer = window.setInterval(function () { z.step(); }, 13);
+
+    }
+    function gotoTop() {
+        scroller('top', 800);
+        document.getElementById("topLabel").style.display = "none";
+    }
+    function gotoEnd() {
+        if (document.body.offsetHeight > window.innerHeight) {
+            scroller("end", 800);
+            document.getElementById("topLabel").style.display = "block";
+        }
+    }
+</script>
+<a name="top" id="top"></a>
+<div style="float: left;">
+    <table class="listTable">
+        <thead>
+            <tr>
+                <td>
+                    文件名
+                </td>
+                <td>
+                    大小(B)
+                </td>
+                <td>
+                    最后更新时间
+                </td>
+            </tr>
+        </thead>
+        @foreach (var file in Model)
+        { 
+            <tr>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.Hidden("FileName", file.FullName)
+                        <input type="submit" value="@file.Name" />
+                    }
+                </td>
+                <td>@file.Length
+                </td>
+                <td>@file.LastAccessTime
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        <h3 style="bottom: 0px; position: fixed; display: none" id="topLabel">
+            <strong onclick="gotoTop()" style="color: Green; cursor: pointer">↑Top</strong></h3>
+    </div>
+</div>
+<div style="padding-left: 10px; overflow: auto; zoom: 1;">
+    <pre style="word-wrap: break-word; white-space: pre-wrap;">
+    @ViewBag.LogContent
+        </pre>
+    <a name="end" id="end"></a>
+</div>
+<script type="text/javascript">    gotoEnd();</script>

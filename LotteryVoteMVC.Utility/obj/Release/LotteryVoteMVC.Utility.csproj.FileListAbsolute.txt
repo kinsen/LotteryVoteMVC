@@ -1,0 +1,7 @@
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Release\LotteryVoteMVC.Utility.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Release\LotteryVoteMVC.Utility.pdb
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Release\log4net.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Release\log4net.xml
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Release\ResolveAssemblyReference.cache
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Release\LotteryVoteMVC.Utility.dll
+E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Release\LotteryVoteMVC.Utility.pdb

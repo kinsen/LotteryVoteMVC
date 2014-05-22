@@ -768,4 +768,25 @@
   <data name="SystemMaintenance" xml:space="preserve">
     <value>Bảo trì hệ thống</value>
   </data>
+  <data name="Big" xml:space="preserve">
+    <value>số lớn</value>
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value>Từ</value>
+  </data>
+  <data name="EvenHead" xml:space="preserve">
+    <value>Chẵn chục</value>
+  </data>
+  <data name="EvenLast" xml:space="preserve">
+    <value>Chẵn đơn vị</value>
+  </data>
+  <data name="OddHead" xml:space="preserve">
+    <value>Lẻ chục</value>
+  </data>
+  <data name="OddLast" xml:space="preserve">
+    <value>Lẻ đơn vị</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>số nhỏ</value>
+  </data>
 </root>

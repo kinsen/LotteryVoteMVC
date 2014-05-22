@@ -1,0 +1,101 @@
+﻿@using LotteryVoteMVC.Resources
+@{
+    Layout = "~/Views/Red/Shared/Main.cshtml";
+}
+@section Header
+{
+    <script src="@Url.Content("~/Scripts/jquery.base64.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/BetComm.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/themes/Red/BetBase.css")" rel="stylesheet" type="text/css" />
+}
+@RenderSection("Head", false)
+<div class="betSection">
+    <div class="bet-left">
+        <div id="contentleft" style="width: 139px">
+            <div class="urbangreymenu" style="float: left;">
+                @Html.Action("AmountBoard")
+                <h3 class="headerbar">
+                    <font><font>@Resource.North</font></font></h3>
+                <ul>
+                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
+                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
+                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
+                            <li><a href="http://888.sgn888.com/Member/south-KH.aspx"><font><font>拖行</font></font></a></li></ul>
+                <h3 class="headerbar">
+                    <font><font>@Resource.South </font></font>
+                </h3>
+                <ul>
+                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
+                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
+                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
+                           <li> <a href="http://888.sgn888.com/Member/west-KH.aspx"><font><font>拖行</font></font></a></li></ul>
+                <h3 class="headerbar">
+                    <font><font>@Resource.Middle </font></font>
+                </h3>
+                <ul>
+                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
+                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
+                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
+                    <li>
+                            <a href="http://888.sgn888.com/Member/north-KH.aspx"><font><font>拖行</font></font></a></li></ul>
+            </div>
+            <div class="urbangreymenu" style="float: left;">
+                <h3 class="headerbar">
+                    <font><font>的剩余时间</font></font></h3>
+                <ul id="today-company" now="@DateTime.Now">
+                    @foreach (var company in LotteryVoteMVC.Core.TodayLotteryCompany.Instance.GetTodayCompany())
+                    { 
+                        <li ab="@company.Abbreviation" close="@DateTime.Today.Add(company.CloseTime)"><a>@company.Abbreviation:</a>
+                        </li>    
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bet-main">
+        @RenderBody()
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        lxfEndtime();
+    });
+    function lxfEndtime() {
+        $("#today-company li").each(function () {
+            var $this = $(this);
+            var endtime = new Date($this.attr("close")).getTime(); //取结束日期(毫秒值)
+            var nowtime = new Date($this.parent().attr("now")).getTime();        //今天的日期(毫秒值)服务器时间
+            var youtime = endtime - nowtime; //还有多久(毫秒值)
+            var seconds = youtime / 1000;
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+            var CDay = days;
+            var CHour = hours % 24;
+            var CMinute = minutes % 60;
+            var CSecond = Math.floor(seconds % 60); //"%"是取余运算，可以理解为60进一后取余数，然后只要余数。
+            var CMSecond = Math.floor(seconds * 100 % 100); // 计算100毫秒
+
+            if (endtime <= nowtime) {
+                $this.children().html($this.attr("ab") + ":00:00:00"); //如果结束日期小于当前日期就提示过期啦
+            } else {
+                $this.children().html($this.attr("ab") + ":" + CHour + "h" + CMinute + "'" + CSecond + "s"); //输出没有天数的数据
+                //当前时间变化
+                $this.parent().attr("now", zhtime(nowtime + 1000));
+            }
+        });
+        setTimeout("lxfEndtime()", 1000);
+    }
+    //js时间戳格式转05/20/2014 20:54:40
+    function zhtime(needtime) {
+        var oks = new Date(needtime);
+        var year = oks.getFullYear();
+        var month = oks.getMonth() + 1;
+        var date = oks.getDate();
+        var hour = oks.getHours();
+        var minute = oks.getMinutes();
+        var second = oks.getSeconds();
+        var msecond = oks.getMilliseconds()
+        return month + '/' + date + '/' + year + ' ' + hour + ':' + minute + ':' + second + '.' + msecond;
+    }
+</script>

@@ -30,7 +30,33 @@ namespace LotteryVoteMVC.Models
         /// 双双
         /// </summary>
         EvenEven = 5,
+        /// <summary>
+        /// 00-49
+        /// </summary>
         Small = 6,
-        Big = 7
+        /// <summary>
+        /// 50-99
+        /// </summary>
+        Big = 7,
+        /// <summary>
+        /// 30-79
+        /// </summary>
+        Center = 8,
+        /// <summary>
+        /// 单头（十位是奇数）
+        /// </summary>
+        OddHead = 9,
+        /// <summary>
+        /// 双头（十位是偶数）
+        /// </summary>
+        EvenHead = 10,
+        /// <summary>
+        /// 单尾（奇数）
+        /// </summary>
+        OddLast = 11,
+        /// <summary>
+        /// 双尾（偶数）
+        /// </summary>
+        EvenLast = 12
     }
 }

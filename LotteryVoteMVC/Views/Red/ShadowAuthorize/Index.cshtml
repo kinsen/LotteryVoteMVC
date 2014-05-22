@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.AgentAuthorizeAction>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{int index = 1;}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table>
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Controller
+        </th>
+        <th>
+            Action
+        </th>
+        <th>
+            MethodSign
+        </th>
+        <th>
+            CreateTime
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @(index++)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Controller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MethodSign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { Id=item.AuthorizeId }) |
+            @Html.ActionLink("Delete", "Delete", new { Id = item.AuthorizeId })
+        </td>
+    </tr>
+}
+
+</table>

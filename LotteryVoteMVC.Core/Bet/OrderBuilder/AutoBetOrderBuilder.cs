@@ -33,6 +33,11 @@ namespace LotteryVoteMVC.Core.Bet
                     case AutoBetType.OddOdd: nums = LotterySystem.Current.OddOdd; break;
                     case AutoBetType.Small: nums = LotterySystem.Current.Small; break;
                     case AutoBetType.Big: nums = LotterySystem.Current.Big; break;
+                    case AutoBetType.Center: nums = LotterySystem.Current.Center; break;
+                    case AutoBetType.OddHead: nums = LotterySystem.Current.OddHead; break;
+                    case AutoBetType.EvenHead: nums = LotterySystem.Current.EvenHead; break;
+                    case AutoBetType.OddLast: nums = LotterySystem.Current.OddLast; break;
+                    case AutoBetType.EvenLast: nums = LotterySystem.Current.EvenLast; break;
                     default: throw new InvalidDataException("不可到达,数据异常!");
                 }
                 var sheet = BuildAutoElectionCodeOrder(user, specie, betOrder.CompanyList, betOrder.WagerList, nums);

@@ -1,0 +1,40 @@
+﻿@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@model PagedList<LotteryVoteMVC.Models.LoginFailedLog>
+@{
+    ViewBag.Title = Resource.LoginFailed;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Pager/pagerGray.css")" rel="stylesheet" type="text/css" />
+}
+@{int index = 1;}
+<table>
+    <thead>
+        <tr>
+            <td>
+                @Resource.No
+            </td>
+            <td>
+                @Resource.IPAddress
+            </td>
+            <td>
+                @Resource.Time
+            </td>
+        </tr>
+    </thead>
+    @foreach (var log in Model)
+    { 
+        <tr>
+            <td>@(index++)
+            </td>
+            <td>@log.IP
+            </td>
+            <td>@log.CreateDate
+            </td>
+        </tr>
+    }
+</table>
+@Html.Pager(Model)

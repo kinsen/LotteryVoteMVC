@@ -277,7 +277,9 @@ $.fn.betNumeral = function () {
 $.fn.betAmount = function () {
     $(this).css("ime-mode", "disabled");
     this.bind("keypress", function () {
-        return this.value.length - 1 - this.value.lastIndexOf(".") < 2;
+        if (this.value.lastIndexOf(".") > 0 && this.value.length - this.value.lastIndexOf(".") > 2)
+            return this.value.length - 1 - this.value.lastIndexOf(".") < 2;
+        return true;
     });
     this.bind("blur", function () {
         if (this.value.lastIndexOf(".") == (this.value.length - 1)) {

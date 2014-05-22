@@ -1,0 +1,94 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.LotteryCompany>
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = @Resource.RollParlay;
+    Layout = "~/Views/Default/Shared/BetMain.cshtml";
+}
+@section Head
+{
+    <script src="@Url.Content("~/Scripts/Customer/BetRollParlay.js")?v=1.1" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/RollParlay.css")" rel="stylesheet" type="text/css" />
+}
+<div style="height: *; width: 100%;">
+    <table style="min-width: 990px; width: 100%" id="betTable">
+        <thead>
+            <tr>
+                <td rowspan="2" style="min-width: 20px; width: 2%">
+                </td>
+                <td rowspan="2" style="min-width: 142px; width: 14.34%">
+                    @Resource.FirstNum
+                </td>
+                <td rowspan="2" style="min-width: 142px; width: 14.34%">
+                    @Resource.SecondNum
+                </td>
+                <td rowspan="2" style="min-width: 142px; width: 14.34%">
+                    @Resource.ThirdNum
+                </td>
+                <td rowspan="2" style="min-width: 142px; width: 14.34%">
+                    @Resource.Wager
+                </td>
+                <td style="min-width: 317px; width: 32%">
+                    @foreach (string region in ViewBag.Regions)
+                    {
+                        <input type="checkbox" id='@region' name='@region' class="region" checked="checked" />
+                        <label for='@region'>
+                            @region.Substring(0, 1)</label>
+                    }
+                </td>
+                <td rowspan="2" style="min-width: 87px; width: 8.7%">
+                    @Resource.TotalAmount
+                </td>
+            </tr>
+            <tr>
+                <td style="border-top: solid 1px #fff">
+                    @foreach (var company in Model)
+                    {
+                        <span class='allCheck_@(company.Region)'>
+                            <input id="allCheck_@(company.CompanyId)" name="allCheck_@(company.CompanyId)"
+                            type="checkbox" class="allChecked" />
+                            <label for='allCheck_@(company.CompanyId)'>
+                                @company.Abbreviation</label>
+                        </span>
+                    }
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 1; i <= 10; i++)
+            {
+                <tr class="@(i % 2 == 0 ? "" : "odd") @(i == 1 ? "first" : string.Empty)">
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        <input type="text" maxlength="2" numno="1" id='num_1_@(i)' class='num@(i)' />
+                    </td>
+                    <td>
+                        <input type="text" maxlength="2" numno="2" id='num_2_@(i)' class='num@(i)' />
+                    </td>
+                    <td>
+                        <input type="text" maxlength="2" numno="3" id='num_3_@(i)' class='num@(i)' />
+                    </td>
+                    <td>
+                        <input type="text" class="amount" rowid='@i' id='amount@(i)' />
+                    </td>
+                    <td>
+                        @foreach (var company in Model)
+                        {
+                            <span>
+                                <input name='company@(company.CompanyId)_@(i)' id='company@(company.CompanyId)_@(i)'
+                            type="checkbox" class='company@(i)' company='@(company.CompanyId)' region='@(company.Region)' />
+                                <label for='company@(company.CompanyId)_@(i)'>
+                                    @company.Abbreviation</label>
+                            </span>}
+                    </td>
+                    <td>
+                        <span id='amount_@(i)' class="turnover"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.Hidden("PL2", ViewBag.PL2 as string)
+    @Html.Hidden("PL3", ViewBag.PL3 as string)
+</div>

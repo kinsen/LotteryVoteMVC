@@ -1,0 +1,217 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.LotteryCompany>
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = @Resource.RollParlay;
+    Layout = "~/Views/Red/Shared/BetMain.cshtml";
+}
+@section Head
+{
+    <script src="@Url.Content("~/Scripts/Customer/BetRollParlay.red.js")?v=1.1" type="text/javascript"></script>
+}
+<table width="100%" cellpadding="1" cellspacing="1" bgcolor="#FFFFFF" style="font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; border: 1px solid #cccccc;">
+    <tbody>
+        <tr style="height: 20px">
+            <td align="center" valign="middle" bgcolor="#99CCCC">
+                <strong>
+                    <input type="radio" id="pl2" name="pl" value="2" checked="checked"><label for="pl2">@Resource.RollParlay&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio" id="pl3" name="pl" value="3"><label for="pl3">@Resource.RollParlay
+                        3&nbsp;&nbsp;&nbsp;</label>
+                </strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="0" style="min-width: 850px;
+    font-family: Arial, Helvetica, sans-serif; font-size: 12px; border: 1px solid #CCCCCC">
+    <tbody>
+        <tr>
+            <td>
+                <table id="betTable" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+                    <tbody>
+                        <tr>
+                            <td colspan="18" align="center" bgcolor="#FFFF99">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%" align="left">
+                                                <strong>Đặt cược Xiên 2 - Miền Nam (Thành Phố - Long An)</strong>
+                                            </td>
+                                            <td width="50%" align="right">
+                                                @using (Html.BeginForm("RollParlay", "Bet"))
+                                                {
+                                                    <font><font>
+                                                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                                                    <font><font>
+                                                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="20" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 20px;">
+                                <strong>&nbsp;</strong>
+                            </th>
+                            @for (int i = 0; i < 10; i++)
+                            {
+                                <th width="35" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 35px;">
+                                    <strong>@i</strong>
+                                </th>
+                            }
+                            <th width="62" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 62px;">
+                                <strong>@Resource.Num</strong>
+                            </th>
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 62px;">
+                                <strong>@Resource.Amount</strong>
+                            </th>
+                            <th align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 120px;">
+                                @Resource.Company
+                            </th>
+                            <th width="75" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 75px;">
+                                @Resource.Turnover
+                            </th>
+                            <th width="65" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 65px;">
+                                @Resource.Commission
+                            </th>
+                            <th width="76" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 76px;">
+                                @Resource.NetAmount
+                            </th>
+                        </tr>
+                        <tr bgcolor="#CCCCCC">
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </th>
+                            <th align="center" bgcolor="#CCCCCC" scope="col">
+                                @foreach (var company in Model)
+                                {
+                                    <span class='allCheck_@(company.Region)' style="display:inline-block;">
+                                        <input id="allCheck_@(company.CompanyId)" name="allCheck_@(company.CompanyId)" type="checkbox"
+                                class="allChecked" />
+                                        <label for='allCheck_@(company.CompanyId)'>
+                                            @company.Abbreviation</label>
+                                    </span>
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="18" style="min-width: 850px;">
+                                <div>
+                                    <table class="tablestyle" cellspacing="0" rules="all" border="1" id="ctl00_cph1_matrixMNX2_gvMatrixMNX2"
+                                        style="width: 100%; border-collapse: collapse;">
+                                        <tbody>
+                                            @for (int i = 0; i < 10; i++)
+                                            {
+                                                <tr class="rowstyle">
+                                                    <td align="center" style="background-color: #CCCCCC; font-weight: bold; width: 20px;">
+                                                        @i
+                                                    </td>
+                                                    @for (int j = 0; j < 10; j++)
+                                                    {
+                                                        <td align="center" style="height: 25px; width: 35px;">
+                                                            <span class="checkBox">
+                                                                <input id="selector_@(i)@(j)" type="checkbox" class="selector" num="@(i)@(j)"><label for="selector_@(i)@(j)">@j@i</label></span>
+                                                        </td>
+                                                    }
+                                                    <td align="center" style="width: 62px;">
+                                                        <input type="text" maxlength="5" class="num matrix-text">
+                                                    </td>
+                                                    <td align="center" style="width: 62px;">
+                                                        <input type="text" disabled="disabled" rowid='@i' class="amount matrix-text">
+                                                    </td>
+                                                    <td align="center">
+                                                        @foreach (var company in Model)
+                                                        {
+                                                            <span style="padding-left: 1px; padding-right: 1px; display: inline-block; zoom: 1;">
+                                                                <input name='company@(company.CompanyId + "_" + i)' company='@company.CompanyId' id='company@(company.CompanyId)_@(i) ' type="checkbox" class='company@(i)' region='@company.Region' />
+                                                                <label for='company@(company.CompanyId)_@(i) '>
+                                                                    @company.Abbreviation</label>
+                                                            </span>
+                                                        }
+                                                    </td>
+                                                    <td align="center" style="width: 75px;">
+                                                        <font><font id='amount@(i)' class="turnover">0.00 </font></font>
+                                                    </td>
+                                                    <td align="center" style="width: 65px;">
+                                                        <font><font id="comm@(i)" class="commission">0.00 </font></font>
+                                                    </td>
+                                                    <td align="center" style="width: 76px;">
+                                                        <font><font id="net@(i)" class="netvalue">0.00 </font></font>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong>&nbsp;</strong>
+                            </td>
+                            @for (var x = 0; x < 10; x++)
+                            {
+                                <td width="35" align="center" bgcolor="#CCCCCC">
+                                    <strong>@x</strong>
+                                </td>
+                            }
+                            <td width="62" align="center" bgcolor="#CCCCCC">
+                                <strong>&nbsp;</strong>
+                            </td>
+                            <td width="62" align="center" bgcolor="#CCCCCC">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC" scope="col">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif;
+                                    font-size: 12px">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" style="font-size: 11px; font-weight: bold;">
+                                                @foreach (var company in Model)
+                                                {
+                                                    <span class='allCheck_@(company.Region)' style="display:inline-block;">
+                                                        <input id="allCheck_@(company.CompanyId)" name="allCheck_@(company.CompanyId)" type="checkbox" class="allChecked" />
+                                                        <label for='allCheck_@(company.CompanyId)'>
+                                                            @company.Abbreviation</label>
+                                                    </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-amount">0.00</strong>
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-comm">0.00</strong>
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-net">0.00</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th align="right" bgcolor="#FFFF99">
+                @using (Html.BeginForm("RollParlay", "Bet"))
+                {
+                    <font><font>
+                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                    <font><font>
+                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                }
+            </th>
+        </tr>
+    </tfoot>
+</table>
+@Html.Hidden("PL2", ViewBag.PL2 as string)
+@Html.Hidden("PL3", ViewBag.PL3 as string)

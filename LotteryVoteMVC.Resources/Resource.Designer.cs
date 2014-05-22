@@ -304,7 +304,7 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Big 的本地化字符串。
+        ///   查找类似 大 的本地化字符串。
         /// </summary>
         public static string Big {
             get {
@@ -345,6 +345,15 @@ namespace LotteryVoteMVC.Resources {
         public static string CashBalance {
             get {
                 return ResourceManager.GetString("CashBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 中 的本地化字符串。
+        /// </summary>
+        public static string Center {
+            get {
+                return ResourceManager.GetString("Center", resourceCulture);
             }
         }
         
@@ -588,6 +597,24 @@ namespace LotteryVoteMVC.Resources {
         public static string EvenEven {
             get {
                 return ResourceManager.GetString("EvenEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 双头 的本地化字符串。
+        /// </summary>
+        public static string EvenHead {
+            get {
+                return ResourceManager.GetString("EvenHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 双尾 的本地化字符串。
+        /// </summary>
+        public static string EvenLast {
+            get {
+                return ResourceManager.GetString("EvenLast", resourceCulture);
             }
         }
         
@@ -1132,6 +1159,24 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
+        ///   查找类似 单头 的本地化字符串。
+        /// </summary>
+        public static string OddHead {
+            get {
+                return ResourceManager.GetString("OddHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 单尾 的本地化字符串。
+        /// </summary>
+        public static string OddLast {
+            get {
+                return ResourceManager.GetString("OddLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 单单 的本地化字符串。
         /// </summary>
         public static string OddOdd {
@@ -1483,7 +1528,7 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Small 的本地化字符串。
+        ///   查找类似 小 的本地化字符串。
         /// </summary>
         public static string Small {
             get {

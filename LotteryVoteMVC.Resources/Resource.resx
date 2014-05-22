@@ -769,12 +769,27 @@
     <value>上级总佣金</value>
   </data>
   <data name="Big" xml:space="preserve">
-    <value>Big</value>
+    <value>大</value>
   </data>
   <data name="Small" xml:space="preserve">
-    <value>Small</value>
+    <value>小</value>
   </data>
   <data name="SystemMaintenance" xml:space="preserve">
     <value>系统维护中</value>
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="EvenHead" xml:space="preserve">
+    <value>双头</value>
+  </data>
+  <data name="EvenLast" xml:space="preserve">
+    <value>双尾</value>
+  </data>
+  <data name="OddHead" xml:space="preserve">
+    <value>单头</value>
+  </data>
+  <data name="OddLast" xml:space="preserve">
+    <value>单尾</value>
   </data>
 </root>

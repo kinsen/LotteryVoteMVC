@@ -774,4 +774,25 @@
   <data name="SystemMaintenance" xml:space="preserve">
     <value>System maintenance</value>
   </data>
+  <data name="Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="EvenHead" xml:space="preserve">
+    <value>EvenHead</value>
+  </data>
+  <data name="EvenLast" xml:space="preserve">
+    <value>EvenLast</value>
+  </data>
+  <data name="OddHead" xml:space="preserve">
+    <value>OddHead</value>
+  </data>
+  <data name="OddLast" xml:space="preserve">
+    <value>OddLast</value>
+  </data>
+  <data name="Big" xml:space="preserve">
+    <value>Big</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Small</value>
+  </data>
 </root>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.BetOrder>
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = @Resource.ResourceManager.GetString(ViewBag.User.Role.ToString()) + @Resource.Report;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+<script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+}
+@{int index = 1;
+  decimal turnover = 0, comm = 0, netamount = 0;
+}
+<table cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <td>
+                @Resource.No
+            </td>
+            <td>
+                @Resource.UserName
+            </td>
+            <td>
+                @Resource.Turnover
+            </td>
+            <td>
+                @Resource.Commission
+            </td>
+            <td>
+                @Resource.NetAmount
+            </td>
+            <td>
+                @Resource.Function
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @(index++)
+                </td>
+                <td>
+                    @if (ViewBag.User.Role < Role.Agent)
+                    {
+                        @Html.ActionLink(order.UserName, "EachLevel", new { UserId = order.UserId, RoleId = (int)(ViewBag.User.Role + 2) })
+                    }
+                    else
+                    {
+                        @order.UserName
+                    }
+                </td>
+                <td>
+                    @order.Turnover.ToString("N")
+                </td>
+                <td>
+                    @order.Commission.ToString("N")
+                </td>
+                <td>
+                    @order.NetAmount.ToString("N")
+                </td>
+                <td>
+                    @Html.ActionLink(Resource.Detail, "Index", "Sheet", new { Id = order.UserId }, null)
+                </td>
+            </tr>
+            turnover += order.Turnover;
+            comm += order.Commission;
+            netamount += order.NetAmount;
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+        <td></td>
+        <td>@Resource.Total</td>
+        <td>@turnover.ToString("N")</td>
+        <td>@comm.ToString("N")</td>
+        <td>@netamount.ToString("N")</td>
+        <td></td>
+        </tr>
+    </tfoot>
+</table>

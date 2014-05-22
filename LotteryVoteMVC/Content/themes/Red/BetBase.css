@@ -1,0 +1,182 @@
+﻿body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+.betSection
+{
+    overflow-y: hidden;
+    zoom: 1;
+}
+.bet-left
+{
+    margin-bottom: -3000px;
+    padding-bottom: 3000px;
+    float: left;
+    width: 150px;
+    background: #c83335;
+}
+.bet-main
+{
+    margin-left: 153px;
+}
+
+#contentleft
+{
+    background-color: #c83335;
+}
+
+#container
+{
+    text-align: left;
+}
+
+.urbangreymenu
+{
+    width: 139px;
+}
+
+.urbangreymenu .headerbar
+{
+    font: bold 11px Arial;
+    color: white;
+    background: #c83335 url(images/nut.png) no-repeat 5px 2px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    padding: 2px 0 2px 20px;
+}
+
+.urbangreymenu .headerbar
+{
+    font: bold 11px Arial;
+    color: white;
+    text-transform: uppercase;
+}
+
+.urbangreymenu .headerbar
+{
+    font: bold 11px Arial;
+    color: white;
+    background: #c83335 url(images/nut.png) no-repeat 5px 2px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    padding: 2px 0 2px 20px;
+}
+
+.urbangreymenu ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.urbangreymenu ul li
+{
+    padding-bottom: 1px;
+}
+
+.urbangreymenu ul li a
+{
+    font: normal 12px Arial;
+    color: #f5ed14;
+    display: block;
+    padding: 0px 0 0px 20px;
+    background: #c83335 url(images/arr.png) no-repeat 7px 4px;
+}
+
+.urbangreymenu ul li a:visited
+{
+    color: #f5ed14;
+}
+
+#betTable input[type="text"]
+{
+    border: 1px solid #99CCCC;
+    height: 17px;
+    width: 48px;
+}
+
+.matrix-text
+{
+    border: 1px solid #99CCCC;
+    height: 17px;
+    width: 60px;
+}
+
+.matrix-label
+{
+    width: 90px;
+    background-color: Transparent;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+}
+
+.matrix-label-tiny
+{
+    width: 49px;
+    background-color: Transparent;
+    border: none;
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+}
+
+.matrix-text-short
+{
+    border: 1px solid #99CCCC;
+    height: 17px;
+    width: 48px;
+}
+
+input[disabled]
+{
+    border: solid 1px #938f8f;
+    background-color: #dbdbdb;
+}
+
+
+.tablestyle
+{
+    font-family: arial;
+    font-size: 12px;
+    border: 0px solid #CCCCFF;
+    background-color: #CCCCFF;
+}
+
+.tablestyle td a
+{
+    color: #D16400;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.altrowstyle
+{
+    background-color: #CCCCFF;
+}
+
+.headerstyle
+{
+    display: none;
+}
+
+.rowstyle td, .altrowstyle td
+{
+    padding: 3px 0px 3px 0px;
+    border: none;
+    border-right: solid 1px #FFFFFF;
+    border-bottom: solid 1px #FFFFFF;
+}
+#betTable input[type="text"].matrix-text
+{
+    border: 1px solid #99CCCC;
+    height: 17px;
+    width: 60px;
+}
+checkbox, input, radio, select
+{
+    font-size: 14px;
+}

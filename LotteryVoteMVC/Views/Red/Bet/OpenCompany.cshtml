@@ -1,0 +1,27 @@
+﻿@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Resources
+@{
+    Layout = null;
+}
+@{
+    var companys = TodayLotteryCompany.Instance.GetTodayCompany();
+    bool isFrist = true;
+}
+<div id="openCompany">
+    <dl>
+        <dt>@Resource.CompanyDescription:</dt>
+        <dd>
+            @foreach (var company in companys)
+            {
+                @MvcHtmlString.Create(string.Format("{5}<span>{0}-{1}</span>({2:hh\\:mm} - {3:hh\\:mm},<span>{4}</span>)", company.Abbreviation, company.Name, company.OpenTime, company.CloseTime,
+                     Resource.ResourceManager.GetString(company.IsOpen() ? "Running" : "Closed"), !isFrist ? " , " : string.Empty));
+
+                                                                                                                                   if (isFrist) { isFrist = false; }
+            }
+        </dd>
+        <dt>@Resource.NumberWildcard:</dt>
+        <dd>
+            * = any of 0,1,...,9 11-19(11,12,...,19) small(00-49) big(50-99) even(00,02,...,98)
+            odd(01,03,...,99)</dd>
+    </dl>
+</div>

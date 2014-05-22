@@ -1,0 +1,387 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.LotteryCompany>
+@using LotteryVoteMVC.Core.Application
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = @Resource.Zodiac;
+    Layout = "~/Views/Red/Shared/BetMain.cshtml";
+}
+@section Head
+{
+    <script src="@Url.Content("~/Scripts/Customer/BetZodiac.red.js")?v=1.1" type="text/javascript"></script>
+}
+@{
+    Func<GameType, PlayWay, string> BuildWagerInputName = (GameType gt, PlayWay pw) =>
+    {
+        var gpw = ((IList<GamePlayWay>)ViewBag.GamePlayWays).Find(it => it.GameType == gt && it.PlayWay == pw);
+        return string.Format("{0}_{1}_{2}", (int)gt, pw, gpw.Id);
+    };
+    Func<AutoBetType, PlayWay, string> GetWagerName = (bt, pw) =>
+    {
+        return string.Format("wager_{0}_{1}", (int)bt, (int)pw);
+    };
+
+    var betTypes = new[] { AutoBetType.EvenOdd, AutoBetType.OddEven, AutoBetType.EvenEven, AutoBetType.OddOdd,
+        AutoBetType.EvenHead, AutoBetType.OddHead, AutoBetType.EvenLast, AutoBetType.OddLast,
+        AutoBetType.Small, AutoBetType.Big, AutoBetType.Center, AutoBetType.TwelveZodiac };
+}
+<table width="100%" border="0" cellpadding="2" cellspacing="0" style="min-width: 850px;
+    font-family: Arial, Helvetica, sans-serif; font-size: 12px; border: 1px solid #CCCCCC">
+    <tbody>
+        <tr>
+            <td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+                    <tbody>
+                        <tr>
+                            <td colspan="8" align="center" bgcolor="#FFFF99">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%" align="left">
+                                                <strong>Đặt cược 2D Kéo hàng - Miền Nam (Thành Phố - Long An)</strong>
+                                            </td>
+                                            <td width="50%" align="right">
+                                                @using (Html.BeginForm("Zodiac", "Bet"))
+                                                {
+                                                    <font><font>
+                                                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                                                    <font><font>
+                                                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="200" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 200px;">
+                                <strong>Số đặt</strong>
+                            </th>
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
+                                <strong>@Resource.Head</strong>
+                            </th>
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
+                                <strong>@Resource.Last</strong>
+                            </th>
+                            <th width="62" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.HeadAndLast
+                            </th>
+                            <th align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 180px;">
+                                @Resource.Company
+                            </th>
+                            <th width="120" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 120px;">
+                                @Resource.Turnover
+                            </th>
+                            <th width="120" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 120px;">
+                                @Resource.Commission
+                            </th>
+                            <th width="121" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 121px;">
+                                @Resource.NetAmount
+                            </th>
+                        </tr>
+                        <tr bgcolor="#CCCCCC">
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </th>
+                            <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </th>
+                            <th width="62" align="center" bgcolor="#CCCCCC" scope="col">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </th>
+                            <th align="center" bgcolor="#CCCCCC" scope="col">
+                                @foreach (var company in Model)
+                                {
+                                    <span class='allCheck_@(company.Region)' style="display:inline-block;">
+                                        <input id="allCheck_@(company.CompanyId)" name="allCheck_@(company.CompanyId)" type="checkbox" class="allChecked" />
+                                        <label for='allCheck_@(company.CompanyId)'>
+                                            @company.Abbreviation</label>
+                                    </span>
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="min-width: 850px;">
+                                <div>
+                                    <table class="tablestyle" cellspacing="0" rules="all" border="1" id="ctl00_cph1_matrixMNKH_gvMatrixMNKH"
+                                        style="width: 100%; border-collapse: collapse;">
+                                        <tbody>
+                                            @for (var i = 0; i < betTypes.Length; i++)
+                                            {
+                                                var desc = "25";
+                                                int numCount = 0;
+                                                switch (betTypes[i])
+                                                {
+                                                    case AutoBetType.EvenHead:
+                                                    case AutoBetType.OddHead:
+                                                    case AutoBetType.EvenLast:
+                                                    case AutoBetType.OddLast: desc = "50"; numCount = 50; break;
+                                                    case AutoBetType.Big: desc = "00->49"; numCount = 50; break;
+                                                    case AutoBetType.Small: desc = "50->99"; numCount = 50; break;
+                                                    case AutoBetType.Center: desc = "30->79"; numCount = 50; break;
+                                                    case AutoBetType.TwelveZodiac: desc = "37"; numCount = 37; break;
+                                                    default: desc = "25"; numCount = 25; break;
+                                                }
+                                                 
+                                                <tr class="rowstyle">
+                                                    <td align="left" style="width: 200px;">
+                                                        <span class="checkBox">
+                                                            <input id="@betTypes[i]" class="chk_betype" rowid="@i" type="checkbox" nums="@numCount"><label for="@betTypes[i]">&nbsp;&nbsp;&nbsp;@Resource.ResourceManager.GetString(betTypes[i].ToString())
+                                                                (@desc)</label></span>
+                                                    </td>
+                                                    <td align="center" style="width: 62px;">
+                                                        <input type="text" id='@GetWagerName(betTypes[i], PlayWay.Head)_Head' class="amount matrix-text" disabled>
+                                                    </td>
+                                                    <td align="center" style="width: 62px;">
+                                                        <input type="text" id='@GetWagerName(betTypes[i], PlayWay.Last)_Last' class="amount matrix-text" disabled>
+                                                    </td>
+                                                    <td align="center" style="width: 62px;">
+                                                        <input type="text" id='@GetWagerName(betTypes[i], PlayWay.HeadAndLast)_HeadAndLast' class="amount matrix-text" disabled>
+                                                    </td>
+                                                    <td align="center">
+                                                        @foreach (var company in Model)
+                                                        {
+                                                            <span style="padding-left: 1px; padding-right: 1px; display: inline-block; zoom: 1;">
+                                                                <input name='company@(company.CompanyId + "_" + i)' company='@company.CompanyId' id='company@(company.CompanyId)_@(i) ' type="checkbox" class='company@(i)' region='@company.Region' />
+                                                                <label for='company@(company.CompanyId)_@(i) '>
+                                                                    @company.Abbreviation</label>
+                                                            </span>
+                                                        }
+                                                    </td>
+                                                    <td align="center" style="width: 120px;">
+                                                        <font><font id='amount@(i)' class="turnover">0.00 </font></font>
+                                                    </td>
+                                                    <td align="center" style="width: 120px;">
+                                                        <font><font id="comm@(i)" class="commission">0.00 </font></font>
+                                                    </td>
+                                                    <td align="center" style="width: 120px;">
+                                                        <font><font id="net@(i)" class="netvalue">0.00 </font></font>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" bgcolor="#CCCCCC">
+                                &nbsp;
+                            </td>
+                            <td width="62" align="center" bgcolor="#CCCCCC">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </td>
+                            <td width="62" align="center" bgcolor="#CCCCCC">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </td>
+                            <td width="62" align="center" bgcolor="#CCCCCC">
+                                <input type="text" class="matrix-text">
+                                <input type="button" class="cell-set" value="OK">
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC" scope="col" style="font-weight: bold">
+                                @foreach (var company in Model)
+                                {
+                                    <span class='allCheck_@(company.Region)' style="display:inline-block;">
+                                        <input id="allCheck_@(company.CompanyId)" name="allCheck_@(company.CompanyId)" type="checkbox" class="allChecked" />
+                                        <label for='allCheck_@(company.CompanyId)'>
+                                            @company.Abbreviation</label>
+                                    </span>
+                                }
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-amount">0.00</strong>
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-comm">0.00</strong>
+                            </td>
+                            <td align="center" bgcolor="#CCCCCC">
+                                <strong id="total-net">0.00</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th align="right" bgcolor="#FFFF99">
+                @using (Html.BeginForm("Zodiac", "Bet"))
+                {
+                    <font><font>
+                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                    <font><font>
+                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                }
+            </th>
+        </tr>
+    </tfoot>
+</table>
+<table width="100%" border="0" cellpadding="2" cellspacing="0" style="min-width: 850px;
+    font-family: Arial, Helvetica, sans-serif; font-size: 12px; border: 1px solid #CCCCCC">
+    <tbody>
+        <tr>
+            <td style="min-width: 850px;">
+                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+                    <tbody>
+                        <tr>
+                            <td colspan="8" align="center" bgcolor="#FFFF99">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%" align="left">
+                                                <strong>Đặt cược 2D Kéo tự do - Miền Nam (Thành Phố - Long An)</strong>
+                                            </td>
+                                            <td width="50%" align="right">
+                                                @using (Html.BeginForm("Index", "Bet", FormMethod.Post, new { @class = "2d" }))
+                                                {
+                                                    <font><font>
+                                                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                                                    <font><font>
+                                                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="200" height="20" align="center" bgcolor="#CCCCCC">
+                                <strong>Kéo tự do</strong>
+                            </td>
+                            <th width="62" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.Head
+                            </th>
+                            <th width="62" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.Last
+                            </th>
+                            <th width="62" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.HeadAndLast
+                            </th>
+                            <th align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 140px;">
+                                @Resource.Company
+                            </th>
+                            <th width="120" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.Turnover
+                            </th>
+                            <th width="120" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.Commission
+                            </th>
+                            <th width="120" align="center" bgcolor="#CCCCCC" scope="col">
+                                @Resource.NetAmount
+                            </th>
+                        </tr>
+                        <tr>
+                            <td width="200" align="center" bgcolor="#CCCCFF">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF"
+                                    style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                                    <tbody>
+                                        <tr>
+                                            <td width="84" height="40" align="center" bgcolor="#CCCCFF">
+                                                <strong>Chục</strong><br>
+                                                <span class="checkBox">
+                                                    <input id="all_tens" type="checkbox"></span>
+                                            </td>
+                                            <td width="32" rowspan="11" align="center" bgcolor="#CCCCFF">
+                                                X
+                                            </td>
+                                            <td width="84" align="center" bgcolor="#CCCCFF">
+                                                <strong>Đơn vị</strong><br>
+                                                <span class="checkBox">
+                                                    <input id="all_single" type="checkbox"></span>
+                                            </td>
+                                        </tr>
+                                        @for (var x = 0; x < 10; x++)
+                                        {
+                                            <tr>
+                                                <td align="center" bgcolor="#CCCCFF" height="25">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="47" align="right">
+                                                                    <span class="checkBox">
+                                                                        <input type="checkbox" class="tens" value="@x"></span>
+                                                                </td>
+                                                                <td style="padding-left: 7px">
+                                                                    <strong>@x</strong>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td align="center" bgcolor="#CCCCFF">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="47" align="right">
+                                                                    <span class="checkBox">
+                                                                        <input type="checkbox" class="single" value="@x"></span>
+                                                                </td>
+                                                                <td style="padding-left: 7px">
+                                                                    <strong>@x</strong>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF">
+                                <input  type="text" class="matrix-text 2dAmount" id="@BuildWagerInputName(GameType.TwoDigital, PlayWay.Head)">
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF">
+                                <input type="text" class="matrix-text 2dAmount" id="@BuildWagerInputName(GameType.TwoDigital, PlayWay.Last)">
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF">
+                                <input type="text" class="matrix-text 2dAmount" id="@BuildWagerInputName(GameType.TwoDigital, PlayWay.HeadAndLast)">
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF">
+                                @foreach (var company in Model)
+                                {
+                                    <span style="padding-left: 1px; padding-right: 1px; display: inline-block; zoom: 1;">
+                                        <input name='company@(company.CompanyId)' company='@company.CompanyId' id='company@(company.CompanyId)' type="checkbox" class='2d-company' region='@company.Region' />
+                                        <label for='company@(company.CompanyId)'>
+                                            @company.Abbreviation</label>
+                                    </span>
+                                }
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF" id="2d-turnover">
+                                0.00
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF" id="2d-comm">
+                                0.00
+                            </td>
+                            <td align="center" bgcolor="#CCCCFF" id="2d-net">
+                                0.00
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th align="right" bgcolor="#FFFF99">
+                @using (Html.BeginForm("Index", "Bet", FormMethod.Post, new { @class = "2d" }))
+                {
+                    <font><font>
+                        <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
+                    <font><font>
+                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                }
+            </th>
+        </tr>
+    </tfoot>
+</table>

@@ -15,7 +15,7 @@ using LotteryVoteMVC.Core.Web;
 namespace LotteryVoteMVC.Controllers
 {
     [HandleError]
-    public class BaseController : Controller
+    public class BaseController : ThemeControllerBase
     {
         #region Comm Properties
         private LoginCenter _loginCenter;

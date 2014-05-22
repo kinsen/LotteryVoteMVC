@@ -1,0 +1,80 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.BetUpperLimit>
+@using LotteryVoteMVC.Core.Application
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = Resource.StopAcceptBet;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header{
+    <script src="@Url.Content("~/Scripts/Customer/SearchHelper.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/multipleSubmit.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+}
+@{int index = 1;}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.Num</span>
+        @Html.TextBox("Num")
+        <span>@Resource.Company</span>
+        @Html.Partial("~/Views/Partial/TodayCompany.cshtml", TodayLotteryCompany.Instance.GetTodayCompany(), new ViewDataDictionary { { "HasAll", false } })
+        <span>@Resource.GameType</span>
+        @Html.Partial("~/Views/Partial/GamePlayWay.cshtml", LotterySystem.Current.GamePlayWays, new ViewDataDictionary { { "HasAll", false } })
+        <input type="submit" name="search" id="search" value="@Resource.Search" action="/Limit/StopUpperLimits" />
+        <input type="submit" name="addStop" id="addStop" value="@Resource.Stop" action="/Limit/AddStop" />
+    }
+</div>
+<table>
+    <thead>
+        <tr>
+            <td colspan="9">
+                @Resource.StopAcceptBet
+            </td>
+        </tr>
+        <tr>
+            <td>@Resource.No
+            </td>
+            <td>@Resource.Num
+            </td>
+            <td>@Resource.Company
+            </td>
+            <td>@Resource.GameType
+            </td>
+            <td>@Resource.TotalBetAmount
+            </td>
+            <td>@Resource.DropWater
+            </td>
+            <td>@Resource.NextLimit
+            </td>
+            <td>@Resource.UpperLimit
+            </td>
+            <td>@Resource.Function
+            </td>
+        </tr>
+    </thead>
+    @foreach (var limit in Model)
+    {
+        <tr>
+            <td>@(index++)
+            </td>
+            <td>@limit.Num
+            </td>
+            <td>@LotterySystem.Current.FindCompany(limit.CompanyId).Name
+            </td>
+            <td>@Extended.GetGPWDescription(limit.GamePlayWayId)
+            </td>
+            <td>@limit.TotalBetAmount.ToString("N")
+            </td>
+            <td>@limit.DropValue
+            </td>
+            <td>@limit.NextLimit.ToString("N")
+            </td>
+            <td>@limit.UpperLlimit.ToString("N")
+            </td>
+            <td>
+                @Html.ActionLink(Resource.Start, "UpdateUpperLimit", new { LimitId = limit.LimitId, AcceptBet = !limit.StopBet })
+            </td>
+        </tr>
+    }
+</table>

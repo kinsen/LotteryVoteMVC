@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@using LotteryVoteMVC.Resources
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NoPermission</title>
+</head>
+<body>
+    <center>
+        <h1>
+            <span style="text-decoration: none; color: Green">@Resource.NoPermission</span>
+        </h1>
+        <h5>
+            <a href="/">首页</a> <a href="@((Request.UrlReferrer ?? Request.Url).ToString())">
+                上一页</a></h5>
+        <img src="@Url.Content("~/Content/Images/no.jpg")" />
+    </center>
+</body>
+</html>

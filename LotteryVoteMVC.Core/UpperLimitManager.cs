@@ -11,6 +11,7 @@ using LotteryVoteMVC.Utility;
 using LotteryVoteMVC.Core.Exceptions;
 using LotteryVoteMVC.Resources;
 using LotteryVoteMVC.Resources.Models;
+using LotteryVoteMVC.Data;
 
 namespace LotteryVoteMVC.Core
 {
@@ -33,6 +34,7 @@ namespace LotteryVoteMVC.Core
 
         private LimitManager _limitManager;
         private DropWaterManager _dwManager;
+        private BetOrderDataAccess _daOrder;
         public LimitManager LimitManager
         {
             get
@@ -49,6 +51,15 @@ namespace LotteryVoteMVC.Core
                 if (_dwManager == null)
                     _dwManager = new DropWaterManager();
                 return _dwManager;
+            }
+        }
+        public BetOrderDataAccess DaOrder
+        {
+            get
+            {
+                if (_daOrder == null)
+                    _daOrder = new BetOrderDataAccess();
+                return _daOrder;
             }
         }
 
@@ -347,7 +358,12 @@ namespace LotteryVoteMVC.Core
                 {
                     lock (limits[key])      //锁定实体
                     {
-                        LimitManager.UpdateLimit(limits[key]);
+                        var limit = limits[key];
+                        var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
+                        if (limit.TotalBetAmount != amount)
+                            limit.TotalBetAmount = amount;
+                        LimitManager.UpdateLimit(limit);
+                        limits[key].TotalBetAmount = amount;
                         //将已修改状态改变
                         limits[key].IsChange = false;
                     }

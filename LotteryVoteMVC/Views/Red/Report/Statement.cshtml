@@ -10,37 +10,39 @@
 {
     <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
     <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/Red/BetSheet.css")" rel="stylesheet" type="text/css" />
 }
 @{
     decimal turnover = 0, comm = 0, netwin = 0, winlost = 0, cancel = 0;
     BetOrder lastWeekTotal = ViewBag.LastWeekTotal;
 }
-<table>
+<table cellpadding="0" cellspacing="0" class="tablestyleAdmin">
     <thead>
-        <tr>
-            <td colspan="3">
+        <tr class="headerstyleAdmin">
+            <th colspan="3">
                 @Resource.Date
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.Turnover
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.Commission
-            </td>
-            <td>@Resource.Win
-            </td>
-            <td>
+            </th>
+            <th>@Resource.Win
+            </th>
+            <th>
                 @Resource.WinLost
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.Cancel
-            </td>
+            </th>
         </tr>
     </thead>
     <tbody>
+        @{var index = 0;}
         @foreach (var order in Model)
         { 
-            <tr>
+            <tr class="@(index++ % 2 == 0 ? "rowstyleAdmin" : "altrowstyleAdmin")">
                 <td>
                     @Resource.ResourceManager.GetString(order.CreateTime.DayOfWeek.ToString())
                 </td>

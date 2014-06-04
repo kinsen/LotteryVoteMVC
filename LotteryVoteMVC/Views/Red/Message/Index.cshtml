@@ -9,6 +9,7 @@
 @section Header
 {
     <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/Red/BetSheet.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/Customer/multipleSubmit.js")" type="text/javascript"></script>
 }
 @{int index = 1;
@@ -25,26 +26,26 @@
         }
     }
 </div>
-<table>
+<table cellpadding="0" cellspacing="0" class="tablestyleAdmin">
     <thead>
-        <tr>
-            <td>@Resource.No
-            </td>
-            <td>@Resource.Time
-            </td>
-            <td>@Resource.Content
-            </td>
+        <tr class="headerstyleAdmin">
+            <th>@Resource.No
+            </th>
+            <th>@Resource.Time
+            </th>
+            <th>@Resource.Content
+            </th>
             @if (role == Role.Company)
             { 
-                <td>@Resource.Delete
-                </td>
+                <th>@Resource.Delete
+                </th>
             }
         </tr>
     </thead>
     <tbody>
         @foreach (var bulletin in Model)
         {
-            <tr>
+            <tr class="@(index % 2 == 0 ? "rowstyleAdmin" : "altrowstyleAdmin")">
                 <td>@(index++)
                 </td>
                 <td>@bulletin.CreateTime

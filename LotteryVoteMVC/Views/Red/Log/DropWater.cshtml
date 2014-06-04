@@ -15,7 +15,7 @@
     <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/Pager/pagerGray.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/Red/BetSheet.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Date").attr("readonly", "readonly").datepicker();
@@ -28,8 +28,8 @@
     {
         if (ViewBag.User.Role == Role.Company)
         {
-            <span>@Resource.Time</span>
-            @Html.TextBox("Date")
+        <span>@Resource.Time</span>
+        @Html.TextBox("Date")
         }
         <span>@Resource.Num</span>
         @Html.TextBox("Num")
@@ -40,35 +40,35 @@
         <input type="submit" name="search" id="search" value="@Resource.Search" />
     }
 </div>
-<table>
+<table cellpadding="0" cellspacing="0" class="tablestyleAdmin">
     <thead>
-        <tr>
-            <td colspan="5">
+        <tr class="headerstyleAdmin">
+            <th colspan="5">
                 @Resource.DropWater
-            </td>
+            </th>
         </tr>
-        <tr>
-            <td>
+        <tr class="headerstyleAdmin">
+            <th>
                 @Resource.No
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.Num
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.Company
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.GameType
-            </td>
-            <td>
+            </th>
+            <th>
                 @Resource.DropWater
-            </td>
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var limit in Model)
         { 
-            <tr>
+            <tr class="@(index % 2 == 0 ? "rowstyleAdmin" : "altrowstyleAdmin")">
                 <td>
                     @(index++)
                 </td>
@@ -87,5 +87,11 @@
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr class="pagerstyleAdmin">
+            <td colspan="5">
+                @Html.Pager(Model)
+            </td>
+        </tr>
+    </tfoot>
 </table>
-@Html.Pager(Model)

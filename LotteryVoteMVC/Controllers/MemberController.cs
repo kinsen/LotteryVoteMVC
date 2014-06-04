@@ -16,6 +16,45 @@ namespace LotteryVoteMVC.Controllers
 {
     public class MemberController : BaseController
     {
+        public CommManager CommManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<CommManager>();
+            }
+        }
+        public FreezeFundsManager FreezeManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<FreezeFundsManager>();
+            }
+        }
+        public UserLimitManager UserLimitManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<UserLimitManager>();
+            }
+        }
+
+        [UserAuthorize(UserState.Active, Role.Guest)]
+        public ActionResult Info()
+        {
+            //获取用户余额
+            var freeze = FreezeManager.GetFreezeFund(CurrentUser);
+            ViewBag.BetCredit = CurrentUser.UserInfo.AvailableGivenCredit;
+            ViewBag.Outstanding = freeze == null ? 0 : freeze.Amount;
+            ViewBag.CompanyTypes = EnumHelper.GetDescription<CompanyType>();
+            ViewBag.GameTypes = EnumHelper.GetDescription<GameType>();
+            ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays;
+            var commGroups = CommManager.GetCommissionGroupByUser(CurrentUser, LotterySpecies.VietnamLottery);
+            var pack = CommManager.GetMemberPackage(CurrentUser, LotterySpecies.VietnamLottery);
+            ViewBag.CommGroup = commGroups.Where(it => it.Key.GroupId == pack.GroupId).FirstOrDefault();
+            ViewBag.GameLimits = UserLimitManager.GetGameLimits(CurrentUser);
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Login()
         {

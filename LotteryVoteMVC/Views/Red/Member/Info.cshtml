@@ -1,0 +1,358 @@
+﻿@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Red/Shared/BetMain.cshtml";
+    var Controller = ViewContext.Controller as LotteryVoteMVC.Controllers.BaseController;
+}
+<table width="680" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" style="font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; border: 1px solid #cccccc;">
+    <tbody>
+        <tr style="height: 25px">
+            <td colspan="2" align="center" bgcolor="#FFFF99">
+                <strong>Thông tin tài khoản</strong>
+            </td>
+        </tr>
+        <tr style="height: 25px">
+            <td width="20%" align="right" bgcolor="#EEEEEE">
+                Tên tài khoản:&nbsp;
+            </td>
+            <td width="80%" bgcolor="#EEEEEE">
+                <span id="ctl00_cph1_memberInfoCtrl_lblName">@Controller.CurrentUser.UserName</span>
+            </td>
+        </tr>
+        <tr style="height: 25px">
+            <td width="20%" align="right" bgcolor="#EEEEEE">
+                Tên người dùng:&nbsp;
+            </td>
+            <td width="80%" bgcolor="#EEEEEE">
+                <span id="ctl00_cph1_memberInfoCtrl_lblUserName">@Controller.CurrentUser.UserInfo.Name</span>
+            </td>
+        </tr>
+        <tr style="height: 25px">
+            <td width="20%" align="right" bgcolor="#EEEEEE">
+                Tín dụng:&nbsp;
+            </td>
+            <td width="80%" bgcolor="#EEEEEE">
+                <span id="ctl00_cph1_memberInfoCtrl_lblMemberPoint">@ViewBag.BetCredit.ToString("N")</span>
+            </td>
+        </tr>
+        <tr style="height: 25px">
+            <td width="20%" align="right" bgcolor="#EEEEEE">
+                Số dư tín dụng:&nbsp;
+            </td>
+            <td width="80%" bgcolor="#EEEEEE">
+                <span id="ctl00_cph1_memberInfoCtrl_lblSumChildPoint">@((ViewBag.BetCredit - ViewBag.Outstanding).ToString("N"))</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<table width="680" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" style="font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; border: 1px solid #cccccc;">
+    <tr>
+        <td colspan="12" align="center" bgcolor="#FFFF99">
+            <strong>Tỷ lệ cò</strong>
+        </td>
+    </tr>
+    <tr style="height: 25px">
+        <td align="center" valign="center" bgcolor="#99CCCC">
+        <strong>@Resource.GroupName</strong>
+        </td>
+        <td align="center" valign="center" bgcolor="#99CCCC">
+            <strong>@Resource.GameType</strong>
+        </td>
+        @foreach (var comType in ViewBag.CompanyTypes)
+        { 
+            <td align="center" valign="center" bgcolor="#99CCCC">
+            <strong>@comType.Description</strong>
+            </td>
+        }
+    </tr>
+    @{bool isFirst = true;}
+    @foreach (var gameType in ViewBag.GameTypes)
+    {
+        bool isABPL2 = gameType.Value == (int)GameType.A_B_PL2;
+        bool isBCPL2 = gameType.Value == (int)GameType.B_C_PL2;
+        bool isCAPL2 = gameType.Value == (int)GameType.C_A_PL2;
+        <tr style="height: 25px">
+            @if (isFirst)
+            {
+                isFirst = false;
+                <td rowspan="9" align="center" valign="center" bgcolor="#CCCCFF">
+                <strong>@(ViewBag.CommGroup.Key.GroupName)</strong>
+                </td>
+            }
+            <td align="center" bgcolor="#CCCCFF">@gameType.Description
+            </td>
+            @foreach (var comType in ViewBag.CompanyTypes)
+            {
+                if ((isABPL2 && comType.Value != (int)CompanyType.EighteenA) || (isBCPL2 && comType.Value != (int)CompanyType.EighteenB) || (isCAPL2 && comType.Value != (int)CompanyType.EighteenC))
+                {
+                <td align="center" bgcolor="#CCCCFF">
+                </td>
+                }
+                else
+                {
+                    var comm = (ViewBag.CommGroup.Value as IEnumerable<ConcreteCommission>).Find(it => (int)it.GameType == gameType.Value && (int)it.CompanyType == comType.Value);
+                <td align="center" bgcolor="#CCCCFF">@(comm == null ? 0 : comm.Commission)
+                </td>
+                }
+            }
+        </tr>
+    }
+</table>
+<br />
+<table border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" style="font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; border: 1px solid #cccccc;">
+    <thead>
+        <tr style="height: 25px">
+            <td rowspan="2" align="center" bgcolor="#99CCCC">@Resource.CompanyType
+            </td>
+            <td colspan="4" align="center" bgcolor="#99CCCC">
+                2D
+            </td>
+            <td colspan="4" align="center" bgcolor="#99CCCC">
+                3D
+            </td>
+            <td colspan="2" align="center" bgcolor="#99CCCC">
+                4D
+            </td>
+            <td align="center" bgcolor="#99CCCC">
+                5D
+            </td>
+            <td rowspan="2" align="center" bgcolor="#99CCCC">
+                PL2
+            </td>
+            <td rowspan="2" align="center" bgcolor="#99CCCC">
+                PL3
+            </td>
+            <td rowspan="2" align="center" bgcolor="#99CCCC">
+                A&B PL2
+            </td>
+            <td rowspan="2" align="center" bgcolor="#99CCCC">
+                B&C PL2
+            </td>
+            <td rowspan="2" align="center" bgcolor="#99CCCC">
+                C&A PL2
+            </td>
+        </tr>
+        <tr style="height: 25px">
+            <td align="center" bgcolor="#99CCCC">@Resource.Head
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Last
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll7
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Head
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Last
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll7
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Last
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll
+            </td>
+            <td align="center" bgcolor="#99CCCC">@Resource.Roll
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @{var gamelimits = ViewBag.GameLimits as IEnumerable<GameBetLimit>;
+          var gpws = ViewBag.GamePlayWays as IEnumerable<GamePlayWay>;
+          GamePlayWay gpw;
+          GameBetLimit glimit;
+          isFirst = true;
+          bool isSecond = false;
+          bool isThird = false;
+          bool isFour = false;
+        }
+        @foreach (var comType in ViewBag.CompanyTypes)
+        { 
+            <tr style="height: 25px">
+                <td align="center" bgcolor="#CCCCFF">@comType.Description
+                </td>
+                @foreach (var gt in new[] { GameType.TwoDigital, GameType.ThreeDigital })
+                {
+                    foreach (var pw in new[] { PlayWay.Head, PlayWay.Last, PlayWay.Roll, PlayWay.Roll7 })
+                    {
+                    <td align="center" bgcolor="#CCCCFF">
+                        @{ gpw = gpws.Find(it => it.GameType == gt && it.PlayWay == pw);
+                           glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                           if (glimit != null)
+                           {
+                            @glimit.LimitValue
+                           }}
+                    </td>
+                    }
+                }
+                <td align="center" bgcolor="#CCCCFF">
+                    @{
+                gpw = gpws.Find(it => it.GameType == GameType.FourDigital && it.PlayWay == PlayWay.Last);
+                glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                    }
+                    @glimit.LimitValue
+                </td>
+                <td align="center" bgcolor="#CCCCFF">
+                    @{
+                gpw = gpws.Find(it => it.GameType == GameType.FourDigital && it.PlayWay == PlayWay.Roll);
+                glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                    }
+                    @glimit.LimitValue
+                </td>
+                <td align="center" bgcolor="#CCCCFF">
+                    @{
+                gpw = gpws.Find(it => it.GameType == GameType.FiveDigital && it.PlayWay == PlayWay.Roll);
+                glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                    }
+                    @glimit.LimitValue
+                </td>
+                <td align="center" bgcolor="#CCCCFF">
+                    @{
+                gpw = gpws.Find(it => it.GameType == GameType.PL2);
+                glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                    }
+                    @glimit.LimitValue
+                </td>
+                <td align="center" bgcolor="#CCCCFF">
+                    @{
+                gpw = gpws.Find(it => it.GameType == GameType.PL3);
+                glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id && (int)it.CompanyType == comType.Value);
+                    }
+                    @glimit.LimitValue
+                </td>
+                @if (isSecond)
+                {
+                    gpw = gpws.Find(it => it.GameType == GameType.A_B_PL2);
+                    glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id);
+                    if (glimit == null)
+                    {
+                        glimit = new GameBetLimit { GamePlayWayId = gpw.Id, CompanyType = CompanyType.EighteenA, LimitValue = 0 };
+                    }
+                    <td align="center" bgcolor="#CCCCFF">
+                        @glimit.LimitValue
+                    </td>
+                        
+                            
+                }
+                else
+                { 
+                    <td align="center" bgcolor="#CCCCFF">
+                    </td>
+                }
+                @if (isThird)
+                {
+                    gpw = gpws.Find(it => it.GameType == GameType.B_C_PL2);
+                    glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id);
+                    if (glimit == null)
+                    {
+                        glimit = new GameBetLimit { GamePlayWayId = gpw.Id, CompanyType = CompanyType.EighteenB, LimitValue = 0 };
+                    }
+                    <td align="center" bgcolor="#CCCCFF">
+                        @glimit.LimitValue
+                    </td>
+                }
+                else
+                { 
+                    <td align="center" bgcolor="#CCCCFF">
+                    </td>
+                }
+                @if (isFour)
+                {
+                    isFour = false;
+                    gpw = gpws.Find(it => it.GameType == GameType.C_A_PL2);
+                    glimit = gamelimits.Find(it => it.GamePlayWayId == gpw.Id);
+                    if (glimit == null)
+                    {
+                        glimit = new GameBetLimit { GamePlayWayId = gpw.Id, CompanyType = CompanyType.EighteenC, LimitValue = 0 };
+                    }
+                    <td align="center" bgcolor="#CCCCFF">
+                        @glimit.LimitValue
+                    </td>
+                }
+                else
+                { 
+                    <td align="center" bgcolor="#CCCCFF">
+                    </td>
+                }
+                @if (isFirst)
+                {
+                    isFirst = false;
+                    isSecond = true;
+                }
+                else if (isSecond)
+                {
+                    isSecond = false;
+                    isThird = true;
+                }
+                else if (isThird)
+                {
+                    isThird = false;
+                    isFour = true;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<table width="680" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" style="font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px; border: 1px solid #cccccc;">
+    <tr>
+        <td colspan="12" align="center" bgcolor="#FFFF99">
+            <strong>Giới hạn cho một lần cược</strong>
+        </td>
+    </tr>
+    <tr style="height: 25px">
+        <td align="center" valign="center" bgcolor="#99CCCC">
+            <strong>@Resource.GroupName</strong>
+        </td>
+        <td align="center" valign="center" bgcolor="#99CCCC">
+            <strong>@Resource.GameType</strong>
+        </td>
+        @foreach (var comType in ViewBag.CompanyTypes)
+        { 
+            <td align="center" valign="center" bgcolor="#99CCCC">
+                <strong>@comType.Description</strong>
+            </td>
+        }
+    </tr>
+    @{isFirst = true;}
+    @foreach (var gameType in ViewBag.GameTypes)
+    {
+        bool isABPL2 = gameType.Value == (int)GameType.A_B_PL2;
+        bool isBCPL2 = gameType.Value == (int)GameType.B_C_PL2;
+        bool isCAPL2 = gameType.Value == (int)GameType.C_A_PL2;
+        <tr style="height: 25px">
+            @if (isFirst)
+            {
+                isFirst = false;
+                <td rowspan="9" align="center" valign="center" bgcolor="#CCCCFF">
+                <strong>@(ViewBag.CommGroup.Key.GroupName)</strong>
+                </td>
+            }
+            <td align="center" bgcolor="#CCCCFF">@gameType.Description
+            </td>
+            @foreach (var comType in ViewBag.CompanyTypes)
+            {
+                if ((isABPL2 && comType.Value != (int)CompanyType.EighteenA) || (isBCPL2 && comType.Value != (int)CompanyType.EighteenB) || (isCAPL2 && comType.Value != (int)CompanyType.EighteenC))
+                {
+                <td align="center" bgcolor="#CCCCFF">
+                </td>
+                }
+                else
+                {
+                    var comm = (ViewBag.CommGroup.Value as IEnumerable<ConcreteCommission>).Find(it => (int)it.GameType == gameType.Value && (int)it.CompanyType == comType.Value);
+                <td align="center" bgcolor="#CCCCFF">@(comm == null ? 0 : comm.Odds)
+                </td>
+                }
+            }
+        </tr>
+    }
+</table>

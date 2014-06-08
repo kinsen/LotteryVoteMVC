@@ -462,7 +462,7 @@ order by GamePlayWayId", BetOrder.COMPANYID, BetOrder.CREATETIME, "From", "To", 
         #region Count
         public decimal SumTotalBetAmount(int companyId, int gamePlayWayId, string num)
         {
-            string sql = string.Format(@"SELECT SUM(Amount) as Amount From {0} WHERE {1}=@{1} AND {2}=@{2} AND {3}=@{3} AND Status <>0 AND CAST(CreateTime as Date)=CAST(GETDATE() AS Date)", BetOrder.TABLENAME,
+            string sql = string.Format(@"SELECT SUM(Amount) as Amount From {0} WITH (NOLOCK) WHERE {1}=@{1} AND {2}=@{2} AND {3}=@{3} AND Status <>0 AND CAST(CreateTime as Date)=CAST(GETDATE() AS Date)", BetOrder.TABLENAME,
                 BetOrder.COMPANYID, BetOrder.GAMEPLAYWAYID, BetOrder.NUM);
             object sum = base.ExecuteScalar(sql, new SqlParameter(BetOrder.COMPANYID, companyId),
                 new SqlParameter(BetOrder.GAMEPLAYWAYID, gamePlayWayId),

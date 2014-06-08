@@ -1,0 +1,10 @@
+﻿@using LotteryVoteMVC.Resources
+@{
+    Layout = null;
+}
+<h3 class="headerbar">
+    <font><font>@Resource.Amount</font></font></h3>
+<ul>
+    <li><a class="abMount"><span>@Resource.BetCredit:</span><span id="betCredit">@ViewBag.BetCredit.ToString("N")</span></a></li>
+    <li><a class="abMount"><span>@Resource.Outstanding:</span><span id="outstanding">@ViewBag.Outstanding.ToString("N")</span></a></li>
+</ul>

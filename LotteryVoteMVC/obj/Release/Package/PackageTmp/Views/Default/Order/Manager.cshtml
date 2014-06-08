@@ -1,0 +1,174 @@
+﻿@model PagedList<BetOrder>
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Core.Application
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    ViewBag.Title = @Resource.OrderList;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+    <script src="@Url.Content("~/Scripts/Customer/SearchHelper.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/TableBase.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Pager/pagerGray.css")" rel="stylesheet" type="text/css" />
+}
+@{
+    var companys = ((IEnumerable<LotteryCompany>)ViewBag.Companys).ToDictionary(it => it.CompanyId, it => it);
+    int index = 1;
+    decimal amount = 0, turnover = 0, comm = 0, netAmount = 0;
+}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.Num</span>
+        @Html.TextBox("Num")
+        <span>@Resource.Company</span>
+        @Html.Partial("~/Views/Partial/TodayCompany.cshtml", ViewBag.Companys as IEnumerable<LotteryCompany>)
+        <span>@Resource.GameType</span>
+        @Html.Action("GamePlayWay", "Partial")
+        <input type="submit" name="search" id="search" value="@Resource.Search" />
+    }
+</div>
+<table>
+    <thead>
+        <tr>
+            <td>
+                @Resource.No
+            </td>
+            <td>
+                @Resource.OrderNum
+            </td>
+            <td>
+                @Resource.UserName
+            </td>
+            <td>
+                @Resource.Time
+            </td>
+            <td>
+                @Resource.Num
+            </td>
+            <td colspan="2">
+                @Resource.GameType
+            </td>
+            <td>
+                @Resource.Company
+            </td>
+            <td>
+                @Resource.Amount
+            </td>
+            <td>
+                @Resource.Odds
+            </td>
+            <td>
+                @Resource.Net
+            </td>
+            <td>
+                @Resource.Turnover
+            </td>
+            <td>
+                @Resource.Commission
+            </td>
+            <td>
+                @Resource.NetAmount
+            </td>
+            @if (ViewBag.User != null && ViewBag.User.Role == Role.Company)
+            {
+                <td>
+                    @Resource.Function
+                </td>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            var gpw = LotterySystem.Current.FindGamePlayWay(order.GamePlayWayId);
+            <tr class="@(order.Status == BetStatus.Invalid ? "canceld" : "")">
+                <td>
+                    @(index++)
+                </td>
+                <td>
+                    @order.OrderId
+                </td>
+                <td>
+                    @order.UserName
+                </td>
+                <td>
+                    @order.CreateTime
+                </td>
+                <td>
+                    @order.Num
+                </td>
+                <td>
+                    @(gpw.GameType.GetDesc())
+                </td>
+                <td>
+                    @(gpw.PlayWay == default(PlayWay) ? string.Empty : Resource.ResourceManager.GetString(gpw.PlayWay.ToString()))
+                </td>
+                <td>
+                    @companys[order.CompanyId].Name
+                </td>
+                <td>
+                    @order.Amount.ToString("N")
+                </td>
+                <td>
+                    @order.Odds
+                </td>
+                <td class="@(order.DropWater > 0 ? "red" : string.Empty)">
+                    @order.Net.ToString("N")
+                </td>
+                <td>
+                    @order.Turnover.ToString("N")
+                </td>
+                <td>
+                    @order.Commission.ToString("N")
+                </td>
+                <td>
+                    @order.NetAmount.ToString("N")
+                </td>
+                @if (ViewBag.User != null && ViewBag.User.Role == Role.Company)
+                {
+                    <td>
+                        @if (order.Status == BetStatus.Valid)
+                        {
+                            @Html.ActionLink(Resource.Cancel, "Cancel", new { Id = order.OrderId }, new { onclick = "return confirm('Are you sure?')" })
+                        }
+                    </td>
+                }
+            </tr>
+                amount += order.Amount;
+                turnover += order.Turnover;
+                comm += order.Commission;
+                netAmount += order.NetAmount;
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            @for (int i = 0; i < 7; i++)
+            { <td>
+            </td>}
+            <td>@Resource.Total
+            </td>
+            <td>@amount.ToString("N")
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>@turnover.ToString("N")
+            </td>
+            <td>@comm.ToString("N")
+            </td>
+            <td>@netAmount.ToString("N")
+            </td>
+            @if (ViewBag.User != null && ViewBag.User.Role == Role.Company)
+            {
+                <td>
+                </td>
+            }
+        </tr>
+    </tfoot>
+</table>
+@Html.Pager(Model)

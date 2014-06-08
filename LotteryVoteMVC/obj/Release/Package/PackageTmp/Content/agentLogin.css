@@ -1,0 +1,104 @@
+﻿body
+        {
+            margin: 0px;
+            padding: 0px;
+            background: #8cc1e1;
+        }
+        div.layout
+        {
+            text-align: center;
+            width: 990px;
+            height: 800px;
+            background: url(Images/loginBG.gif);
+            display: block;
+        }
+        div#loginBox
+        {
+            border: none;
+            width: 380px;
+            position: absolute;
+            height: 290px;
+            margin-left: 325px;
+            top: 220px;
+            *margin-left:0px!important;
+            *position:inherit!important;
+            *top:0px!important;
+            *margin-top:220px!important;
+        }
+        table
+        {
+            position: absolute;
+            top: 50px;
+            *position:inherit!important;
+            *top:0px!important;
+            *margin-top:50px!important;
+            }
+        td
+        {
+            height:30px;
+            font-family:Arial,黑体;
+            font-size:20px;
+            font-weight:bold;
+            padding-right:5px;
+            color:#202B2E;
+            vertical-align:bottom;
+            padding-top:5px;
+            }
+        td.left
+        {
+            text-align: right; width:120px
+            }
+            td.right
+            {
+                text-align:left;
+                       /*非IE的主流浏览器识别的垂直居中的方法*/
+        display: table-cell;
+        vertical-align:middle;
+
+        /*设置水平居中*/
+        text-align:center;
+
+        /* 针对IE的Hack */
+        *display: block;
+        *font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/
+                }
+         input[type='text'],input[type='password']
+         {
+             width:160px;
+             height:25px;
+             font-size:20px;
+             margin-right:5px;
+             border:#ccc 1px solid;  
+        border-radius: 5px; /* css 3标准 */  
+        -moz-border-radius: 5px;  /* mozilla */  
+        -webkit-border-radius: 5px;  /* webkit */ 
+             }
+             input[type='text'].verifyCode
+             {
+                 width:60px;
+                 }
+         select
+         {
+             width:150px;
+             font-size:18px;
+              border-radius: 5px; /* css 3标准 */  
+        -moz-border-radius: 5px;  /* mozilla */  
+        -webkit-border-radius: 5px;  /* webkit */ 
+             }
+                 img
+                 {
+                     /*设置图片垂直居中*/
+        vertical-align:middle;
+                     }
+         input[type='submit'],input[type='button']
+         {
+             height:30px;
+             min-width:80px;
+             font-weight:bold;
+             font-size:18px;
+             background:#fff;
+             border:solid 1px #ccc;
+             border-radius: 5px; /* css 3标准 */  
+        -moz-border-radius: 5px;  /* mozilla */  
+        -webkit-border-radius: 5px;  /* webkit */ 
+             }

@@ -1,0 +1,64 @@
+﻿@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@model PagedList<Bulletin>
+@{
+    ViewBag.Title = Resource.Message;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/Red/BetSheet.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/Customer/multipleSubmit.js")" type="text/javascript"></script>
+}
+@{int index = 1;
+  Role role = ViewBag.User == null ? Role.Guest : ViewBag.User.Role;}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.Content</span>
+        <input type="text" id="Content" name="Content" style="width: 300px" />
+        <input type="submit" id="search" name="search" value="@Resource.Search" />
+        if (role == Role.Company)
+        {
+        <input type="submit" id="add" name="add" value="@Resource.Add" action="/Message/Add"/>
+        }
+    }
+</div>
+<table cellpadding="0" cellspacing="0" class="tablestyleAdmin">
+    <thead>
+        <tr class="headerstyleAdmin">
+            <th>@Resource.No
+            </th>
+            <th>@Resource.Time
+            </th>
+            <th>@Resource.Content
+            </th>
+            @if (role == Role.Company)
+            { 
+                <th>@Resource.Delete
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bulletin in Model)
+        {
+            <tr class="@(index % 2 == 0 ? "rowstyleAdmin" : "altrowstyleAdmin")">
+                <td>@(index++)
+                </td>
+                <td>@bulletin.CreateTime
+                </td>
+                <td>@bulletin.Content
+                </td>
+                @if (role == Role.Company)
+                {
+                    <td>
+                        @Html.ActionLink(Resource.Delete, "Remove", new { Id = bulletin.BulletinId })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

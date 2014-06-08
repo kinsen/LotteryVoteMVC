@@ -41,6 +41,10 @@ namespace LotteryVoteMVC
                 "Bet/RollParlay/{region}",
                 new { controller = "Bet", action = "RollParlay", region = UrlParameter.Optional });
 
+            routes.MapRoute("BetZodiac",
+                "Bet/Zodiac/{region}",
+                new { controller = "Bet", action = "Zodiac", region = UrlParameter.Optional });
+
             routes.MapRoute("GetCommission",
                 "Commission/GetCommission/{companyId}/{gameType}",
                 new { controller = "Commission", action = "GetCommission", companyId = UrlParameter.Optional, gameType = UrlParameter.Optional });

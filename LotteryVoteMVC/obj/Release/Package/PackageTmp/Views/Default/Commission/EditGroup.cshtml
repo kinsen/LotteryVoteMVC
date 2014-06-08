@@ -1,0 +1,94 @@
+﻿@model LotteryVoteMVC.Models.CommGroupModel
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@{
+    Layout = null;
+}
+@{
+    var companyTypes = EnumHelper.GetDescription<CompanyType>();
+    var gameTypes = EnumHelper.GetDescription<GameType>();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Resource.Edit@Resource.Commission@Resource.Group</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/comm.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Customer/ajaxHelper.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/comm.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/inputs.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <table>
+            <thead>
+                <tr>
+                    <td colspan="11">
+                        <h3>
+                            @Model.GroupName
+                        </h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                        @Resource.GameType
+                    </td>
+                    @foreach (var comType in companyTypes)
+                    {
+                        <td colspan="2">
+                            @comType.Description
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @for (int i = 0; i < companyTypes.Count; i++)
+                    {
+                        <td>
+                            @Resource.Comm
+                        </td>
+                        <td>
+                            @Resource.Odds
+                        </td>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var gameType in gameTypes)
+                { 
+                    <tr>
+                        <td>
+                            @gameType.Description
+                        </td>
+                        @foreach (var comType in companyTypes)
+                        {
+                            var comm = Model.Comms.Find(it => it.CompanyTypeId == comType.Value && it.GameId == gameType.Value);
+                            using (Html.BeginCollectionItem("Comms"))
+                            {
+                            <td>
+                                @Html.TextBox("Commission", comm == null ? 0 : comm.Commission, new { @class = "auto" })
+                            </td>
+                            <td>
+                                @Html.TextBox("Odds", comm == null ? 0 : comm.Odds, new { @class = "auto" })
+                            </td>
+                            @Html.Hidden("CompanyType", comType.Value)
+                            @Html.Hidden("GameType", gameType.Name)
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <input type="submit" name="submit" id="submit" value="@Resource.Submit" />
+            <input type="reset" name="reset" id="reset" value="@Resource.Reset" />
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.GamePlayWay>
+@using LotteryVoteMVC.Core
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@{
+    object hasAll, selectedValue;
+    if (!ViewData.TryGetValue("HasAll", out hasAll))
+    {
+        hasAll = true;
+    }
+    if (!ViewData.TryGetValue("Selected", out selectedValue))
+    {
+        selectedValue = 0;
+    }
+}
+<select name="GamePlayWay" id="GamePlayWay">
+    @if ((bool)hasAll)
+    {
+        <option value="0">@Resource.All</option>
+    }
+    @foreach (var gpw in Model)
+    {
+        if (gpw.PlayWay == PlayWay.HeadAndLast ) { continue; }
+        <option @(gpw.Id == (int)selectedValue ? "selected" : "") value="@gpw.Id">@gpw.GameType.GetDesc()
+            @gpw.PlayWay.ToStr()</option>
+    }
+</select>
+@Html.ValidationMessage("GamePlayWay")

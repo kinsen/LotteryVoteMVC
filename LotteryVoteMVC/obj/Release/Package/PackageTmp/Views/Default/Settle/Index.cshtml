@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LotteryVoteMVC.Models.LotteryCompany>
+@using LotteryVoteMVC.Resources
+@{
+    ViewBag.Title = Resource.Settle;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+    <script src="@Url.Content("~/Scripts/Customer/ajaxHelper.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[type='submit']").bind("click", function () {
+                $("form").attr("action", $(this).attr("action"));
+            });
+        });
+    </script>
+}
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.Company</span>
+        @Html.Partial("~/Views/Partial/TodayCompany.cshtml", Model, new ViewDataDictionary { { "HasAll", false } })
+        <input type="submit" name="settle" id="settle" value="@Resource.Settle" action="/Settle/Settle" />
+        <input type="submit" name="resettle" id="resettle" value="@Resource.ReSettle" action="/Settle/Resettle" />
+    }
+</div>

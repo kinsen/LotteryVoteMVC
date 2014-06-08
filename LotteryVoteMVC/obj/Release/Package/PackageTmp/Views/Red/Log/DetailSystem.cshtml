@@ -1,0 +1,44 @@
+﻿@model LotteryVoteMVC.Models.SystemError
+
+@{
+    ViewBag.Title = "DetailSystem";
+}
+
+<h2>DetailSystem</h2>
+
+<fieldset>
+    <legend>SystemError</legend>
+
+    <div class="display-label"><strong>ErrorDate</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ErrorDate)
+    </div>
+
+    <div class="display-label"><strong>ErrorMessage</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ErrorMessage)
+    </div>
+
+    <div class="display-label"><strong>StackTrack</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StackTrack)
+    </div>
+
+    <div class="display-label"><strong>PageUrl</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PageUrl)
+    </div>
+
+    <div class="display-label"><strong>Remarks</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Remarks)
+    </div>
+
+    <div class="display-label"><strong>IP</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IP)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "System")
+</p>

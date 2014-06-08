@@ -1,0 +1,8 @@
+﻿@model LotteryVoteMVC.Models.RateGroupGameBetLimit
+@using LotteryVoteMVC.Utility
+@using (Html.BeginCollectionItem("model"))
+{
+    @Html.Hidden("CompanyType", Model.CompanyType)
+    @Html.TextBox("LimitValue", Model.LimitValue, new { @class = "auto" })
+    @Html.Hidden("GamePlayWayId", Model.GamePlayWayId)
+}

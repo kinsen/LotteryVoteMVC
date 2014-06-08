@@ -868,6 +868,21 @@
   <ItemGroup>
     <Content Include="Views\Red\Member\Info.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Partial\CompanyType.cshtml" />
+    <Content Include="Views\Partial\GamePlayWay.cshtml" />
+    <Content Include="Views\Partial\NavMenu.cshtml" />
+    <Content Include="Views\Partial\ShadowNavMenu.cshtml" />
+    <Content Include="Views\Partial\TodayCompany.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

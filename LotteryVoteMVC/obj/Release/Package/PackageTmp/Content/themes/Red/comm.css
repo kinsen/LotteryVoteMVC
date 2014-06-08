@@ -1,0 +1,320 @@
+﻿body
+{
+    margin: 0px;
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif,微软雅黑,黑体;
+    font-size:15px;
+}
+input
+{
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif,微软雅黑,黑体;
+    font-size: 15px;
+}
+select
+{
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif,微软雅黑,黑体;
+    font-size: 15px;
+}
+body input[type='submit'], input[type='button'], input[type='reset']
+{
+    padding: 0px;
+    height: 25px;
+    border: solid 1px #FC8100;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #FC8002;
+    color: #fff;
+}
+a.New
+{
+    width:24px;
+    height:24px;
+    background:url(../../Images/new.png);
+    display:inline-block;
+    }
+a.Del
+{
+    width:16px;
+    height:16px;
+    background:url(../../Images/delete.png);
+    display:inline-block;
+    }
+div .header
+{
+    min-width: 990px;
+    width: 100%;
+    overflow: hidden;
+}
+.banner
+{
+    height: 102px;
+    min-width: 990px;
+    width: 100%;
+    background: url("../../images/banner.gif") no-repeat;
+}
+marquee
+{
+    background: none;
+    color: #000;
+    font-weight:bold;
+}
+div .main
+{
+    width: 100%;
+    min-height: 100%;
+	_height:100%;
+    /*padding-bottom:70px;*/
+    display:block;
+    overflow: hidden;
+}
+span#logo{width:147px; height:62px; display:block; position:absolute; left:80px; top:30px; }
+.menubar
+{
+    width: 100%;
+    height: 39px;
+    background: url(../../Images/menuBG.gif); /*     background: #6D6E70;*/
+}
+.menubar ul
+{
+    margin: 0px;
+    z-index: 999;
+}
+.menubar ul.menus li
+{
+    float: left;
+    list-style: none;
+    margin-right: 1px;
+    border-right: dotted 1px #C41719;
+    z-index: 999;
+}
+.menubar ul.menus li a
+{
+    padding: 9px 20px;
+    display: block;
+    color: #C6151F;
+    font-weight:bold;
+    text-decoration: none;
+    outline:none;
+}
+.menubar ul.menus li a:hover
+{
+    color:#EF862A;
+}
+.menubar ul.menus ul
+{
+    position: absolute;
+}
+.menubar ul.children
+{
+    display: none;
+    padding: 0;
+    margin: 0;
+    *width:120px;
+}
+.menubar ul.children li
+{
+    float: none;
+    margin: 0;
+    padding: 0;
+    border:none;
+}
+.menubar ul.children li a
+{
+    background: #771919;
+    color:#fff;
+    *height:18px;
+}
+.menubar ul.children li a:hover
+{
+    color:#771919;
+    background:#f1fdf1;
+    }
+
+.footer
+{
+    height: 70px;
+    width: 100%;
+    
+    background: url(../../images/footer.gif) right top no-repeat;
+    background-color:#fff;
+    /*
+    position:fixed;
+	_position:absolute;
+	right:0;
+	bottom:0;
+	z-index:1;
+*/
+}
+.footer p
+{
+    margin: 0px;
+}
+.footer #copyright
+{
+    float:right;
+    color:#fff;
+    padding: 30px 30px 0px 20px;
+}
+.footer a
+{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    }
+div.InfoPanel
+{
+    float: right;
+    top: 30px;
+    margin-top: 9px;
+    padding-right:10px;
+}
+div#userInfo
+{
+    float:left;
+    padding-left: 10px;
+    color:#000;
+}
+div#userInfo span{display:block;}
+div.language
+{
+    float:left;
+}
+.flag
+{
+    width: 75px;
+    height: 55px;
+    display: block;
+    float: left;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+#FlagEN
+{
+    background: url(../../images/flag_EN.gif) no-repeat;
+}
+#FlagCN
+{
+    background: url(../../images/flag_CN.gif) no-repeat;
+}
+#FlagVN
+{
+    background: url(../../images/flag_VN.gif) no-repeat;
+}
+.langDesc{clear:both;  font-size:12px;}
+.langDesc span{width:75px; min-width:75px; margin:0px 5px; display:inline-block; text-align:center;}
+
+div#searchBar
+{
+    padding:5px;
+    color:#696969;
+    margin-bottom:10px;
+    border:dashed 1px #FC8100;
+    background:#F3F2C2;
+}
+div#searchBar span
+{
+    padding-left:5px;
+}
+div#searchBar select
+{
+    border: solid 1px #FC8100;
+    height: 24px;
+}
+div#searchBar input[type='text']
+{
+    width: 100px;
+    height: 20px;
+    margin: 0px 5px;
+    border: solid 1px #FC8100;
+}
+.button
+{
+    text-decoration:none;
+    padding:0px;
+    height: 25px;
+    border: solid 1px #FC8100;
+    padding:3px 10px;
+    background:#FC8002;
+    color:#fff;
+    cursor:pointer;
+    }
+div#searchBar input[type='submit'], div#searchBar input[type='button']
+{
+    clear:both;
+    padding:0px;
+    height: 25px;
+    border: solid 1px #FC8100;
+    padding-left:10px;
+    padding-right:10px;
+    background:#FC8002;
+    color:#fff;
+}
+
+label.error
+{
+    color: Red;
+    font-weight: bold;
+}
+
+.ui-dialog-content p
+{
+    word-wrap: break-word;
+}
+strong.buttons
+{
+    background: url(../../Images/btn-round.png) no-repeat left;
+    padding: 3px 0 5px 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+strong.buttons input, span.btn input
+{
+    color: #fff;
+    background: url(../../Images/btn-round.png) no-repeat right;
+    margin: 0 -5px 0 0;
+    padding: 5px 10px 5px 5px;
+    border: 0;
+    cursor: pointer;
+}
+dl
+{
+    font-size:13px;
+    margin:0px;
+    }
+dt
+{
+    float:left;
+    }
+dd
+{
+    padding:3px 0px;
+    margin-left:80px;
+    }
+#noticeBar
+        {
+            position: absolute;
+            top: 50px;
+            *top:50px !important;
+            *padding-top:10px !important;
+            right: 280px;
+            width: 500px;
+        }
+.field-validation-error
+{
+    color:Red;
+    }
+    
+.alpha
+{
+    filter:alpha(Opacity=50);-moz-opacity:0.5;opacity: 0.5;
+    }
+/*-去除Jquery插件中table 的鼠标移动显示背景-*/
+.ui-datepicker table tr:hover
+{
+    background:none;
+    }
+    
+.shadow
+{box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+-moz-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+-webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000006')";}

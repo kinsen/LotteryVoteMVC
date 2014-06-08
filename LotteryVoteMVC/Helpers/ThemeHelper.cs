@@ -14,8 +14,7 @@ namespace LotteryVoteMVC.Helpers
             // TODO: should get from web.config or database
             var list = new List<SelectListItem>
                             {new SelectListItem {Text = "Default", Value = "Default"},
-                            new SelectListItem {Text = "Red", Value = "Red"},
-                            new SelectListItem {Text = "Green", Value = "Green"}};
+                            new SelectListItem {Text = "Red", Value = "Red"}};
 
             foreach (var selectListItem in list.Where(selectListItem => selectListItem.Value.Equals(selectedTheme)))
             {

@@ -1,0 +1,17 @@
+﻿@using LotteryVoteMVC.Core.Application
+@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+<div id="searchBar">
+    @using (Html.BeginForm())
+    {
+        <span>@Resource.Num</span>
+        @Html.TextBox("Num")
+        <span>@Resource.GameType</span>
+        @Html.Partial("~/Views/Partial/GamePlayWay.cshtml", LotterySystem.Current.GamePlayWays)
+        <span>@Resource.DropWater</span>
+        @Html.TextBox("DropValue")
+        <span>@Resource.Amount</span>
+        @Html.TextBox("Amount")
+        <input type="submit" name="search" id="search" value="@Resource.Search" />
+    }
+</div>

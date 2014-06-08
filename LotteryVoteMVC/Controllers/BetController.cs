@@ -225,12 +225,24 @@ namespace LotteryVoteMVC.Controllers
         }
 
         [UserAuthorize(UserState.Active, Role.Guest)]
-        public ActionResult Zodiac()
+        public ActionResult Zodiac(Region? region)
         {
-            var companys = TodayLotteryCompany.Instance.GetOpenCompany();
-            ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
-            WriteCompanyNumLenToClient(companys);
-            return View(companys);
+            if (Theme == "Default")
+            {
+                var companys = TodayLotteryCompany.Instance.GetOpenCompany();
+                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
+                WriteCompanyNumLenToClient(companys);
+                return View(companys);
+            }
+            else
+            {
+                var _region = region ?? Region.North;
+                var companys = TodayLotteryCompany.Instance.GetOpenCompany().Where(it => it.Region == _region).ToList();
+                ViewBag.Regions = new[] { _region };
+                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
+                WriteCompanyNumLenToClient(companys);
+                return View(companys);
+            }
         }
         [RequestCostTimeFilter]
         [UserAuthorize(UserState.Active, Role.Guest), HttpPost]

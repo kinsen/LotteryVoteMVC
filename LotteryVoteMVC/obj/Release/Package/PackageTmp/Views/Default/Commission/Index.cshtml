@@ -1,0 +1,115 @@
+﻿@using LotteryVoteMVC.Models
+@using LotteryVoteMVC.Resources
+@using LotteryVoteMVC.Utility
+@model IDictionary<CommissionGroup, IEnumerable<ConcreteCommission>>
+@{
+    ViewBag.Title = @Resource.Commission;
+    Layout = "~/Views/Default/Shared/Main.cshtml";
+}
+@section Header
+{
+    <link href="@Url.Content("~/Content/TableBase.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/commission.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var addGroup = function () {
+            buildFrame("addGroup", 500, 800, "/Commission/AddGroup", resource.Add);
+        }
+        var editGroup = function (group) {
+            buildFrame("editGroup", 500, 800, "/Commission/EditGroup/{0}".format(group), resource.Edit);
+        }
+        var delGroup = function (group) {
+            if (confirm("Are you sure?")) {
+                var url = "/Commission/DelGroup/{0}".format(group);
+                window.location.href = url;
+            }
+        }
+    </script>
+}
+@{
+    var companyTypes = EnumHelper.GetDescription<CompanyType>();
+    var gameTypes = EnumHelper.GetDescription<GameType>();
+}
+<div>
+    <h3>
+        @Resource.Group
+    </h3>
+    <table class="outTable">
+        @if (ViewBag.User.Role == Role.Company)
+        {
+            <tr>
+                <td colspan="2">
+                    <div id="searchBar">
+                        <a class="New" href="javascript:addGroup()" title="@Resource.New"></a>
+                    </div>
+                </td>
+            </tr>
+        }
+        @foreach (var comm in Model)
+        {
+            <tr>
+                <td>
+                    <table class="innerTable">
+                        <thead>
+                            <tr>
+                                <td colspan='@(companyTypes.Count * 2 + 1)'>
+                                    @if (ViewBag.User.Role == Role.Company)
+                                    {
+                                        <a title="Edit" href="javascript:editGroup(@comm.Key.GroupId)" class="@(ViewBag.User.Role == Role.Company ? "Edit" : string.Empty)" group='@(comm.Key.GroupId)'>
+                                            @comm.Key.GroupName
+                                        </a>
+                                        <a href="javascript:delGroup(@comm.Key.GroupId)" class="Del" group='@(comm.Key.GroupId)' title="@Resource.Delete">
+                                        </a>
+                                    }
+                                    else
+                                    { 
+                                        @comm.Key.GroupName
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">
+                                    @Resource.GameType
+                                </td>
+                                @foreach (var comType in companyTypes)
+                                {
+                                    <td colspan="2">
+                                        @comType.Description
+                                    </td>
+                                }
+                            </tr>
+                            <tr>
+                                @for (int i = 0; i < companyTypes.Count; i++)
+                                {
+                                    <td>
+                                        @Resource.Comm
+                                    </td>
+                                    <td>
+                                        @Resource.Odds
+                                    </td>
+                                }
+                            </tr>
+                        </thead>
+                        @foreach (var gameType in gameTypes)
+                        {
+                            <tr>
+                                <td>
+                                    @gameType.Description
+                                </td>
+                                @foreach (var comType in companyTypes)
+                                {
+                                    var cm = comm.Value.Where(it => it.CompanyTypeId == comType.Value && it.GameId == gameType.Value).FirstOrDefault();
+                                    <td>
+                                        @(cm == null ? 0 : cm.Commission)
+                                    </td>
+                                    <td>
+                                        @(cm == null ? 0 : cm.Odds)
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -65,7 +65,10 @@ namespace LotteryVoteMVC.Core
 
         void limitSynTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            var ticks = DateTime.Now.Ticks;
+            LogConsole.Debug("---------------------BEGIN CHECK UPDATE---------------" + ticks);
             CheckUpdate();
+            LogConsole.Debug("--------------------- END  CHECK UPDATE---------------" + ticks);
         }
         public static UpperLimitManager GetManager()
         {
@@ -263,7 +266,7 @@ namespace LotteryVoteMVC.Core
 
             var _limit = limitContext[limit.Num];
             if (_limit != null)
-                LogConsole.Debug(string.Format("LimitContext Num:{0} CompanyId:{1} GPW:{2} TotalAmount:{3} IsChange:{4}", _limit.Num, _limit.CompanyId, _limit.GamePlayWayId, _limit.TotalBetAmount, _limit.IsChange));
+                LogConsole.Debug(string.Format("LimitContext Num:{0} CompanyId:{1} GPW:{2} TotalAmount:{3} IsChange:{4} ContextSize:{5}", _limit.Num, _limit.CompanyId, _limit.GamePlayWayId, _limit.TotalBetAmount, _limit.IsChange, limitContext.Count));
             else
                 LogConsole.Debug(string.Format("LimitContext IsNull Num:{0} CompanyId:{1} GPW:{2} TotalAmount:{3}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount));
         }
@@ -345,15 +348,19 @@ namespace LotteryVoteMVC.Core
                     removeItem.Add(item);
                     continue;
                 }
+                LogConsole.Debug(string.Format("ContextDic[{0}]={1}", item, ContextDic[item]));
                 if (ContextDic[item]) //只有被修改的限制上下文才进行更新
                 {
-                    var limitContext = GetLimitContextInCache(companyId, gameplayway);
+                    //移动到最前面避免执行时间过长导致将部分更新忽略
+                    ContextDic[item] = false;
+                    //var limitContext = GetLimitContextInCache(companyId, gameplayway);
+                    var limitContext = GetLimitContext(companyId, gameplayway);
                     if (limitContext != null)
                     {
-                        LogConsole.Debug(string.Format("LimitContext Company:{0} GPW:{1} Size:{2}", companyId, gameplayway, limitContext.Count));
+                        LogConsole.Debug(string.Format("Update LimitContext Company:{0} GPW:{1} Size:{2}", companyId, gameplayway, limitContext.Count));
                         Update(limitContext);
                     }
-                    ContextDic[item] = false;
+                    //ContextDic[item] = false;
                 }
             }
 
@@ -370,17 +377,26 @@ namespace LotteryVoteMVC.Core
                 {
                     lock (limits[key])      //锁定实体
                     {
-                        var limit = limits[key];
-                        var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
-                        LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} TotalAmount:{3} Amount:{4}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount, amount));
-                        if (limit.TotalBetAmount != amount)
-                            limit.TotalBetAmount = amount;
-                        LimitManager.UpdateLimit(limit);
-                        //limits[key].TotalBetAmount = amount;
-                        //将已修改状态改变
-                        limits[key].IsChange = false;
+                        try
+                        {
+                            var limit = limits[key];
+                            var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
+                            LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} TotalAmount:{3} Amount:{4}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount, amount));
+                            if (limit.TotalBetAmount != amount)
+                                limit.TotalBetAmount = amount;
+                            LimitManager.UpdateLimit(limit);
+                            //limits[key].TotalBetAmount = amount;
+                            //将已修改状态改变
+                            limits[key].IsChange = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            LogConsole.Error("Update Limit", ex);
+                        }
                     }
                 }
+                else
+                    LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} Amount:{3} IsChange:False", limits[key].Num, limits[key].CompanyId, limits[key].GamePlayWayId, limits[key].TotalBetAmount));
             }
         }
     }

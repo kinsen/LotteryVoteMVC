@@ -64,7 +64,6 @@ namespace LotteryVoteMVC.Core.Limit
                         upperLimit.TotalBetAmount += order.Amount;
                         UpperLimitManager.GetManager().UpdateLimit(upperLimit);
                     }
-                    LogConsole.Debug(string.Format("UpperLimit Num:{0} Company:{1} GPW:{2} Amount:{3} TotalAmount:{4} IsChange:{5}", order.Num, order.CompanyId, order.GamePlayWayId, order.Amount, upperLimit.TotalBetAmount, upperLimit.IsChange));
                 }
             }
             return returnValue;

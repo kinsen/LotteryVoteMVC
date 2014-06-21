@@ -126,6 +126,7 @@ namespace LotteryVoteMVC.Models
         /// </value>
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public User User { get; set; }
         /// <summary>
         /// 取消金额，仅在结单查询（Statement）中出现
         /// </summary>

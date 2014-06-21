@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2014-05-18 09:00:28,169 [8] 反序列化公告 ERROR 
 System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
 文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
@@ -6,12 +7,146 @@ System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMV
    在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
    在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
 2014-06-02 09:24:37,658 [11] 反序列化公告 ERROR 
+=======
+2014-06-18 20:53:30,547 [51] ---------------------BEGIN CHECK UPDATE---------------635387216105470027 DEBUG 
+2014-06-18 20:53:30,853 [51] ContextDic[CACHE_UPPERLIMIT_1_1]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_2]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_3]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_4]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_7]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_8]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_9]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_10]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_11]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_12]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_14]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_16]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_24]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_25]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_26]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_28]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_29]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_1_30]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_1]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_2]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_3]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_4]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_7]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_8]=False DEBUG 
+2014-06-18 20:53:30,854 [51] ContextDic[CACHE_UPPERLIMIT_9_9]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_10]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_11]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_12]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_14]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_16]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_24]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_25]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_26]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_28]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_29]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_9_30]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_1]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_2]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_3]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_4]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_7]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_8]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_9]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_10]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_11]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_12]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_14]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_16]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_24]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_25]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_26]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_28]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_29]=False DEBUG 
+2014-06-18 20:53:30,855 [51] ContextDic[CACHE_UPPERLIMIT_47_30]=False DEBUG 
+2014-06-18 20:53:30,855 [51] --------------------- END  CHECK UPDATE---------------635387216105470027 DEBUG 
+2014-06-18 20:58:30,513 [16] ---------------------BEGIN CHECK UPDATE---------------635387219105131598 DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_1]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_2]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_3]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_4]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_7]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_8]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_9]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_10]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_11]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_12]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_14]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_16]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_24]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_25]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_26]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_28]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_29]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_1_30]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_1]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_2]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_3]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_4]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_7]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_8]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_9]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_10]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_11]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_12]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_14]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_16]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_24]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_25]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_26]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_28]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_29]=False DEBUG 
+2014-06-18 20:58:30,514 [16] ContextDic[CACHE_UPPERLIMIT_47_30]=False DEBUG 
+2014-06-18 20:58:30,514 [16] --------------------- END  CHECK UPDATE---------------635387219105131598 DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_1]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_2]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_3]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_4]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_7]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_8]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_9]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_10]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_11]=False DEBUG 
+2014-06-18 20:59:15,525 [16] ContextDic[CACHE_UPPERLIMIT_1_12]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_14]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_16]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_24]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_25]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_26]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_28]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_29]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_1_30]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_1]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_2]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_3]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_4]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_7]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_8]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_9]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_10]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_11]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_12]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_14]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_16]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_24]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_25]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_26]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_28]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_29]=False DEBUG 
+2014-06-18 20:59:15,526 [16] ContextDic[CACHE_UPPERLIMIT_47_30]=False DEBUG 
+2014-06-18 21:00:16,606 [100] 反序列化公告 ERROR 
+>>>>>>> master
 System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
 文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
    在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
    在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
    在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 110
+<<<<<<< HEAD
 2014-06-02 09:32:14,276 [24] 反序列化公告 ERROR 
 System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
 文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
@@ -114,3 +249,100 @@ System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMV
    在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
    在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
    在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+=======
+2014-06-18 21:00:36,636 [100] gt002:请求时间21:00:26,处理完成时间:21:00:36,逻辑消耗:10003毫秒,呈现消耗:10010毫秒 INFO  
+2014-06-18 21:00:43,003 [49] gt002:请求时间21:00:41,处理完成时间:21:00:42,逻辑消耗:1841毫秒,呈现消耗:1857毫秒 INFO  
+2014-06-18 21:00:48,221 [17] gt002:请求时间21:00:46,处理完成时间:21:00:48,逻辑消耗:1872毫秒,呈现消耗:1873毫秒 INFO  
+2014-06-18 21:00:51,609 [100] gt002:请求时间21:00:50,处理完成时间:21:00:51,逻辑消耗:852毫秒,呈现消耗:853毫秒 INFO  
+>>>>>>> master
+2014-06-18 22:09:23,844 [9] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 110
+2014-06-18 22:11:11,967 [10] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:13:09,330 [17] gt002:请求时间22:13:01,处理完成时间:22:13:09,逻辑消耗:7791毫秒,呈现消耗:7793毫秒 INFO  
+2014-06-18 22:13:17,699 [11] gt002:请求时间22:13:16,处理完成时间:22:13:17,逻辑消耗:1123毫秒,呈现消耗:1123毫秒 INFO  
+2014-06-18 22:13:26,080 [8] gt002:请求时间22:13:23,处理完成时间:22:13:26,逻辑消耗:2479毫秒,呈现消耗:2479毫秒 INFO  
+2014-06-18 22:13:35,553 [7] gt002:请求时间22:13:32,处理完成时间:22:13:35,逻辑消耗:2681毫秒,呈现消耗:2682毫秒 INFO  
+2014-06-18 22:13:51,643 [9] gt002:请求时间22:13:48,处理完成时间:22:13:51,逻辑消耗:2819毫秒,呈现消耗:2819毫秒 INFO  
+2014-06-18 22:13:59,270 [11] gt002:请求时间22:13:57,处理完成时间:22:13:59,逻辑消耗:1817毫秒,呈现消耗:1818毫秒 INFO  
+2014-06-18 22:14:05,880 [10] gt002:请求时间22:14:03,处理完成时间:22:14:05,逻辑消耗:2348毫秒,呈现消耗:2348毫秒 INFO  
+2014-06-18 22:14:12,355 [15] gt002:请求时间22:14:10,处理完成时间:22:14:12,逻辑消耗:2084毫秒,呈现消耗:2084毫秒 INFO  
+2014-06-18 22:14:29,619 [17] gt002:请求时间22:14:27,处理完成时间:22:14:29,逻辑消耗:2006毫秒,呈现消耗:2006毫秒 INFO  
+2014-06-18 22:14:37,638 [8] gt002:请求时间22:14:35,处理完成时间:22:14:37,逻辑消耗:1877毫秒,呈现消耗:1877毫秒 INFO  
+2014-06-18 22:14:43,997 [14] gt002:请求时间22:14:42,处理完成时间:22:14:43,逻辑消耗:1602毫秒,呈现消耗:1602毫秒 INFO  
+2014-06-18 22:21:24,924 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:31:02,648 [27] Setting DEBUG 
+2014-06-18 22:31:03,224 [27] Insert SettleResult. DEBUG 
+2014-06-18 22:33:47,476 [25] gt002:请求时间22:33:46,处理完成时间:22:33:47,逻辑消耗:1266毫秒,呈现消耗:1268毫秒 INFO  
+2014-06-18 22:33:50,610 [29] gt002:请求时间22:33:49,处理完成时间:22:33:50,逻辑消耗:813毫秒,呈现消耗:813毫秒 INFO  
+2014-06-18 22:33:53,614 [24] gt002:请求时间22:33:52,处理完成时间:22:33:53,逻辑消耗:723毫秒,呈现消耗:723毫秒 INFO  
+2014-06-18 22:33:56,585 [27] gt002:请求时间22:33:56,处理完成时间:22:33:56,逻辑消耗:452毫秒,呈现消耗:453毫秒 INFO  
+2014-06-18 22:33:59,561 [28] gt002:请求时间22:33:59,处理完成时间:22:33:59,逻辑消耗:479毫秒,呈现消耗:479毫秒 INFO  
+2014-06-18 22:34:02,414 [29] gt002:请求时间22:34:01,处理完成时间:22:34:02,逻辑消耗:461毫秒,呈现消耗:461毫秒 INFO  
+2014-06-18 22:34:26,707 [28] Setting DEBUG 
+2014-06-18 22:34:27,340 [28] Insert SettleResult. DEBUG 
+2014-06-18 22:52:13,085 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:52:19,801 [9] gt002:请求时间22:52:19,处理完成时间:22:52:19,逻辑消耗:796毫秒,呈现消耗:797毫秒 INFO  
+2014-06-18 22:52:40,399 [7] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:53:24,126 [9] gt002:请求时间22:52:53,处理完成时间:22:53:24,逻辑消耗:30948毫秒,呈现消耗:31001毫秒 INFO  
+2014-06-18 22:53:32,375 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:59:09,330 [11] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 22:59:33,189 [15] gt002:请求时间22:59:32,处理完成时间:22:59:33,逻辑消耗:248毫秒,呈现消耗:249毫秒 INFO  
+2014-06-18 23:02:07,490 [15] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 23:02:19,045 [18] gt002:请求时间23:02:18,处理完成时间:23:02:19,逻辑消耗:379毫秒,呈现消耗:380毫秒 INFO  
+2014-06-18 23:06:40,403 [12] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-06-18 23:06:56,095 [12] gt002:请求时间23:06:55,处理完成时间:23:06:56,逻辑消耗:389毫秒,呈现消耗:390毫秒 INFO  
+2014-06-18 23:07:30,918 [20] gt002:请求时间23:07:30,处理完成时间:23:07:30,逻辑消耗:87毫秒,呈现消耗:87毫秒 INFO  

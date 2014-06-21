@@ -67,8 +67,8 @@ namespace LotteryVoteMVC.Core.Limit
         {
             IsDrop = false;
             var betedAmount = GetUserBetedAmountByOrder(order);
-
-            var totalAmount = betedAmount + order.Amount;
+            var increaseAmount = order.Amount * (1 - (decimal)order.User.UserInfo.RateGroup.ShareRate);
+            var totalAmount = betedAmount + increaseAmount;
 
             //计算要跌水的值
 

@@ -11,6 +11,7 @@ using LotteryVoteMVC.Utility;
 using LotteryVoteMVC.Core.Exceptions;
 using LotteryVoteMVC.Resources;
 using LotteryVoteMVC.Resources.Models;
+using LotteryVoteMVC.Data;
 
 namespace LotteryVoteMVC.Core
 {
@@ -33,6 +34,7 @@ namespace LotteryVoteMVC.Core
 
         private LimitManager _limitManager;
         private DropWaterManager _dwManager;
+        private BetOrderDataAccess _daOrder;
         public LimitManager LimitManager
         {
             get
@@ -51,10 +53,22 @@ namespace LotteryVoteMVC.Core
                 return _dwManager;
             }
         }
+        public BetOrderDataAccess DaOrder
+        {
+            get
+            {
+                if (_daOrder == null)
+                    _daOrder = new BetOrderDataAccess();
+                return _daOrder;
+            }
+        }
 
         void limitSynTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            var ticks = DateTime.Now.Ticks;
+            //LogConsole.Debug("---------------------BEGIN CHECK UPDATE---------------" + ticks);
             CheckUpdate();
+            //LogConsole.Debug("--------------------- END  CHECK UPDATE---------------" + ticks);
         }
         public static UpperLimitManager GetManager()
         {
@@ -230,22 +244,31 @@ namespace LotteryVoteMVC.Core
             BetUpperLimit upperlimit;
             if (!limitContext.TryGetValue(limit.Num, out upperlimit))
             {
+                limit.IsChange = true;
                 limitContext.Add(limit.Num, limit);
-                return;
             }
-            lock (upperlimit)        //对象写锁
+            else
             {
-                upperlimit.IsChange = true;     //表示对象已经被修改
-                upperlimit.DropValue = limit.DropValue;
-                upperlimit.NextLimit = limit.NextLimit;
-                upperlimit.UpperLlimit = limit.UpperLlimit;
-                upperlimit.TotalBetAmount = limit.TotalBetAmount;
-                upperlimit.StopBet = limit.StopBet;
+                lock (upperlimit)        //对象写锁
+                {
+                    upperlimit.IsChange = true;     //表示对象已经被修改
+                    upperlimit.DropValue = limit.DropValue;
+                    upperlimit.NextLimit = limit.NextLimit;
+                    upperlimit.UpperLlimit = limit.UpperLlimit;
+                    upperlimit.TotalBetAmount = limit.TotalBetAmount;
+                    upperlimit.StopBet = limit.StopBet;
+                }
             }
             //更新上限上下文
             var key = GetCacheKey(limit.CompanyId, limit.GamePlayWayId);
             if (!ContextDic[key])
                 ContextDic[key] = true;
+
+            var _limit = limitContext[limit.Num];
+            //if (_limit != null)
+            //    LogConsole.Debug(string.Format("LimitContext Num:{0} CompanyId:{1} GPW:{2} TotalAmount:{3} IsChange:{4} ContextSize:{5}", _limit.Num, _limit.CompanyId, _limit.GamePlayWayId, _limit.TotalBetAmount, _limit.IsChange, limitContext.Count));
+            //else
+            //    LogConsole.Debug(string.Format("LimitContext IsNull Num:{0} CompanyId:{1} GPW:{2} TotalAmount:{3}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount));
         }
         public void UpdateLimit()
         {
@@ -325,12 +348,19 @@ namespace LotteryVoteMVC.Core
                     removeItem.Add(item);
                     continue;
                 }
+                //LogConsole.Debug(string.Format("ContextDic[{0}]={1}", item, ContextDic[item]));
                 if (ContextDic[item]) //只有被修改的限制上下文才进行更新
                 {
-                    var limitContext = GetLimitContextInCache(companyId, gameplayway);
-                    if (limitContext != null)
-                        Update(limitContext);
+                    //移动到最前面避免执行时间过长导致将部分更新忽略
                     ContextDic[item] = false;
+                    //var limitContext = GetLimitContextInCache(companyId, gameplayway);
+                    var limitContext = GetLimitContext(companyId, gameplayway);
+                    if (limitContext != null)
+                    {
+                        //LogConsole.Debug(string.Format("Update LimitContext Company:{0} GPW:{1} Size:{2}", companyId, gameplayway, limitContext.Count));
+                        Update(limitContext);
+                    }
+                    //ContextDic[item] = false;
                 }
             }
 
@@ -347,11 +377,26 @@ namespace LotteryVoteMVC.Core
                 {
                     lock (limits[key])      //锁定实体
                     {
-                        LimitManager.UpdateLimit(limits[key]);
-                        //将已修改状态改变
-                        limits[key].IsChange = false;
+                        try
+                        {
+                            var limit = limits[key];
+                            var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
+                            //LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} TotalAmount:{3} Amount:{4}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount, amount));
+                            if (limit.TotalBetAmount != amount)
+                                limit.TotalBetAmount = amount;
+                            LimitManager.UpdateLimit(limit);
+                            //limits[key].TotalBetAmount = amount;
+                            //将已修改状态改变
+                            limits[key].IsChange = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            LogConsole.Error("Update Limit", ex);
+                        }
                     }
                 }
+                //else
+                //    LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} Amount:{3} IsChange:False", limits[key].Num, limits[key].CompanyId, limits[key].GamePlayWayId, limits[key].TotalBetAmount));
             }
         }
     }

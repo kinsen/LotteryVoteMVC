@@ -117,8 +117,8 @@ namespace LotteryVoteMVC.Core.Bet
                 gamePlayWayList.Add(lastPlayWay);
             }
             else if (playWay == PlayWay.Roll7)
-            { 
-                if(companyType!=CompanyType.Hanoi)
+            {
+                if (companyType != CompanyType.Hanoi)
                     gamePlayWayList.Add(gamePlayWay);
             }
             else
@@ -187,6 +187,7 @@ namespace LotteryVoteMVC.Core.Bet
                 NetAmount = turnOver - commission,
                 Status = BetStatus.Valid,
                 UserId = user.UserId,
+                User = user,
                 AncestorCommission = BuildAncestorCommission(turnOver, user, gamePlayWay.GameType, company.CompanyType, memberComm.Key.Specie, isCon)
             };
             if (isCon)

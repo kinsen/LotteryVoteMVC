@@ -200,6 +200,7 @@
     <Content Include="Content\login2.css" />
     <Content Include="Content\themes\Red\BetBase.css" />
     <Content Include="Content\themes\Red\comm.css" />
+    <Content Include="Content\themes\Red\inputs.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Customer\ABRollParlay.js" />
     <Content Include="Scripts\Customer\addUser.js" />

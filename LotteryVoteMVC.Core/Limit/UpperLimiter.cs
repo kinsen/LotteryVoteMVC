@@ -27,6 +27,14 @@ namespace LotteryVoteMVC.Core.Limit
             }
         }
 
+        public UserManager UserManager
+        {
+            get
+            {
+                return ManagerHelper.Instance.GetManager<UserManager>();
+            }
+        }
+
         private IDictionary<string, IList<DropWater>> _todayDropWater;
         protected IDictionary<string, IList<DropWater>> TodayDropWater
         {
@@ -61,7 +69,8 @@ namespace LotteryVoteMVC.Core.Limit
                     if (returnValue = (!upperLimit.StopBet && Check(order, upperLimit)))
                     {
                         TransformOrder(order, upperLimit);
-                        upperLimit.TotalBetAmount += order.Amount;
+                        var increaseAmount = order.Amount * (1 - (decimal)order.User.UserInfo.RateGroup.ShareRate);
+                        upperLimit.TotalBetAmount += increaseAmount;
                         UpperLimitManager.GetManager().UpdateLimit(upperLimit);
                     }
                 }
@@ -70,13 +79,17 @@ namespace LotteryVoteMVC.Core.Limit
         }
         public void RollOrderLimit(BetOrder order)
         {
+            if (order.User == null)
+                order.User = UserManager.GetUser(order.UserId);
+            var increaseAmount = order.Amount * (1 - (decimal)order.User.UserInfo.RateGroup.ShareRate);
+
             var upperLimit = GetUpperLimit(order);
-            if (upperLimit.TotalBetAmount < order.Amount)
+            if (upperLimit.TotalBetAmount < increaseAmount)
                 throw new InvalidDataException("Error Data!Total bet amount less than order's amount!");
 
             var dropWaters = GetDropWater(order.Num, order.CompanyId, order.GamePlayWayId);
 
-            upperLimit.TotalBetAmount -= order.Amount;        //注单总金额减少
+            upperLimit.TotalBetAmount -= increaseAmount;        //注单总金额减少
 
             var previous = dropWaters.Where(it => it.Amount > upperLimit.TotalBetAmount && it.Amount < upperLimit.NextLimit).        //找到上一个跌水规则
                 GroupBy(it => it.Amount).
@@ -132,7 +145,11 @@ namespace LotteryVoteMVC.Core.Limit
         /// <returns></returns>
         protected bool Check(BetOrder order, BetUpperLimit upperLimit)
         {
-            decimal totalBetAmount = order.Amount + upperLimit.TotalBetAmount;
+            if (order.User == null)
+                order.User = UserManager.GetUser(order.UserId);
+            var increaseAmount = order.Amount * (1 - (decimal)order.User.UserInfo.RateGroup.ShareRate);
+
+            decimal totalBetAmount = increaseAmount + upperLimit.TotalBetAmount;
             if (totalBetAmount > upperLimit.UpperLlimit)        //最终投注金额大于投注上限金额
             {
                 //TODO:错误信息呈现设计，存在多个插入失败

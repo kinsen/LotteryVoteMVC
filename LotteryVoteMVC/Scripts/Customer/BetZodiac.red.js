@@ -19,6 +19,20 @@
         $(":checkbox").not(".region").removeAttr('checked');
     });
 
+    $("#chk_all_com_check").change(function () {
+        var chk = $(this);
+        var ischeck = isCheck(chk);
+        $("input:checkbox[company]").attr("checked", ischeck);
+        CalcBetAmount();
+    });
+
+    $(".chk_all_com").change(function () {
+        var chk = $(this);
+        var ischeck = isCheck(chk);
+        chk.parent().find(":checkbox").attr("checked", ischeck);
+        CalcBetAmount();
+    })
+
     $(".allChecked").bind("change", function () {
         var chk = $(this);
         var companyId = chk.attr("id").split("_")[1];

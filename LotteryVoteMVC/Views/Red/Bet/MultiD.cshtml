@@ -122,6 +122,9 @@
                         <input type="button" class="cell-set" value="行"></font></font>
                 </th>
                 <th align="center" bgcolor="#CCCCCC" scope="col">
+                    <input type="checkbox" class="chk_all_com" id="chk_all_com_check" />
+                    <label for='chk_all_com_check'>
+                        @Resource.All</label>
                     @foreach (var company in Model)
                     {
                         <span class='allCheck_@(company.Region)' style="display:inline-block;">
@@ -161,6 +164,9 @@
                                             <input id='@BuildWagerInputName(GameType.ThreeDigital, PlayWay.Roll7)_0_@(i)' type="text" disabled="disabled" class="wager@(i) matrix-text">
                                         </td>
                                         <td align="center">
+                                            <input type="checkbox" class="chk_all_com" id="chk_@(i)_all_com" />
+                                            <label for="chk_@(i)_all_com">
+                                                @Resource.All</label>
                                             @foreach (var company in Model)
                                             {
                                                 <span style="padding-left: 1px; padding-right: 1px; display: inline-block; zoom: 1;">

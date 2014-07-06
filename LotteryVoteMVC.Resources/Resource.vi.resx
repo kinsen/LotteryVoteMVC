@@ -789,4 +789,7 @@
   <data name="Small" xml:space="preserve">
     <value>số nhỏ</value>
   </data>
+  <data name="ShareGroup" xml:space="preserve">
+    <value>ShareGroup</value>
+  </data>
 </root>

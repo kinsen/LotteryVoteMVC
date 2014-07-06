@@ -62,16 +62,16 @@
                     <font><font>@Resource.Roll7</font></font>
                 </th>
                 <th align="center" bgcolor="#CCCCCC" scope="col" style="min-width: 150px;">
-                    <font><font>公司</font></font>
+                    <font><font>@Resource.Company</font></font>
                 </th>
                 <th width="110" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col">
-                    <font><font>存款</font></font>
+                    <font><font>@Resource.Turnover</font></font>
                 </th>
                 <th width="110" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col">
-                    <font><font>合作</font></font>
+                    <font><font>@Resource.Commission</font></font>
                 </th>
                 <th width="111" rowspan="2" align="center" bgcolor="#CCCCCC" scope="col">
-                    <font><font>实际</font></font>
+                    <font><font>@Resource.NetAmount</font></font>
                 </th>
             </tr>
             <tr bgcolor="#CCCCCC">
@@ -81,7 +81,7 @@
                         <input type="button" class="cell-set" value="行"></font></font>
                 </th>
                 <th width="62" height="20" align="center" bgcolor="#CCCCCC" scope="col">
-                    <input  type="text" class="matrix-text">
+                    <input type="text" class="matrix-text">
                     <font><font>
                         <input type="button" class="cell-set" value="行"></font></font>
                 </th>
@@ -101,6 +101,9 @@
                         <input type="button" class="cell-set" value="行"></font></font>
                 </th>
                 <th align="center" bgcolor="#CCCCCC" scope="col">
+                    <input type="checkbox" class="chk_all_com" id="chk_all_com_check" />
+                    <label for='chk_all_com_check'>
+                        @Resource.All</label>
                     @foreach (var company in Model)
                     {
                         <span class='allCheck_@(company.Region)' style="display:inline-block;">
@@ -115,7 +118,8 @@
             <tr>
                 <td colspan="10" style="min-width: 850px;">
                     <div>
-                        <table id="betTableContent" class="tablestyle" cellspacing="0" border="1" style="width: 100%; border-collapse: collapse;">
+                        <table id="betTableContent" class="tablestyle" cellspacing="0" border="1" style="width: 100%;
+                            border-collapse: collapse;">
                             <tbody>
                                 @for (int i = 1; i <= 15; i++)
                                 {
@@ -139,6 +143,9 @@
                                             <input id='@BuildWagerInputName(GameType.TwoDigital, PlayWay.Roll7)_@(i)' type="text" disabled="disabled" class="wager@(i) matrix-text">
                                         </td>
                                         <td align="center">
+                                            <input type="checkbox" class="chk_all_com" id="chk_@(i)_all_com" />
+                                            <label for="chk_@(i)_all_com">
+                                                @Resource.All</label>
                                             @foreach (var company in Model)
                                             {
                                                 <span style="padding-left: 1px; padding-right: 1px; display: inline-block; zoom: 1;">

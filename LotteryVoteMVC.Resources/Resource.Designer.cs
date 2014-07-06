@@ -1501,6 +1501,15 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
+        ///   查找类似 分成组 的本地化字符串。
+        /// </summary>
+        public static string ShareGroup {
+            get {
+                return ResourceManager.GetString("ShareGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 分成 的本地化字符串。
         /// </summary>
         public static string ShareRate {

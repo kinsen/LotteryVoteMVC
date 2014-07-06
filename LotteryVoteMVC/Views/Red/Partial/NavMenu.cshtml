@@ -8,14 +8,6 @@
 <div id="menubar" class="menubar">
     <ul id="menus" class="menus">
         <li>@Html.ActionLink(Resource.Message, "", "Message")
-            <ul class="children" style="display: none">
-                @*<li>@Html.ActionLink(Resource.LoginLog, "Login", "Log")</li>*@
-                @if (Model.Role != Role.Guest)
-                {
-                    <li>@Html.ActionLink(Resource.ActionLog, "Action", "Log") </li>
-                }
-                <li>@Html.ActionLink(Resource.LoginFailed, "LoginFailed", "Log")</li>
-            </ul>
         </li>
         @if (Model.Role == Role.Guest)
         {
@@ -37,31 +29,7 @@
         }
         @if (Model.Role != Role.Guest)
         {
-            <li><a href="#" title="Balance Report">@Resource.Report</a>
-                <ul class="children" style="display: none;">
-                    @if (Model.Role < Role.Guest)
-                    {
-                        <li>@Html.ActionLink(Resource.WinLost, "", "Report")</li>
-@*  <li>@Html.ActionLink(Resource.FullStatements,"FullStatements","Report")</li>*@
-                    }
-                    @if (Model.Role == Role.Company)
-                    { 
-                        <li>@Html.ActionLink(Resource.Win, "WinReport", "Order")</li>
-                        
-                    }
-                    @if (Model.Role != Role.Guest)
-                    {
-                        <li>@Html.ActionLink(Resource.Guest, "Member", "Report")</li>
-                    }
-@*else
-                {
-                    <li>@Html.ActionLink(Resource.WinLost, "MemberWL", "Report") </li>
-                }*@
-                    @if (Model.Role == Role.Company)
-                    {
-                        <li>@Html.ActionLink(Resource.DropWater, "DropWater", "Log")</li>
-                    }
-                </ul>
+            <li>@Html.ActionLink(Resource.WinLost, "", "Report")
             </li>
         }
         else
@@ -70,24 +38,11 @@
         }
         @if (Model.Role == Role.Company)
         { 
-            <li><a href="#">@Resource.Setting</a>
-                <ul class="children" style="display: none">
-                    <li>@Html.ActionLink(Resource.TodayWater, "Today", "DropWater")</li>
-                    <li>@Html.ActionLink(Resource.TomorrowDropWater, "Tomorrow", "DropWater")</li>
-                    <li>@Html.ActionLink(Resource.AutoDropWater, "", "DropWater")</li>
-                    <li>@Html.ActionLink(Resource.BatterBetLimit, "BetAuto", "DropWater")</li>
-                    <li>@Html.ActionLink(Resource.LimitMonitor, "UpperMonitor", "Limit")</li>
-                    <li>@Html.ActionLink(Resource.StopAcceptBet, "StopUpperLimits", "Limit")</li>
-                    <li>@Html.ActionLink(Resource.DefaultUpperLimit, "DefaultUpper", "Limit")</li>
-                    <li><a id="gameLimit" href="javascript:editComLimit()">@Resource.MemberGameLimit</a></li>
-                </ul>
+            <li>@Html.ActionLink(Resource.LimitMonitor, "UpperMonitor", "Limit")
             </li>
             <li>@Html.ActionLink(Resource.Settle, "", "Settle")</li>
         }
         <li>@Html.ActionLink(Resource.LotteryResult, "LotteryResult", "Company")
-            <ul class="children" style="display: none">
-                <li>@Html.ActionLink(Resource.Schedule, "", "Company") </li>
-            </ul>
         </li>
         <li><a href="javascript:updatePwd();" class="updatePassWord">@Resource.Password</a></li>
         <li style="border: none">@Html.ActionLink(Resource.Logout, "Logout", "Member")</li>
@@ -101,10 +56,43 @@
             <li>@Html.ActionLink(Resource.BetRule, "Rule", "Bet")</li>
         </ul>
     }
+    else if (controller == "Message")
+    {
+        <ul class="menus">
+            @*<li>@Html.ActionLink(Resource.LoginLog, "Login", "Log")</li>*@
+            @if (Model.Role != Role.Guest)
+            {
+                <li>@Html.ActionLink(Resource.ActionLog, "Action", "Log") </li>
+            }
+            <li>@Html.ActionLink(Resource.LoginFailed, "LoginFailed", "Log")</li>
+        </ul>
+    }
     else if (controller == "Account")
     { 
         <ul class="menus">
             <li>@Html.ActionLink(Resource.SubUser, "Shadow", "Account")</li>
+        </ul>
+    }
+    else if (controller == "Report")
+    {
+        <ul class="menus">
+            @if (Model.Role == Role.Company)
+            { 
+                <li>@Html.ActionLink(Resource.Win, "WinReport", "Order")</li>
+                        
+            }
+            @if (Model.Role != Role.Guest)
+            {
+                <li>@Html.ActionLink(Resource.Guest, "Member", "Report")</li>
+            }
+@*else
+                {
+                    <li>@Html.ActionLink(Resource.WinLost, "MemberWL", "Report") </li>
+                }*@
+            @if (Model.Role == Role.Company)
+            {
+                <li>@Html.ActionLink(Resource.DropWater, "DropWater", "Log")</li>
+            }
         </ul>
     }
     else if (controller == "Sheet")
@@ -115,13 +103,35 @@
                 <li>@Html.ActionLink(Resource.OrderList, "All", "Order") </li>
                 <li>@Html.ActionLink(Resource.Company + Resource.Statistics, "CompanyAmountRanking", "Report")</li>
             }
-            <li>@Html.ActionLink("2D" + Resource.NumberStatistics, "NumAmountRanking", "Report")</li>
-            <li>@Html.ActionLink("3D" + Resource.NumberStatistics, "ThreeDNumAmountRanking", "Report")</li>
-            <li>@Html.ActionLink(Resource.CancelList, "Cancel", "Report")</li>
+            @if (Model.Role != Role.Guest)
+            {
+                <li>@Html.ActionLink("2D" + Resource.NumberStatistics, "NumAmountRanking", "Report")</li>
+                <li>@Html.ActionLink("3D" + Resource.NumberStatistics, "ThreeDNumAmountRanking", "Report")</li>
+                <li>@Html.ActionLink(Resource.CancelList, "Cancel", "Report")</li>
+            }
             @for (int i = (int)Model.RoleId + 1; i <= (int)Role.Guest; i++)
             { 
                 <li>@Html.ActionLink(Resource.ResourceManager.GetString(((Role)i).ToString()), "EachLevel", "Report", new { RoleId = i }, null)</li>
             }
+        </ul>
+    }
+    else if (controller == "Limit" && Model.Role == Role.Company)
+    {
+        <ul class="menus">
+            <li>@Html.ActionLink(Resource.TodayWater, "Today", "DropWater")</li>
+            <li>@Html.ActionLink(Resource.TomorrowDropWater, "Tomorrow", "DropWater")</li>
+            <li>@Html.ActionLink(Resource.AutoDropWater, "", "DropWater")</li>
+            <li>@Html.ActionLink(Resource.BatterBetLimit, "BetAuto", "DropWater")</li>
+            <li>@Html.ActionLink(Resource.StopAcceptBet, "StopUpperLimits", "Limit")</li>
+            <li>@Html.ActionLink(Resource.DefaultUpperLimit, "DefaultUpper", "Limit")</li>
+            <li><a href="/ShareRateGroup">@Resource.ShareGroup</a></li>
+            <li><a id="gameLimit" href="javascript:editComLimit()">@Resource.MemberGameLimit</a></li>
+        </ul>
+    }
+    else if (controller == "Company")
+    { 
+        <ul class="menus">
+            <li>@Html.ActionLink(Resource.Schedule, "", "Company") </li>
         </ul>
     }
 </div>

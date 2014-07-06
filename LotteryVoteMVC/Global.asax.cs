@@ -32,18 +32,18 @@ namespace LotteryVoteMVC
                 new { controller = "Account", action = "Search", Id = UrlParameter.Optional, shadow = false });
 
             routes.MapRoute("Bet2D",
-                "Bet/2D/{region}",
-                new { controller = "Bet", action = "Index", region = UrlParameter.Optional });
+                "Bet/2D/{type}",
+                new { controller = "Bet", action = "Index", type = UrlParameter.Optional });
             routes.MapRoute("Bet345D",
-                "Bet/345D/{region}",
-                new { controller = "Bet", action = "MultiD", region = UrlParameter.Optional });
+                "Bet/345D/{type}",
+                new { controller = "Bet", action = "MultiD", type = UrlParameter.Optional });
             routes.MapRoute("BetRollParlay",
-                "Bet/RollParlay/{region}",
-                new { controller = "Bet", action = "RollParlay", region = UrlParameter.Optional });
+                "Bet/RollParlay/{type}",
+                new { controller = "Bet", action = "RollParlay", type = UrlParameter.Optional });
 
             routes.MapRoute("BetZodiac",
-                "Bet/Zodiac/{region}",
-                new { controller = "Bet", action = "Zodiac", region = UrlParameter.Optional });
+                "Bet/Zodiac/{type}",
+                new { controller = "Bet", action = "Zodiac", type = UrlParameter.Optional });
 
             routes.MapRoute("GetCommission",
                 "Commission/GetCommission/{companyId}/{gameType}",

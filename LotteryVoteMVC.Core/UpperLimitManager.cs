@@ -380,10 +380,10 @@ namespace LotteryVoteMVC.Core
                         try
                         {
                             var limit = limits[key];
-                            var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
+                            //var amount = DaOrder.SumTotalBetAmount(limit.CompanyId, limit.GamePlayWayId, limit.Num);
                             //LogConsole.Debug(string.Format("Update UpperLimit:Num:{0} Company:{1} GPW:{2} TotalAmount:{3} Amount:{4}", limit.Num, limit.CompanyId, limit.GamePlayWayId, limit.TotalBetAmount, amount));
-                            if (limit.TotalBetAmount != amount)
-                                limit.TotalBetAmount = amount;
+                            //if (limit.TotalBetAmount != amount)
+                            //    limit.TotalBetAmount = amount;
                             LimitManager.UpdateLimit(limit);
                             //limits[key].TotalBetAmount = amount;
                             //将已修改状态改变

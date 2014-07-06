@@ -71,6 +71,7 @@ span#logo{width:147px; height:62px; display:block; position:absolute; left:80px;
 {
     width: 100%;
     height: 39px;
+    line-height:20px;
     background: url(../../Images/menuBG.gif); /*     background: #6D6E70;*/
 }
 .menubar ul
@@ -94,6 +95,7 @@ span#logo{width:147px; height:62px; display:block; position:absolute; left:80px;
     font-weight:bold;
     text-decoration: none;
     outline:none;
+    font-size: 12px;
 }
 .menubar ul.menus li a:hover
 {

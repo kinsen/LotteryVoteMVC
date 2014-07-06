@@ -45,6 +45,19 @@ $(function () {
     $("#betTable input[type='text']").not(".num").bind("keyup", calcAmount).bind("blur", calcAmount);
     $("#betTable input[type='checkbox']").bind("change", calcAmount);
 
+    $("#chk_all_com_check").change(function () {
+        var chk = $(this);
+        var ischeck = isCheck(chk);
+        $("input:checkbox").attr("checked", ischeck);
+        calcAmount();
+    });
+
+    $(".chk_all_com").change(function () {
+        var chk = $(this);
+        var ischeck = isCheck(chk);
+        chk.parent().find(":checkbox").attr("checked", ischeck);
+        calcAmount();
+    })
 
     $(".region").bind("change", function () {
         var chk = $(this);
@@ -93,6 +106,7 @@ $(function () {
             else
                 $(this).find(":checkbox").attr("checked", "");
         });
+        calcAmount();
     });
 
     if ($.cookie("North") == "false") {

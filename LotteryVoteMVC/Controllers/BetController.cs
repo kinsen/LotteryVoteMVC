@@ -40,25 +40,21 @@ namespace LotteryVoteMVC.Controllers
 
 
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
-        public ActionResult Index(Region? region)
+        public ActionResult Index(CompanyType? type)
         {
-            if (Theme == "Default")
+
+            var companys = TodayLotteryCompany.Instance.GetOpenCompany();
+            if (Theme == "Red")
             {
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany();
-                ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
-                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
+                if (type == null)
+                    companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                else
+                    companys = companys.Where(it => it.CompanyType == type.Value).ToList();
             }
-            else
-            {
-                var _region = region ?? Region.North;
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany().Where(it => it.Region == _region).ToList();
-                ViewBag.Regions = new[] { _region };
-                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
-            }
+            ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
+            ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
+            WriteCompanyNumLenToClient(companys);
+            return View(companys);
         }
         [RequestCostTimeFilter]
         [UserAuthorize(Models.UserState.Active, Role.Guest), HttpPost]
@@ -72,9 +68,9 @@ namespace LotteryVoteMVC.Controllers
         }
 
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
-        public ActionResult MultiD(Region? region)
+        public ActionResult MultiD(CompanyType? type)
         {
-            return this.Index(region);
+            return this.Index(type);
         }
 
         [UserAuthorize(UserState.Active, Role.Guest)]
@@ -115,31 +111,23 @@ namespace LotteryVoteMVC.Controllers
         }
 
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
-        public ActionResult RollParlay(Region? region)
+        public ActionResult RollParlay(CompanyType? type)
         {
-            if (Theme == "Default")
+            var companys = TodayLotteryCompany.Instance.GetOpenCompany();
+            if (Theme == "Red")
             {
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany();
-                var pl2 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL2);
-                var pl3 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL3);
-                ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
-                ViewBag.PL2 = pl2.Id;
-                ViewBag.PL3 = pl3.Id;
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
+                if (type == null)
+                    companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                else
+                    companys = companys.Where(it => it.CompanyType == type.Value).ToList();
             }
-            else
-            {
-                var _region = region ?? Region.North;
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany().Where(it => it.Region == _region).ToList();
-                var pl2 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL2);
-                var pl3 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL3);
-                ViewBag.Regions = new[] { _region };
-                ViewBag.PL2 = pl2.Id;
-                ViewBag.PL3 = pl3.Id;
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
-            }
+            var pl2 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL2);
+            var pl3 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL3);
+            ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
+            ViewBag.PL2 = pl2.Id;
+            ViewBag.PL3 = pl3.Id;
+            WriteCompanyNumLenToClient(companys);
+            return View(companys);
         }
         [RequestCostTimeFilter]
         [UserAuthorize(Models.UserState.Active, Role.Guest), HttpPost]
@@ -225,24 +213,19 @@ namespace LotteryVoteMVC.Controllers
         }
 
         [UserAuthorize(UserState.Active, Role.Guest)]
-        public ActionResult Zodiac(Region? region)
+        public ActionResult Zodiac(CompanyType? type)
         {
-            if (Theme == "Default")
+            var companys = TodayLotteryCompany.Instance.GetOpenCompany();
+            if (Theme == "Red")
             {
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany();
-                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
+                if (type == null)
+                    companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                else
+                    companys = companys.Where(it => it.CompanyType == type.Value).ToList();
             }
-            else
-            {
-                var _region = region ?? Region.North;
-                var companys = TodayLotteryCompany.Instance.GetOpenCompany().Where(it => it.Region == _region).ToList();
-                ViewBag.Regions = new[] { _region };
-                ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
-                WriteCompanyNumLenToClient(companys);
-                return View(companys);
-            }
+            ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
+            WriteCompanyNumLenToClient(companys);
+            return View(companys);
         }
         [RequestCostTimeFilter]
         [UserAuthorize(UserState.Active, Role.Guest), HttpPost]

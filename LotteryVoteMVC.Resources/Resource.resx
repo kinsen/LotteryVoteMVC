@@ -792,4 +792,7 @@
   <data name="OddLast" xml:space="preserve">
     <value>单尾</value>
   </data>
+  <data name="ShareGroup" xml:space="preserve">
+    <value>分成组</value>
+  </data>
 </root>

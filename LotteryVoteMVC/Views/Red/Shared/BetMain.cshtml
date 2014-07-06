@@ -15,30 +15,30 @@
             <div class="urbangreymenu" style="float: left;">
                 @Html.Action("AmountBoard", "Bet")
                 <h3 class="headerbar">
-                    <font><font>@Resource.North</font></font></h3>
+                    <font><font>18A,B</font></font></h3>
                 <ul>
-                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
-                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
-                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.North }, null)</li>
-                    <li><a href="/Bet/Zodiac/@((int)LotteryVoteMVC.Models.Region.North)">@Resource.Zodiac</a></li></ul>
-                <h3 class="headerbar">
-                    <font><font>@Resource.South </font></font>
-                </h3>
-                <ul>
-                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
-                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
-                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.South }, null)</li>
-                    <li><a href="/Bet/Zodiac/@((int)LotteryVoteMVC.Models.Region.South)">@Resource.Zodiac</a>
+                    <li><a href="/Bet/2D">2D</a></li>
+                    <li><a href="/Bet/345D">3,4,5D</a></li>
+                    <li><a href="/Bet/RollParlay">@Resource.RollParlay</a></li>
+                    <li><a href="/Bet/Zodiac">@Resource.Zodiac</a>
                     </li></ul>
                 <h3 class="headerbar">
-                    <font><font>@Resource.Middle </font></font>
+                    <font><font>18C </font></font>
                 </h3>
                 <ul>
-                    <li>@Html.ActionLink("2D", "Index", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
-                    <li>@Html.ActionLink("3,4,5D", "345D", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
-                    <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet", new { region = (int)LotteryVoteMVC.Models.Region.Middle }, null)</li>
-                    <li>
-                    <a href="/Bet/Zodiac/@((int)LotteryVoteMVC.Models.Region.Middle)">@Resource.Zodiac</a>
+                    <li><a href="/Bet/2D/@((int)LotteryVoteMVC.Models.CompanyType.EighteenC)">2D</a></li>
+                    <li><a href="/Bet/345D/@((int)LotteryVoteMVC.Models.CompanyType.EighteenC)">3,4,5D</a></li>
+                    <li><a href="/Bet/RollParlay/@((int)LotteryVoteMVC.Models.CompanyType.EighteenC)">@Resource.RollParlay</a></li>
+                    <li><a href="/Bet/Zodiac/@((int)LotteryVoteMVC.Models.CompanyType.EighteenC)">@Resource.Zodiac</a>
+                    </li></ul>
+                <h3 class="headerbar">
+                    <font><font>HN </font></font>
+                </h3>
+                <ul>
+                    <li><a href="/Bet/2D/@((int)LotteryVoteMVC.Models.CompanyType.Hanoi)">2D</a></li>
+                    <li><a href="/Bet/345D/@((int)LotteryVoteMVC.Models.CompanyType.Hanoi)">3,4,5D</a></li>
+                    <li><a href="/Bet/RollParlay/@((int)LotteryVoteMVC.Models.CompanyType.Hanoi)">@Resource.RollParlay</a></li>
+                    <li><a href="/Bet/Zodiac/@((int)LotteryVoteMVC.Models.CompanyType.Hanoi)">@Resource.Zodiac</a>
                     </li></ul>
             </div>
             <div class="urbangreymenu" style="float: left;">

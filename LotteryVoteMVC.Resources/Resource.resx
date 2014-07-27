@@ -795,4 +795,10 @@
   <data name="ShareGroup" xml:space="preserve">
     <value>分成组</value>
   </data>
+  <data name="MemberWL" xml:space="preserve">
+    <value>会员输赢</value>
+  </data>
+  <data name="ShareWL" xml:space="preserve">
+    <value>分成输赢</value>
+  </data>
 </root>

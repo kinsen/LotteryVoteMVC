@@ -288,19 +288,29 @@ namespace LotteryVoteMVC.Core
         {
             if (updateUser.UserInfo.RateGroup == null)
                 updateUser.UserInfo.RateGroup = ShareRateGroupManager.GetGroup(updateUser.UserInfo.RateGroupId);
-            //如果大于父级的分成，则不变
-            if (updateUser.UserInfo.RateGroup.ShareRate > parent.UserInfo.RateGroup.ShareRate)
+
+            //只有上级是1/0才可以修改
+            if (!new[] { 1.0, 0 }.Contains(parent.UserInfo.RateGroup.ShareRate))
                 return false;
-            if (updateUser.UserInfo.RateGroup.ShareRate < originalUser.UserInfo.RateGroup.ShareRate)
-            {
-                //如果回收的分成比原来分成少。则子用户分成全部回收
-                //DaUserInfo.UpdateFamilyShareRate(originalUser, 0);
-                //如果回收的部分原来的分成少，则子用户分成全部都一致
-                DaUserInfo.UpdateFamilyShareRate(originalUser, updateUser.UserInfo.RateGroupId);
-            }
-            bool change = originalUser.UserInfo.RateGroup.ShareRate != updateUser.UserInfo.RateGroup.ShareRate;
+
+            DaUserInfo.UpdateFamilyShareRate(originalUser, updateUser.UserInfo.RateGroupId);
             originalUser.UserInfo.RateGroupId = updateUser.UserInfo.RateGroupId;
-            return change;
+            return true;
+
+            ////如果大于父级的分成，并且父级不是0分成,则不变
+            //if (updateUser.UserInfo.RateGroup.ShareRate > parent.UserInfo.RateGroup.ShareRate)
+            //    if (parent.UserInfo.RateGroup.ShareRate != 0)
+            //        return false;
+            //if (updateUser.UserInfo.RateGroup.ShareRate < originalUser.UserInfo.RateGroup.ShareRate)
+            //{
+            //    //如果回收的分成比原来分成少。则子用户分成全部回收
+            //    //DaUserInfo.UpdateFamilyShareRate(originalUser, 0);
+            //    //如果回收的部分原来的分成少，则子用户分成全部都一致
+            //    DaUserInfo.UpdateFamilyShareRate(originalUser, updateUser.UserInfo.RateGroupId);
+            //}
+            //bool change = originalUser.UserInfo.RateGroup.ShareRate != updateUser.UserInfo.RateGroup.ShareRate;
+            //originalUser.UserInfo.RateGroupId = updateUser.UserInfo.RateGroupId;
+            //return change;
         }
         #endregion
     }

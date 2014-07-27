@@ -54,6 +54,15 @@ namespace LotteryVoteMVC.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [UserAuthorize(UserState.Active, Role.Company, Role.Shadow)]
+        public ActionResult RemoveGroup(int? Id)
+        {
+            if (Id.HasValue)
+                ShareRateGroupManager.Remove(Id.Value);
+
+            return RedirectToAction("Index");
+        }
         #endregion
 
         #region 限制

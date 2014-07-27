@@ -47,7 +47,7 @@
                         <tbody>
                             <tr>
                                 <td width="50%" align="left">
-                                    <strong><font><font>3,4,5D投注 - 南（城 - 龙安）</font></font></strong>
+                                    <strong><font><font>3,4,5D投注 - @ViewBag.CompanyType（@string.Join(",", Model.Select(it => it.Abbreviation))）</font></font></strong>
                                 </td>
                                 <td width="50%" align="right">
                                     @using (Html.BeginForm("Index", "Bet"))

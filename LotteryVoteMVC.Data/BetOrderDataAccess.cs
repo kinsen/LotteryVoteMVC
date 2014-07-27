@@ -216,7 +216,7 @@ WHERE BO.{4}=@{4} AND CAST(BO.{5} AS DATE)=CAST(@{5} AS DATE) AND BS.{6}=@{6} AN
         }
         public IEnumerable<BetOrder> GetOrdersBySheet(int sheetId)
         {
-            string sql = string.Format(@"SELECT * FROM {0} WHERE {1}=@{1}", BetOrder.TABLENAME, BetOrder.SHEETID);
+            string sql = string.Format(@"SELECT B.*,S.UserId FROM {0} B JOIN {2} S ON S.{1}=B.{1} WHERE B.{1}=@{1}", BetOrder.TABLENAME, BetOrder.SHEETID, BetSheet.TABLENAME);
             return base.ExecuteList<BetOrder>(sql, new SqlParameter(BetOrder.SHEETID, sheetId));
         }
         public IEnumerable<BetOrder> GetOrdersBySheet(int sheetId, int startRow, int endRow)

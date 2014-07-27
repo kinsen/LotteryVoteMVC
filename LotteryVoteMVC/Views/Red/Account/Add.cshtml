@@ -132,7 +132,7 @@
                         @Html.CheckBoxListFor(it => it.Species, ViewBag.Species as MultiSelectList, new { @readonly = "readonly" }, new { disabled = "disabled" })
                     </td>
                 </tr>
-                @if (ViewBag.User.Role < LotteryVoteMVC.Models.Role.Agent)
+                @if (ViewBag.User.Role == LotteryVoteMVC.Models.Role.Company)
                 {
                     <tr>
                         <td>

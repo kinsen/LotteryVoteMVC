@@ -68,13 +68,12 @@
                 <ul class="children" style="display: none;">
                     @if (Model.Role < Role.Guest)
                     {
-                        <li>@Html.ActionLink(Resource.WinLost, "", "Report")</li>
-@*  <li>@Html.ActionLink(Resource.FullStatements,"FullStatements","Report")</li>*@
+                        <li>@Html.ActionLink(Resource.MemberWL, "MemberWinLost", "Report")</li>
+                        <li>@Html.ActionLink(Resource.ShareWL, "ShareRateWL", "Report")</li>  
                     }
                     @if (Model.Role == Role.Company)
                     { 
                         <li>@Html.ActionLink(Resource.Win, "WinReport", "Order")</li>
-                        
                     }
                     @if (Model.Role != Role.Guest)
                     {

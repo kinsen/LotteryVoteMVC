@@ -1,0 +1,18 @@
+2014-07-09 21:56:09,923 [52] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-09 21:56:55,295 [52] gt002:请求时间21:56:25,处理完成时间:21:56:55,逻辑消耗:29748毫秒,呈现消耗:29750毫秒 INFO  
+2014-07-09 21:57:03,407 [22] gt002:请求时间21:57:02,处理完成时间:21:57:03,逻辑消耗:666毫秒,呈现消耗:666毫秒 INFO  
+2014-07-09 21:57:36,556 [49] gt002:请求时间21:57:36,处理完成时间:21:57:36,逻辑消耗:521毫秒,呈现消耗:521毫秒 INFO  
+2014-07-09 21:57:47,630 [47] gt002:请求时间21:57:43,处理完成时间:21:57:47,逻辑消耗:4455毫秒,呈现消耗:4455毫秒 INFO  
+2014-07-09 21:57:57,063 [45] gt002:请求时间21:57:53,处理完成时间:21:57:57,逻辑消耗:3573毫秒,呈现消耗:3573毫秒 INFO  
+2014-07-09 21:58:12,486 [51] gt002:请求时间21:58:08,处理完成时间:21:58:12,逻辑消耗:4052毫秒,呈现消耗:4052毫秒 INFO  
+2014-07-09 21:58:31,731 [51] gt002:请求时间21:58:28,处理完成时间:21:58:31,逻辑消耗:2972毫秒,呈现消耗:2972毫秒 INFO  
+2014-07-09 21:59:16,211 [41] mmmaaa01:请求时间21:59:15,处理完成时间:21:59:16,逻辑消耗:1115毫秒,呈现消耗:1115毫秒 INFO  
+2014-07-09 21:59:26,148 [46] mmmaaa01:请求时间21:59:23,处理完成时间:21:59:26,逻辑消耗:3142毫秒,呈现消耗:3143毫秒 INFO  
+2014-07-09 21:59:34,236 [43] mmmaaa01:请求时间21:59:30,处理完成时间:21:59:34,逻辑消耗:3622毫秒,呈现消耗:3622毫秒 INFO  
+2014-07-09 21:59:43,269 [51] mmmaaa01:请求时间21:59:40,处理完成时间:21:59:43,逻辑消耗:3051毫秒,呈现消耗:3051毫秒 INFO  

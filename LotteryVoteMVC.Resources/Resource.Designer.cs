@@ -961,6 +961,15 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
+        ///   查找类似 会员输赢 的本地化字符串。
+        /// </summary>
+        public static string MemberWL {
+            get {
+                return ResourceManager.GetString("MemberWL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 消息 的本地化字符串。
         /// </summary>
         public static string Message {
@@ -1524,6 +1533,15 @@ namespace LotteryVoteMVC.Resources {
         public static string ShareRateLimit {
             get {
                 return ResourceManager.GetString("ShareRateLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 分成输赢 的本地化字符串。
+        /// </summary>
+        public static string ShareWL {
+            get {
+                return ResourceManager.GetString("ShareWL", resourceCulture);
             }
         }
         

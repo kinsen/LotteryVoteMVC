@@ -47,9 +47,15 @@ namespace LotteryVoteMVC.Controllers
             if (Theme == "Red")
             {
                 if (type == null)
+                {
                     companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                    ViewBag.CompanyType = "18A,B";
+                }
                 else
+                {
                     companys = companys.Where(it => it.CompanyType == type.Value).ToList();
+                    ViewBag.CompanyType = EnumDescriptionAttribute.GetEnumDesc(type).Description;
+                }
             }
             ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
             ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
@@ -117,9 +123,15 @@ namespace LotteryVoteMVC.Controllers
             if (Theme == "Red")
             {
                 if (type == null)
+                {
                     companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                    ViewBag.CompanyType = "18A,B";
+                }
                 else
+                {
                     companys = companys.Where(it => it.CompanyType == type.Value).ToList();
+                    ViewBag.CompanyType = EnumDescriptionAttribute.GetEnumDesc(type).Description;
+                }
             }
             var pl2 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL2);
             var pl3 = LotterySystem.Current.GamePlayWays.Find(it => it.GameType == GameType.PL3);
@@ -219,9 +231,15 @@ namespace LotteryVoteMVC.Controllers
             if (Theme == "Red")
             {
                 if (type == null)
+                {
                     companys = companys.Where(it => it.CompanyType == CompanyType.EighteenA || it.CompanyType == CompanyType.EighteenB).ToList();
+                    ViewBag.CompanyType = "18A,B";
+                }
                 else
+                {
                     companys = companys.Where(it => it.CompanyType == type.Value).ToList();
+                    ViewBag.CompanyType = EnumDescriptionAttribute.GetEnumDesc(type).Description;
+                }
             }
             ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
             WriteCompanyNumLenToClient(companys);

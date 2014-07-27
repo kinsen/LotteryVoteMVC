@@ -142,8 +142,11 @@
                     <span>/</span>
                     <a class="edit" href="javascript:editLimit(@user.UserId,'@user.UserName')">@Resource.Limit</a> 
                 }
-                <span>/</span>
-                <a target="_blank" href="/DropWater/UserBetAuto/@user.UserId">连注</a>
+                @if (ViewBag.Matrix.Role == Role.Company)
+                {
+                    <span>/</span>
+                    <a target="_blank" href="/DropWater/UserBetAuto/@user.UserId">连注</a>
+                }
                 @if (ViewBag.Matrix.UserId == user.ParentId)
                 {
                     <span>/</span>
@@ -152,7 +155,7 @@
                 <span>/</span>
                 @if (user.UserInfo.State == UserState.Active)
                 {
-                    @Html.ActionLink(Resource.Stop, "Stop", new { Id = user.UserId }, new { @class = "edit",onclick="return confirm('Are you sure?')" })
+                    @Html.ActionLink(Resource.Stop, "Stop", new { Id = user.UserId }, new { @class = "edit", onclick = "return confirm('Are you sure?')" })
                 }
                 else
                 {

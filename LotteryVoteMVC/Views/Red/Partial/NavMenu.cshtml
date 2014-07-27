@@ -29,7 +29,7 @@
         }
         @if (Model.Role != Role.Guest)
         {
-            <li>@Html.ActionLink(Resource.WinLost, "", "Report")
+            <li>@Html.ActionLink(Resource.MemberWL, "MemberWinLost", "Report")
             </li>
         }
         else
@@ -76,6 +76,10 @@
     else if (controller == "Report")
     {
         <ul class="menus">
+            @if (Model.Role < Role.Guest)
+            { 
+                <li>@Html.ActionLink(Resource.ShareWL, "ShareRateWL", "Report")</li>
+            }
             @if (Model.Role == Role.Company)
             { 
                 <li>@Html.ActionLink(Resource.Win, "WinReport", "Order")</li>

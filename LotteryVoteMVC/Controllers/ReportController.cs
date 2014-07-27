@@ -48,6 +48,42 @@ namespace LotteryVoteMVC.Controllers
             return date;
         }
 
+        /// <summary>
+        /// 获取会员的输赢报表
+        /// </summary>
+        /// <param name="Id">The id.</param>
+        /// <returns></returns>
+        [AgentAuthorize(UserState.Active)]
+        public ActionResult MemberWinLost(int? Id)
+        {
+            User targetUser;
+            if (!(Id.HasValue && UserManager.IsParent(MatrixUser.UserId, Id.Value, out targetUser)))
+                targetUser = MatrixUser;
+            var fromDate = GetReportDate(this.FromDate());
+            var toDate = GetReportDate(this.ToDate());
+            var wl = SettleManager.ListMemberWinLost(targetUser, fromDate, toDate);
+            ViewBag.User = targetUser;
+            ViewBag.From = fromDate;
+            ViewBag.To = toDate;
+            return View(wl);
+        }
+
+        [AgentAuthorize(UserState.Active)]
+        public ActionResult ShareRateWL(int? Id)
+        {
+            User targetUser;
+            if (!(Id.HasValue && UserManager.IsParent(MatrixUser.UserId, Id.Value, out targetUser)))
+                targetUser = MatrixUser;
+            var fromDate = GetReportDate(this.FromDate());
+            var toDate = GetReportDate(this.ToDate());
+            var wl = SettleManager.ListShareRateWL(targetUser, fromDate, toDate);
+            ViewBag.User = targetUser;
+            ViewBag.From = fromDate;
+            ViewBag.To = toDate;
+            return View(wl);
+        }
+
+
         [AgentAuthorize(UserState.Active)]
         public ActionResult WinLost(int? Id)
         {
@@ -113,7 +149,7 @@ namespace LotteryVoteMVC.Controllers
         {
             var fromDate = this.FromDate();
             var toDate = this.ToDate();
-            var source = SettleManager.GetMemberSettleResult(this.MatrixUser,fromDate, toDate, this.Sort(), this.SortType(), this.CurrentPage);
+            var source = SettleManager.GetMemberSettleResult(this.MatrixUser, fromDate, toDate, this.Sort(), this.SortType(), this.CurrentPage);
             ViewBag.From = fromDate;
             ViewBag.To = toDate;
             return View(source);

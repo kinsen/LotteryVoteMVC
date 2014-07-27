@@ -1,0 +1,160 @@
+2014-07-06 20:45:19,820 [31] --------------------插入日志失败-------------------- ERROR 
+2014-07-06 20:45:19,900 [31] 插入SystemError失败! ERROR 
+System.Data.SqlClient.SqlException (0x80131904): 用户 'sa' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\SQLHelper.cs:行号 225
+   在 LotteryVoteMVC.Data.DataBase.ExecuteNonQuery(String sql, SqlParameter[] cmdParams) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\DataBase.cs:行号 162
+   在 LotteryVoteMVC.Data.SystemErrorDataAccess.Insert(SystemError error) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\SystemErrorDataAccess.cs:行号 16
+   在 LotteryVoteMVC.Core.LogManager.LogError(Exception innerException, ErrorLevel level, String url, String remark) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\LogManager.cs:行号 117
+2014-07-06 20:45:19,907 [31] ---------------------------------------- ERROR 
+2014-07-06 20:46:20,818 [31] --------------------插入日志失败-------------------- ERROR 
+2014-07-06 20:46:20,818 [31] 插入SystemError失败! ERROR 
+System.Data.SqlClient.SqlException (0x80131904): 用户 'sa' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\SQLHelper.cs:行号 225
+   在 LotteryVoteMVC.Data.DataBase.ExecuteNonQuery(String sql, SqlParameter[] cmdParams) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\DataBase.cs:行号 162
+   在 LotteryVoteMVC.Data.SystemErrorDataAccess.Insert(SystemError error) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\SystemErrorDataAccess.cs:行号 16
+   在 LotteryVoteMVC.Core.LogManager.LogError(Exception innerException, ErrorLevel level, String url, String remark) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\LogManager.cs:行号 117
+2014-07-06 20:46:20,819 [31] ---------------------------------------- ERROR 
+2014-07-06 20:48:33,039 [33] --------------------插入日志失败-------------------- ERROR 
+2014-07-06 20:48:33,039 [33] 插入SystemError失败! ERROR 
+System.Data.SqlClient.SqlException (0x80131904): 用户 'sa' 登录失败。
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\SQLHelper.cs:行号 225
+   在 LotteryVoteMVC.Data.DataBase.ExecuteNonQuery(String sql, SqlParameter[] cmdParams) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\Base\DataBase.cs:行号 162
+   在 LotteryVoteMVC.Data.SystemErrorDataAccess.Insert(SystemError error) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\SystemErrorDataAccess.cs:行号 16
+   在 LotteryVoteMVC.Core.LogManager.LogError(Exception innerException, ErrorLevel level, String url, String remark) 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\LogManager.cs:行号 117
+2014-07-06 20:48:33,039 [33] ---------------------------------------- ERROR 
+2014-07-06 20:49:18,536 [30] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 110
+2014-07-06 20:49:41,178 [31] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 20:50:18,760 [26] gt002:请求时间20:50:04,处理完成时间:20:50:18,逻辑消耗:14426毫秒,呈现消耗:14429毫秒 INFO  
+2014-07-06 20:50:32,900 [31] gt002:请求时间20:50:31,处理完成时间:20:50:32,逻辑消耗:916毫秒,呈现消耗:916毫秒 INFO  
+2014-07-06 20:52:33,691 [26] gt002:请求时间20:52:32,处理完成时间:20:52:33,逻辑消耗:1219毫秒,呈现消耗:1220毫秒 INFO  
+2014-07-06 20:52:42,862 [33] gt002:请求时间20:52:39,处理完成时间:20:52:42,逻辑消耗:3295毫秒,呈现消耗:3295毫秒 INFO  
+2014-07-06 20:52:54,368 [33] gt002:请求时间20:52:51,处理完成时间:20:52:54,逻辑消耗:2461毫秒,呈现消耗:2462毫秒 INFO  
+2014-07-06 20:53:14,579 [30] gt002:请求时间20:53:11,处理完成时间:20:53:14,逻辑消耗:2638毫秒,呈现消耗:2638毫秒 INFO  
+2014-07-06 20:53:26,754 [33] gt002:请求时间20:53:22,处理完成时间:20:53:26,逻辑消耗:3992毫秒,呈现消耗:3992毫秒 INFO  
+2014-07-06 20:54:19,947 [33] gt002:请求时间20:54:17,处理完成时间:20:54:19,逻辑消耗:2901毫秒,呈现消耗:2901毫秒 INFO  
+2014-07-06 21:02:40,409 [31] gt002:请求时间21:02:37,处理完成时间:21:02:40,逻辑消耗:2922毫秒,呈现消耗:2922毫秒 INFO  
+2014-07-06 21:02:46,535 [30] gt002:请求时间21:02:44,处理完成时间:21:02:46,逻辑消耗:2016毫秒,呈现消耗:2016毫秒 INFO  
+2014-07-06 21:02:52,419 [10] gt002:请求时间21:02:50,处理完成时间:21:02:52,逻辑消耗:1981毫秒,呈现消耗:1982毫秒 INFO  
+2014-07-06 21:17:13,650 [9] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 21:23:30,873 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 21:45:53,218 [7] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 21:54:29,273 [9] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:03:01,870 [7] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:07:37,764 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:08:32,570 [10] mmmaaa01:请求时间22:08:31,处理完成时间:22:08:32,逻辑消耗:1280毫秒,呈现消耗:1286毫秒 INFO  
+2014-07-06 22:11:23,996 [7] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:12:04,619 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:13:25,001 [11] mmmaaa01:请求时间22:13:21,处理完成时间:22:13:24,逻辑消耗:3226毫秒,呈现消耗:3229毫秒 INFO  
+2014-07-06 22:13:28,284 [17] mmmaaa01:请求时间22:13:27,处理完成时间:22:13:28,逻辑消耗:498毫秒,呈现消耗:499毫秒 INFO  
+2014-07-06 22:13:31,272 [9] mmmaaa01:请求时间22:13:30,处理完成时间:22:13:31,逻辑消耗:315毫秒,呈现消耗:315毫秒 INFO  
+2014-07-06 22:13:34,071 [11] mmmaaa01:请求时间22:13:33,处理完成时间:22:13:34,逻辑消耗:431毫秒,呈现消耗:431毫秒 INFO  
+2014-07-06 22:13:36,843 [17] mmmaaa01:请求时间22:13:36,处理完成时间:22:13:36,逻辑消耗:398毫秒,呈现消耗:398毫秒 INFO  
+2014-07-06 22:13:39,816 [11] mmmaaa01:请求时间22:13:39,处理完成时间:22:13:39,逻辑消耗:482毫秒,呈现消耗:482毫秒 INFO  
+2014-07-06 22:13:43,707 [21] mmmaaa01:请求时间22:13:43,处理完成时间:22:13:43,逻辑消耗:551毫秒,呈现消耗:551毫秒 INFO  
+2014-07-06 22:36:38,650 [7] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:37:49,305 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 22:54:06,702 [8] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111
+2014-07-06 23:28:22,302 [10] 反序列化公告 ERROR 
+System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
+文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 LotteryVoteMVC.Core.BulletinManager.Deserialize() 位置 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Core\BulletinManager.cs:行号 111

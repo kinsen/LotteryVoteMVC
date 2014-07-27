@@ -26,14 +26,31 @@ namespace LotteryVoteMVC.Data
 
         public IEnumerable<ShareRateGroup> ListGroup()
         {
-            string sql = string.Format(@"SELECT * FROM {0}", ShareRateGroup.TABLENAME);
+            string sql = string.Format(@"SELECT * FROM {0} ORDER BY {1} DESC", ShareRateGroup.TABLENAME, ShareRateGroup.SHARERATE);
             return base.ExecuteList<ShareRateGroup>(sql);
         }
 
         public IEnumerable<ShareRateGroup> ListChildGroup(double rate)
         {
-            string sql = string.Format(@"SELECT * FROM {0} WHERE {1}<=@{1}", ShareRateGroup.TABLENAME, ShareRateGroup.SHARERATE);
+            string sql = string.Format(@"SELECT * FROM {0} WHERE {1}<=@{1} OR {1}=0", ShareRateGroup.TABLENAME, ShareRateGroup.SHARERATE);
             return base.ExecuteList<ShareRateGroup>(sql, new SqlParameter(ShareRateGroup.SHARERATE, rate));
+        }
+
+        public void Remove(int groupId)
+        {
+            base.ExecuteWithTransaction(() =>
+            {
+                string sql_base = @"DELETE {0} WHERE {1}=@{1}";
+                string sql = string.Format(sql_base, RateGroupBetLimit.TABLENAME, RateGroupBetLimit.GROUPID);
+                base.ExecuteNonQuery(sql, new SqlParameter(RateGroupBetLimit.GROUPID, groupId));
+
+                sql = string.Format(sql_base, RateGroupGameBetLimit.TABLENAME, RateGroupGameBetLimit.GROUPID);
+                base.ExecuteNonQuery(sql, new SqlParameter(RateGroupGameBetLimit.GROUPID, groupId));
+
+                sql = string.Format(sql_base, ShareRateGroup.TABLENAME, ShareRateGroup.ID);
+                base.ExecuteNonQuery(sql, new SqlParameter(ShareRateGroup.ID, groupId));
+            });
+
         }
     }
 }

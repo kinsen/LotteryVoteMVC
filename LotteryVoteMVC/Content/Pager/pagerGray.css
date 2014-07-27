@@ -1,0 +1,31 @@
+﻿#pager
+{
+    font-size:12;
+    text-align: center;
+    color: #2E6AB1;
+    line-height: 250%;
+    width: 100%;
+}
+#pager a
+{
+    border: 1px solid #faf5d7;
+    color: #8d8d8d;
+    margin-right: 4px;
+    padding: 2px 8px;
+    text-decoration: none;
+}
+#pager a:hover
+{
+    border: 1px solid #faf5d7;
+    color: #FFFFFF;
+    background-color: #781819;
+}
+#pager span.current
+{
+    background-color: #781819;
+    border: 1px solid #faf5d7;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-right: 4px;
+    padding: 2px 8px;
+}

@@ -56,7 +56,7 @@
                 <td>@group.CreateTime
                 </td>
                 <td>
-                <a href="javascript:editGroupLimit(@group.Id)">@Resource.Limit</a>
+                    <a href="javascript:editGroupLimit(@group.Id)">@Resource.Limit</a> <a href="/ShareRateGroup/RemoveGroup/@group.Id" onclick="return confirm('一旦删除将无法恢复，您确定吗？')">@Resource.Delete</a>
                 </td>
             </tr>
         }

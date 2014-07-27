@@ -108,6 +108,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Pager\pager.css" />
+    <Content Include="Content\Pager\pagerGray.css" />
+    <Content Include="Content\Pager\pagerGreen.css" />
     <Content Include="Content\themes\Default\BetBase.css" />
     <Content Include="Content\themes\Default\BetSheet.css" />
     <Content Include="Content\themes\Default\error.css" />
@@ -883,6 +886,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\Report\MemberWinLost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\Report\ShareRateWL.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Red\Report\ShareRateWL.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Red\Report\MemberWinLost.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

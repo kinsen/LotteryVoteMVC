@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LotteryVoteMVC.Data;
 using LotteryVoteMVC.Models;
+using LotteryVoteMVC.Core.Exceptions;
 
 namespace LotteryVoteMVC.Core
 {
@@ -12,6 +13,17 @@ namespace LotteryVoteMVC.Core
     /// </summary>
     public class ShareRateGroupManager : ManagerBase
     {
+        private UserDataAccess _daUser;
+        public UserDataAccess DaUser
+        {
+            get
+            {
+                if (_daUser == null)
+                    _daUser = new UserDataAccess();
+                return _daUser;
+            }
+        }
+
         private ShareRateGroupDataAccess _daShareRateGroup;
 
         public ShareRateGroupDataAccess DaShareRateGroup
@@ -47,6 +59,14 @@ namespace LotteryVoteMVC.Core
         public IEnumerable<ShareRateGroup> ListGroup()
         {
             return DaShareRateGroup.ListGroup();
+        }
+
+        public void Remove(int groupId)
+        {
+            int count = 0;
+            if ((count = DaUser.CountRateGroup(groupId)) > 0)
+                throw new BusinessException(string.Format("该分成组被分配{0}个用户上，请先更改这些用户的分成组再尝试删除", count));
+            DaShareRateGroup.Remove(groupId);
         }
     }
 }

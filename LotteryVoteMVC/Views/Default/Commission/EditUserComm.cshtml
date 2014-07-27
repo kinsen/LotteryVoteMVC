@@ -105,7 +105,6 @@
                     {
                         var comm = Model.Find(it => it.GameId == gameType.Value && it.CompanyTypeId == comType.Value);
                         <td>
-                        
                             @if (isABPL2 && comType.Value != (int)CompanyType.EighteenA)
                             {
                                 WriteLiteral("");
@@ -133,7 +132,7 @@
                 </tr>
             }
         </table>
-            if (this.HasRight((Role)ViewBag.Role - 1, "CommissionController", "EditUserComm"))
+            if (this.HasRight((Role)ViewBag.Role - 1, "CommissionController", "EditUserComm") || ViewBag.User.Role == Role.Company)
             {
         <div class="buttons">
             <input type="submit" name="submit" id="submit" value="@Resource.Submit"/>

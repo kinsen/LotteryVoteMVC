@@ -25,6 +25,26 @@ namespace LotteryVoteMVC.Core
                 return _daSettle;
             }
         }
+        private MemberWinLostDataAccess _daMemberWL;
+        public MemberWinLostDataAccess DaMemberWL
+        {
+            get
+            {
+                if (_daMemberWL == null)
+                    _daMemberWL = new MemberWinLostDataAccess();
+                return _daMemberWL;
+            }
+        }
+        private ShareRateWLDataAccess _daShareRateWL;
+        public ShareRateWLDataAccess DaShareRateWL
+        {
+            get
+            {
+                if (_daShareRateWL == null)
+                    _daShareRateWL = new ShareRateWLDataAccess();
+                return _daShareRateWL;
+            }
+        }
         public BetManager BetManager
         {
             get
@@ -50,7 +70,7 @@ namespace LotteryVoteMVC.Core
         /// <summary>
         /// 本次结算公司的所有注单
         /// </summary>
-        internal IEnumerable<BetOrder> AllOrders { get; private set; }
+        internal IList<BetOrder> AllOrders { get; private set; }
         /// <summary>
         /// 今日下注用户
         /// </summary>
@@ -106,6 +126,16 @@ namespace LotteryVoteMVC.Core
             }
         }
         protected int SettleCompany { get; private set; }
+        private List<ShareRateWL> _shareRateWL;
+        protected List<ShareRateWL> ShareRateWLs
+        {
+            get
+            {
+                if (_shareRateWL == null)
+                    _shareRateWL = new List<ShareRateWL>();
+                return _shareRateWL;
+            }
+        }
         private List<SettleResult> _settleResult;
         protected List<SettleResult> SettleResultList
         {
@@ -141,12 +171,20 @@ namespace LotteryVoteMVC.Core
                 try
                 {
                     SettleCompany = companyId;
-                    AllOrders = BetManager.SettleBetOrder(companyId);
+                    AllOrders = BetManager.SettleBetOrder(companyId).ToList();
                     BetUsers = UserManager.GetBetUsers();
                     var companys = BetUsers.Where(it => it.Role == Role.Company); //UserManager.DaUser.GetUserByRole(Models.Role.Company);
                     foreach (var cp in companys)
-                        GetSettleResult(cp);
-                    DaSettle.Insert(SettleResultList);
+                        GetShareRateWinLost(cp);
+                    //GetSettleResult(cp);
+                    var winlost = BuildMemberWinLost(ShareRateWLs);
+                    //DaSettle.Insert(SettleResultList);
+                    DaShareRateWL.Insert(ShareRateWLs);
+                    DaMemberWL.Insert(winlost);
+                    List<MemberWLParentCommission> comms = new List<MemberWLParentCommission>();
+                    foreach (var wl in winlost)
+                        comms.AddRange(wl.ParentCommission);
+                    DaMemberWL.InsertParentCommission(comms);
                 }
                 finally
                 {
@@ -164,21 +202,30 @@ namespace LotteryVoteMVC.Core
             //清除缓存中的数据
             foreach (var key in new string[] { "TodayLotteryResult", "2DLotteryResult", "3DLotteryResult", "4DLotteryResult", "5DLotteryResult" })
                 HttpRuntime.Cache.Remove(key);
-            LogConsole.Debug("Setting");
             if (!M_IsSetting)
             {
                 M_IsSetting = true;
                 try
                 {
                     SettleCompany = companyId;
-                    DaSettle.Delete(companyId, DateTime.Today);
-                    AllOrders = BetManager.ResettleBetOrder(companyId);
+                    //DaSettle.Delete(companyId, DateTime.Today);
+                    DaMemberWL.Delete(companyId, DateTime.Today);
+                    DaShareRateWL.Delete(companyId, DateTime.Today);
+                    AllOrders = BetManager.ResettleBetOrder(companyId).ToList();
                     BetUsers = UserManager.GetBetUsers();
                     var companys = BetUsers.Where(it => it.Role == Role.Company);// UserManager.DaUser.GetUserByRole(Models.Role.Company);
                     foreach (var cp in companys)
-                        GetSettleResult(cp);
-                    LogConsole.Debug("Insert SettleResult.");
-                    DaSettle.Insert(SettleResultList);
+                        GetShareRateWinLost(cp);
+                    //GetSettleResult(cp);
+                    var winlost = BuildMemberWinLost(ShareRateWLs);
+                    //DaSettle.Insert(SettleResultList);
+                    DaShareRateWL.Insert(ShareRateWLs);
+                    DaMemberWL.Insert(winlost);
+                    List<MemberWLParentCommission> comms = new List<MemberWLParentCommission>();
+                    foreach (var wl in winlost)
+                        comms.AddRange(wl.ParentCommission);
+                    DaMemberWL.InsertParentCommission(comms);
+
                 }
                 finally
                 {
@@ -189,6 +236,251 @@ namespace LotteryVoteMVC.Core
         }
 
         #region Private
+        /// <summary>
+        /// 构建用户输赢
+        /// </summary>
+        /// <param name="results">The results.</param>
+        /// <returns></returns>
+        private List<MemberWinLost> BuildMemberWinLost(IList<ShareRateWL> results)
+        {
+            List<MemberWinLost> list = new List<MemberWinLost>();
+            var guestWL = BuildGuestMemberWL(results);
+            list.AddRange(guestWL);
+
+            var agent = BuildAgentsMemberWL(results, guestWL);
+            var master = BuildAgentsMemberWL(results, agent);
+            var super = BuildAgentsMemberWL(results, master);
+            list.AddRange(agent);
+            list.AddRange(master);
+            list.AddRange(super);
+            return list;
+        }
+        /// <summary>
+        /// 获取会员以外各级代理的会员报表.
+        /// </summary>
+        /// <param name="results">传入分成报表主要是为了获得结果中的用户信息，避免再一次获取用户.</param>
+        /// <param name="childWL">The child WL.</param>
+        /// <returns></returns>
+        private List<MemberWinLost> BuildAgentsMemberWL(IList<ShareRateWL> results, IList<MemberWinLost> childWL)
+        {
+            Dictionary<int, MemberWinLost> wlDict = new Dictionary<int, MemberWinLost>();
+            foreach (var child in childWL)
+            {
+                MemberWinLost wl;
+                if (!wlDict.TryGetValue(child.User.ParentId, out wl))
+                {
+                    wl = new MemberWinLost();
+                    wl.CompanyId = child.CompanyId;
+                    wl.UserId = child.User.ParentId;
+                    var shareWl = results.Find(it => it.UserId == child.User.ParentId);
+                    wl.User = shareWl.User;
+                    wl.ShareRate = shareWl.User.UserInfo.RateGroup.ShareRate;
+                    wlDict[child.User.ParentId] = wl;
+                }
+                wl.OrderCount += child.OrderCount;
+                wl.BetTurnover += child.BetTurnover;
+                wl.WinLost += child.WinLost;
+                wl.TotalCommission += child.ParentCommission.Where(it => it.Role == wl.User.Role).Sum(it => it.Commission);
+                wl.TotalWinLost = wl.TotalCommission + wl.WinLost;
+                SumParentCommission(wl, child.ParentCommission.Where(it => it.Role < wl.User.Role));
+            }
+            return wlDict.Values.ToList();
+        }
+        private void SumParentCommission(MemberWinLost wl, IEnumerable<MemberWLParentCommission> addition)
+        {
+            if (wl.ParentCommission == null || wl.ParentCommission.Count() == 0)
+            {
+                var list = new List<MemberWLParentCommission>();
+                foreach (var tmp in addition)
+                {
+                    var comm = new MemberWLParentCommission
+                    {
+                        UserId = wl.UserId,
+                        CompanyId = tmp.CompanyId,
+                        RoleId = tmp.RoleId,
+                        Commission = tmp.Commission
+                    };
+                    list.Add(comm);
+                }
+                wl.ParentCommission = list;
+                return;
+            }
+            foreach (var item in wl.ParentCommission)
+            {
+                var tmp = addition.Find(x => x.RoleId == item.RoleId);
+                if (tmp != null)
+                    item.Commission += tmp.Commission;
+            }
+
+        }
+        private List<MemberWinLost> BuildGuestMemberWL(IList<ShareRateWL> results)
+        {
+            List<MemberWinLost> list = new List<MemberWinLost>();
+            //获取所有用户级别的结算记录
+            foreach (var result in results.Where(it => it.User.Role == Role.Guest))
+            {
+                MemberWinLost wl = new MemberWinLost();
+                wl.CompanyId = result.CompanyId;
+                wl.UserId = result.UserId;
+                wl.User = result.User;
+                wl.ShareRate = result.User.UserInfo.RateGroup.ShareRate;
+                wl.OrderCount = result.OrderCount;
+                wl.BetTurnover = result.SumTurnover;
+                wl.TotalWinLost = result.TotalWinLost;
+                wl.WinLost = result.MemberWinLost;
+                wl.TotalCommission = result.Commission;
+                List<MemberWLParentCommission> parentComms = new List<MemberWLParentCommission>();
+                for (int i = (int)Role.Company; i < (int)Role.Guest; i++)
+                {
+                    var comm = new MemberWLParentCommission();
+                    comm.UserId = result.UserId;
+                    comm.CompanyId = result.CompanyId;
+                    comm.RoleId = i;
+                    comm.Commission = UserBetOrderDic[result.User.UserId].Select(it => GetOAC(it.OrderId, (Role)i).CommAmount).Sum();
+                    parentComms.Add(comm);
+                }
+                wl.ParentCommission = parentComms;
+                list.Add(wl);
+            }
+            return list;
+        }
+
+        private List<ShareRateWL> BuildShareRateWL(IList<SettleResult> results)
+        {
+            List<ShareRateWL> list = new List<ShareRateWL>();
+            foreach (var result in results.Where(it => it.User.Role != Role.Guest))
+            {
+                ShareRateWL wl = new ShareRateWL();
+                var parent = results.Find(it => it.UserId == result.User.ParentId);
+                double parentShareRate = parent == null ? 1 : parent.User.UserInfo.RateGroup.ShareRate;
+                decimal netShareRate = (decimal)(parentShareRate - result.User.UserInfo.RateGroup.ShareRate);
+
+                wl.CompanyId = result.CompanyId;
+                wl.UserId = result.UserId;
+                wl.ShareRate = result.User.UserInfo.RateGroup.ShareRate;
+                wl.OrderCount = result.OrderCount;
+                wl.BetTurnover = result.BetTurnover;
+                wl.WinLost = result.WinLost * netShareRate;
+                wl.TotalComm = result.Commission * netShareRate;
+                wl.TotalWinLost = result.TotalWinLost * netShareRate;
+                list.Add(wl);
+            }
+            return list;
+        }
+
+        private IList<ShareRateWL> GetShareRateWinLost(User user)
+        {
+            List<ShareRateWL> shareRateWLList = new List<ShareRateWL>();     //用于盛放子用户的结余记录
+
+            if (user.Role == Role.Guest && BetUsers.Contains(it => it.UserId == user.UserId)) //会员结算，必须包含在今日下注用户中，减少多余的无效计算
+            {
+                var result = CalcMemberShareRateWL(user);
+                if (result != null)
+                {
+                    shareRateWLList.Add(result);
+                    ShareRateWLs.Add(result);
+                }
+                return shareRateWLList;
+            }
+
+            var childUser = BetUsers.Where(it => it.ParentId == user.UserId);
+            List<BetOrder> betOrderList = new List<BetOrder>();                 //用于存放本级用户可用到的注单
+            foreach (var child in childUser)
+            {
+                var childWL = GetShareRateWinLost(child);
+                shareRateWLList.AddRange(childWL);              //迭代直到所有Guest级别的用户都结余完毕
+                betOrderList.AddRange(UserBetOrderDic[child.UserId]);           //将子用户的注单也添加到本级用户的注单容器中
+            }
+            UserBetOrderDic.Add(user.UserId, betOrderList);
+
+            if (user.Role == Role.Company)        //到公司级别不进行上级结余计算（公司为最顶级了）
+                return shareRateWLList;
+
+            var userWL = CalcUserShareRateWL(user, shareRateWLList);
+            ShareRateWLs.Add(userWL);
+            return new List<ShareRateWL> { userWL };
+        }
+
+        private ShareRateWL CalcMemberShareRateWL(User user)
+        {
+            //获取会员的下注单
+            var orderList = GetOrders(user).ToList();
+            UserBetOrderDic[user.UserId] = orderList;
+
+            if (orderList == null || orderList.Count == 0)
+                return null;
+            var oacs = OrderManager.GetTodayOac(user, SettleCompany, BetStatus.Settled).GroupBy(it => it.OrderId).ToDictionary(it => it.Key, it => it.Select(x => x));
+            OrderOacDic.AddRange(oacs);
+
+            ShareRateWL wl = new ShareRateWL();
+            wl.User = user;
+            wl.UserId = user.UserId;
+            wl.ShareRate = user.UserInfo.RateGroup.ShareRate;
+            bool isFirst = true;
+            foreach (var order in orderList)
+            {
+                if (isFirst)
+                {
+                    isFirst = false;
+                    wl.CompanyId = order.CompanyId;
+                }
+                order.User = user;
+                wl.OrderCount += 1;
+                wl.SumTurnover += order.Turnover;
+                wl.SumWinLost += order.DrawResult;
+                wl.Commission += order.Commission;
+            }
+
+            //如果分成是0，则说明没有占成数，所以分成应该是0
+            var shareRate = (decimal)(1 - user.UserInfo.RateGroup.ShareRate);
+
+            wl.BetTurnover = wl.SumTurnover * shareRate;    //下注额=会员下注额*分成
+            wl.MemberWinLost = wl.SumWinLost - wl.Commission;   //会员输赢=会员总输赢-佣金
+            wl.WinLost = wl.MemberWinLost * shareRate;         //输赢=会员输赢*分成
+            wl.TotalComm = wl.Commission * shareRate;       //总佣金=本层总佣金*分成
+            wl.TotalWinLost = wl.WinLost + wl.TotalComm;    //总输赢=输赢+总佣金
+
+            return wl;
+        }
+        private ShareRateWL CalcUserShareRateWL(User user, List<ShareRateWL> childWL)
+        {
+            ShareRateWL wl = new ShareRateWL();
+            wl.UserId = user.UserId;
+            wl.User = user;
+            wl.ShareRate = user.UserInfo.RateGroup.ShareRate;
+            bool isFirst = true;
+            foreach (var item in childWL)
+            {
+                if (isFirst)
+                {
+                    isFirst = false;
+                    wl.CompanyId = item.CompanyId;
+                }
+                wl.OrderCount += item.OrderCount;
+                wl.SumTurnover += item.SumTurnover;
+                wl.SumWinLost += item.SumWinLost;
+                wl.BetTurnover += item.BetTurnover;
+                wl.WinLost += item.WinLost;
+            }
+
+            //用户总佣金，累加子用户所有订单中该用户的佣金        各级总佣金=注单佣金×会员分成
+            foreach (var order in UserBetOrderDic[user.UserId])
+            {
+                var comm = GetOAC(order.OrderId, user.Role).CommAmount;
+                wl.Commission += comm;
+                wl.TotalComm += comm * (decimal)(1 - order.User.UserInfo.RateGroup.ShareRate);
+            }
+            //var userTotalComm = UserBetOrderDic[user.UserId]
+            //    .Select(it => GetOAC(it.OrderId, user.Role).CommAmount * (decimal)(it.User.UserInfo.RateGroup.ShareRate == 0 ? 1 : it.User.UserInfo.RateGroup.ShareRate))
+            //    .Sum();
+
+            //wl.TotalComm = userTotalComm;
+            wl.TotalWinLost = wl.TotalComm + wl.WinLost;
+
+            return wl;
+        }
+
+
         private IList<SettleResult> GetSettleResult(User user)
         {
             List<SettleResult> memberResultList = new List<SettleResult>();     //用于盛放子用户的结余记录
@@ -247,13 +539,14 @@ namespace LotteryVoteMVC.Core
                 result.TotalCommission += GetOAC(order.OrderId, Role.Agent).CommAmount;
             }
             result.WinLost = result.TotalWinLost - result.Commission;
-
+            result.ShareRate = user.UserInfo.RateGroup.ShareRate;
             result.UpperShareRate = GetParentShareRate(user);
             result.UpperWinLost = result.WinLost * -1 * (decimal)result.UpperShareRate;   //代理输赢=会员输赢×代理成数
             result.CompanyWinLost = CountCompanyWinLost(1 - result.UpperShareRate, result.WinLost, result.TotalCommission);
             result.UpperTotalWinLost = result.TotalWinLost / -1 - result.CompanyWinLost;         //代理总输赢=会员总输赢-公司输赢
             result.UpperCommission = result.UpperTotalWinLost - result.UpperWinLost;        //代理佣金=代理总输赢-代理输赢
             result.UserId = user.UserId;
+            result.User = user;
             result.CompanyId = SettleCompany;
             AddMemberSettleResultToDic(user, result);
             return result;
@@ -296,6 +589,7 @@ namespace LotteryVoteMVC.Core
                 result.UpperTotalWinLost = result.TotalWinLost / -1 - result.CompanyWinLost;    //上级总输赢=（总输赢/-1）-公司输赢
                 result.UpperCommission = result.UpperTotalWinLost - result.UpperWinLost;        //上级佣金=上级总输赢-上级输赢
                 result.UserId = user.UserId;
+                result.User = user;
                 result.CompanyId = SettleCompany;
                 userResultList.Add(result);
             }
@@ -310,19 +604,25 @@ namespace LotteryVoteMVC.Core
         private double GetParentShareRate(User user)
         {
             if (user.ParentId == 0) return 0;   //公司父级为0
+            //如果本级的分成是0，则说明上级可能是1或0，则将分成累积到下一层
+            if (user.UserInfo.RateGroup.ShareRate == 0) return 0;
             User parent;
             if (!UserDic.TryGetValue(user.ParentId, out parent))
             {
                 parent = UserManager.GetUser(user.ParentId);
                 UserDic.Add(user.ParentId, parent);
             }
-            return parent.UserInfo.RateGroup.ShareRate - user.UserInfo.RateGroup.ShareRate;
+            var parentRate = parent.UserInfo.RateGroup.ShareRate;
+            //如果父级的分成是0，则按1来算（0之上只能是1）
+            if (parentRate == 0)
+                parentRate = 1;
+            return parentRate - user.UserInfo.RateGroup.ShareRate;
         }
-        private IEnumerable<BetOrder> GetOrders(User user)
+        private IList<BetOrder> GetOrders(User user)
         {
             if (AllOrders == null)
-                AllOrders = OrderManager.DaOrder.GetOrders(BetStatus.Settled, SettleCompany, DateTime.Today);
-            return AllOrders.Where(it => it.UserId == user.UserId);
+                AllOrders = OrderManager.DaOrder.GetOrders(BetStatus.Settled, SettleCompany, DateTime.Today).ToList();
+            return AllOrders.List(it => it.UserId == user.UserId);
         }
 
         /// <summary>
@@ -382,6 +682,20 @@ namespace LotteryVoteMVC.Core
             var settleResult = DaSettle.ListSettleResult(user, fromDate, toDate);
             return MergerResult(settleResult);
         }
+        public IEnumerable<MemberWinLost> ListMemberWinLost(User user, DateTime fromDate, DateTime toDate)
+        {
+            var memberWL = DaMemberWL.ListMemberWinLost(user.UserId, fromDate, toDate);
+            var agentComms = DaMemberWL.ListMemberWinLostAgentCommission(user.UserId, fromDate, toDate);
+            var result = MergerWL(memberWL);
+            result.ForEach(it => it.ParentCommission = agentComms.Where(x => x.UserId == it.UserId));
+            return result;
+        }
+        public IEnumerable<ShareRateWL> ListShareRateWL(User user, DateTime fromDate, DateTime toDate)
+        {
+            var shareRateWL = DaShareRateWL.ListWinLost(user, fromDate, toDate);
+            return MergerWL(shareRateWL);
+        }
+
         public PagedList<SettleResult> GetMemberSettleResult(User user, DateTime fromDate, DateTime toDate, string orderField, string orderType, int pageIndex)
         {
             string[] orderFileds = new[] { "TotalWinLost", "WinLost", "Commission", "TotalCommission", "BetTurnover", "OrderCount" };
@@ -440,6 +754,55 @@ namespace LotteryVoteMVC.Core
                 }
             }
             return settleList;
+        }
+        private IList<MemberWinLost> MergerWL(IEnumerable<MemberWinLost> source)
+        {
+            List<MemberWinLost> list = new List<MemberWinLost>();
+            foreach (var gp in source.GroupBy(it => it.UserId))
+            {
+                MemberWinLost wl = null;
+                bool isFirst = true;
+                foreach (var wlItem in gp)
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        wl = wlItem;
+                        list.Add(wl);
+                        continue;
+                    }
+                    wl.OrderCount += wlItem.OrderCount;
+                    wl.BetTurnover += wlItem.BetTurnover;
+                    wl.TotalCommission += wlItem.TotalCommission;
+                    wl.WinLost += wlItem.WinLost;
+                }
+            }
+            return list;
+        }
+        private IList<ShareRateWL> MergerWL(IEnumerable<ShareRateWL> source)
+        {
+            List<ShareRateWL> list = new List<ShareRateWL>();
+            foreach (var gp in source.GroupBy(it => it.UserId))
+            {
+                ShareRateWL wl = null;
+                bool isFirst = true;
+                foreach (var wlItem in gp)
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        wl = wlItem;
+                        list.Add(wl);
+                        continue;
+                    }
+                    wl.OrderCount += wlItem.OrderCount;
+                    wl.BetTurnover += wlItem.BetTurnover;
+                    wl.WinLost += wlItem.WinLost;
+                    wl.TotalComm += wlItem.TotalComm;
+                    wl.TotalWinLost += wlItem.TotalWinLost;
+                }
+            }
+            return list;
         }
         #endregion
 

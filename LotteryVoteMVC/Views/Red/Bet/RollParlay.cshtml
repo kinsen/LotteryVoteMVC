@@ -35,7 +35,7 @@
                                     <tbody>
                                         <tr>
                                             <td width="50%" align="left">
-                                                <strong>Đặt cược Xiên 2 - Miền Nam (Thành Phố - Long An)</strong>
+                                                <strong>Đặt cược Xiên 2 - @ViewBag.CompanyType（@string.Join(",", Model.Select(it => it.Abbreviation))）</strong>
                                             </td>
                                             <td width="50%" align="right">
                                                 @using (Html.BeginForm("RollParlay", "Bet"))

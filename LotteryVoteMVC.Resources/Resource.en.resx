@@ -798,4 +798,10 @@
   <data name="ShareGroup" xml:space="preserve">
     <value>ShareGroup</value>
   </data>
+  <data name="MemberWL" xml:space="preserve">
+    <value>MemberWL</value>
+  </data>
+  <data name="ShareWL" xml:space="preserve">
+    <value>ShareWL</value>
+  </data>
 </root>

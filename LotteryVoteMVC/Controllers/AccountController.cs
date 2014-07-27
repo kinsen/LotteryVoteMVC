@@ -81,6 +81,7 @@ namespace LotteryVoteMVC.Controllers
             var childs = UserManager.GetChilds(parent).Where(it => it.UserInfo.State == UserState.Active);
             ViewBag.Matrix = MatrixUser;
             ViewBag.User = parent;
+            ViewBag.CurrentUser = CurrentUser;
             ViewBag.Family = family;
             return View("Index", childs);
         }
@@ -148,6 +149,8 @@ namespace LotteryVoteMVC.Controllers
         [AgentAuthorize(UserState.Active)]
         public ActionResult Add(RegisterModel model)
         {
+            if (model.RateGroupId == 0)
+                model.RateGroupId = CurrentUser.UserInfo.RateGroupId;
             JsonResultModel result = new JsonResultModel();
             if (!(result.IsSuccess = ModelState.IsValid))
             {
@@ -196,6 +199,7 @@ namespace LotteryVoteMVC.Controllers
                 {
                     var user = model.ToUser();
                     user.ParentId = CurrentUser.UserId;
+                    user.UserInfo.RateGroupId = MatrixUser.UserInfo.RateGroupId;
                     UserManager.AddShadow(user, model.AuthActions);
                     ActionLogger.Log(CurrentUser, user, LogResources.AddShadow, LogResources.GetAddShadow(model.UserName));
                     result.Message = Resource.Success;
@@ -238,7 +242,10 @@ namespace LotteryVoteMVC.Controllers
                 it => Resource.ResourceManager.GetString(it.ToString()),
                 it => it.ToString()).ToList();
             var parent = user.ParentId != 0 ? UserManager.GetUser(user.ParentId) : MatrixUser;
-            ViewBag.RateGroups = RateGroupManager.ListChildGroup(parent.UserInfo.RateGroup.ShareRate).Select(it =>
+            var rateGroups = RateGroupManager.ListChildGroup(parent.UserInfo.RateGroup.ShareRate == 0 ? 1 : parent.UserInfo.RateGroup.ShareRate);
+            if (parent.UserInfo.RateGroup.ShareRate != 0 && parent.UserInfo.RateGroup.ShareRate != 1)
+                rateGroups = rateGroups.Where(it => it.ShareRate != 0);
+            ViewBag.RateGroups = rateGroups.Select(it =>
                 new SelectListItem { Text = it.Name, Value = it.Id.ToString(), Selected = it.Id == user.UserInfo.RateGroupId });
             ViewBag.CanEditShareRate = CanEditShareRate();
             if (user.Role == Role.Guest)
@@ -266,7 +273,7 @@ namespace LotteryVoteMVC.Controllers
             {
                 var user = UserManager.GetUser(Id);
                 var shareRate = user.UserInfo.RateGroupId;
-                if (user.ParentId != MatrixUser.UserId) throw new NoPermissionException("Update User");
+                if (user.ParentId != MatrixUser.UserId && CurrentUser.Role != Role.Company) throw new NoPermissionException("Update User");
                 if (result.IsSuccess = EncryptHelper.Equal(model.UserInfo.Password, CurrentUser.UserInfo.Password))
                 {
                     UpdateModel(user);

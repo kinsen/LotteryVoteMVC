@@ -70,11 +70,13 @@
     <Compile Include="Limit\RateGroupBetLimitDataAccess.cs" />
     <Compile Include="Limit\RateGroupGameBetLimitDataAccess.cs" />
     <Compile Include="LotteryResultDataAccess.cs" />
+    <Compile Include="MemberWinLostDataAccess.cs" />
     <Compile Include="NumLengthDataAccess.cs" />
     <Compile Include="OrderAncestorCommInfoDataAccess.cs" />
     <Compile Include="RollbackAmountDataAccess.cs" />
     <Compile Include="SettleResultDataAccess.cs" />
     <Compile Include="ShadowAuthorizeActionDataAccess.cs" />
+    <Compile Include="ShareRateWLDataAccess.cs" />
     <Compile Include="SystemErrorDataAccess.cs" />
     <Compile Include="UserBetAutoDropWaterDataAccess.cs" />
     <Compile Include="User\LoginFailedLogDataAccess.cs" />

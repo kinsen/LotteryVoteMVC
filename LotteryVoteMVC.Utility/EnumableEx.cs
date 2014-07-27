@@ -39,6 +39,14 @@ namespace LotteryVoteMVC.Utility
                 return (T)emptyField.GetValue(null);
             return default(T);
         }
+        public static IList<T> List<T>(this IList<T> source, Predicate<T> match)
+        {
+            List<T> result = new List<T>();
+            foreach (var item in source)
+                if (match(item))
+                    result.Add(item);
+            return result;
+        }
         public static IEnumerable<T> FindAll<T>(this IList<T> source, Predicate<T> match)
         {
             foreach (var item in source)

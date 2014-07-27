@@ -52,6 +52,7 @@ namespace LotteryVoteMVC.Controllers
             ViewBag.GameTypes = EnumHelper.GetDescription<GameType>();
             ViewBag.CommGroups = CommManager.GetCommissionGroupByUser(user, specie);
             ViewBag.Role = user.Role;
+            ViewBag.User = MatrixUser;
             var commValues = CommManager.GetCommissionValue(user, specie);
             return View(commValues);
         }
@@ -61,7 +62,7 @@ namespace LotteryVoteMVC.Controllers
         {
             if (Id == 0) PageNotFound();
             User user = UserManager.GetUser(Id);
-            if (user == null || user.ParentId != MatrixUser.UserId)     //只有父级用户才能修改下级的佣金
+            if ((user == null || user.ParentId != MatrixUser.UserId) && MatrixUser.Role != Role.Company)     //只有父级用户才能修改下级的佣金
                 PageNotFound();
             ViewBag.CompanyTypes = EnumHelper.GetDescription<CompanyType>();
             ViewBag.GameTypes = EnumHelper.GetDescription<GameType>();

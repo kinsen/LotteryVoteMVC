@@ -187,5 +187,12 @@ where u.{0}=@{0} and {1} {2}", User.PARENTID, condition, orderStatement);
                 new SqlParameter(User.ROLEID, (int)Role.Shadow));
             return Convert.ToInt32(count);
         }
+
+        public int CountRateGroup(int groupId)
+        {
+            string sql = string.Format(@"SELECT COUNT(0) FROM {0} WHERE {1}=@{1}", UserInfo.TABLENAME, UserInfo.RATEGROUPID);
+            object count = base.ExecuteScalar(sql, new SqlParameter(UserInfo.RATEGROUPID, groupId));
+            return Convert.ToInt32(count);
+        }
     }
 }

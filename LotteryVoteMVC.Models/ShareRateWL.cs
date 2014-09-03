@@ -16,6 +16,7 @@ namespace LotteryVoteMVC.Models
         public const string ORDERCOUNT = "OrderCount";
         public const string BETTURNOVER = "BetTurnover";
         public const string WINLOST = "WinLost";
+        public const string COMPANYWL = "CompanyWL";
         public const string TOTALCOMM = "TotalComm";
         public const string TOTALWINLOST = "TotalWinLost";
         public const string CREATETIME = "CreateTime";
@@ -28,6 +29,7 @@ namespace LotteryVoteMVC.Models
         public int OrderCount { get; set; }
         public decimal BetTurnover { get; set; }
         public decimal WinLost { get; set; }
+        public decimal CompanyWL { get; set; }
         /// <summary>
         /// 本级所占佣金（真实佣金，没有任何额外计算）
         /// </summary>

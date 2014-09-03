@@ -134,7 +134,7 @@
                 <td>
                     @order.Odds
                 </td>
-                <td class="@(order.DropWater > 0 ? "red" : string.Empty)">
+                <td @(order.DropWater > 0 ? "style=color:red" : string.Empty)>
                     @order.Net
                 </td>
                 <td>

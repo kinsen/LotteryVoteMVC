@@ -202,7 +202,9 @@
     <Content Include="Content\themes\Default\Zodiac.css" />
     <Content Include="Content\login2.css" />
     <Content Include="Content\themes\Red\BetBase.css" />
+    <Content Include="Content\themes\Default\comm.css" />
     <Content Include="Content\themes\Red\comm.css" />
+    <Content Include="Content\themes\Red\commission.css" />
     <Content Include="Content\themes\Red\inputs.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Customer\ABRollParlay.js" />

@@ -22,6 +22,7 @@ namespace LotteryVoteMVC.Data
             dt.Columns.Add(MemberWinLost.TOTALWINLOST, typeof(decimal));
             dt.Columns.Add(MemberWinLost.TOTALCOMMISSION, typeof(decimal));
             dt.Columns.Add(MemberWinLost.WINLOST, typeof(decimal));
+            dt.Columns.Add(MemberWinLost.COMPANYWL, typeof(decimal));
             foreach (var result in results)
             {
                 var row = dt.NewRow();
@@ -34,6 +35,7 @@ namespace LotteryVoteMVC.Data
                 row[MemberWinLost.TOTALWINLOST] = result.TotalWinLost;
                 row[MemberWinLost.TOTALCOMMISSION] = result.TotalCommission;
                 row[MemberWinLost.WINLOST] = result.WinLost;
+                row[MemberWinLost.COMPANYWL] = result.CompanyWL;
                 dt.Rows.Add(row);
             }
             base.ExecuteSqlTranWithSqlBulkCopy(MemberWinLost.TABLENAME, dt);

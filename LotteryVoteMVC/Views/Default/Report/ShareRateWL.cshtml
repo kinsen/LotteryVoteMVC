@@ -98,7 +98,7 @@
 @{
     User TargetUser = ViewBag.User;
     int index = 1;
-    decimal turnover = 0, totalComm = 0, wl = 0, totalwl = 0;
+    decimal turnover = 0, totalComm = 0, wl = 0, totalwl = 0, companywl = 0;
     int betcount = 0;
 }
 <div id="searchBar">
@@ -162,6 +162,9 @@
             <td class="rows">
                 @Resource.ToalWinLost
             </td>
+            <td class="rows">
+                co t w/l
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -172,7 +175,7 @@
                     @(index++)
                 </td>
                 <td>
-                @if (result.User.Role < Role.Guest)
+                    @if (result.User.Role < Role.Guest)
                     {
                         @Html.ActionLink(result.User.UserName, "ShareRateWL", new { Id = result.UserId, FromDate = ViewBag.From.ToShortDateString(), ToDate = ViewBag.To.ToShortDateString() })
                     }
@@ -202,12 +205,16 @@
                 <td @(result.TotalWinLost < 0 ? "class=red" : string.Empty)>
                     @result.TotalWinLost.ToString("N")
                 </td>
+                <td @(result.CompanyWL < 0 ? "class=red" : string.Empty)>
+                    @result.CompanyWL.ToString("N")
+                </td>
             </tr>
-            betcount += result.OrderCount;
-            turnover += result.BetTurnover;
-            wl += result.WinLost;
-            totalwl += result.TotalWinLost;
-            totalComm += result.TotalComm;
+                    betcount += result.OrderCount;
+                    turnover += result.BetTurnover;
+                    wl += result.WinLost;
+                    totalwl += result.TotalWinLost;
+                    totalComm += result.TotalComm;
+                    companywl += result.CompanyWL;
         }
     </tbody>
     <tfoot>
@@ -230,6 +237,8 @@
             <td @(totalComm < 0 ? "class=red" : string.Empty)>@totalComm.ToString("N")
             </td>
             <td @(totalwl < 0 ? "class=red" : string.Empty)>@totalwl.ToString("N")
+            </td>
+            <td @(companywl < 0 ? "class=red" : string.Empty)>@companywl.ToString("N")
             </td>
         </tr>
     </tfoot>

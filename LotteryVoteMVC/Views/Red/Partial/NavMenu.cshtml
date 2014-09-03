@@ -49,16 +49,18 @@
     </ul>
     <div style="clear: both">
     </div>
-    @if (controller == "Bet" || controller == "Member")
+    @*@if (controller == "Bet" || controller == "Member")
     { 
+        <ul class="menus">
+            <li>@Html.ActionLink(Resource.RollParlay, "RollParlay", "Bet") </li>
+            <li>@Html.ActionLink(Resource.Zodiac, "Zodiac", "Bet")</li>
+        </ul>
+    }*@
+    @if (controller == "Message")
+    {
         <ul class="menus">
             <li>@Html.ActionLink("个人资料", "Info", "Member")</li>
             <li>@Html.ActionLink(Resource.BetRule, "Rule", "Bet")</li>
-        </ul>
-    }
-    else if (controller == "Message")
-    {
-        <ul class="menus">
             @*<li>@Html.ActionLink(Resource.LoginLog, "Login", "Log")</li>*@
             @if (Model.Role != Role.Guest)
             {
@@ -76,26 +78,9 @@
     else if (controller == "Report")
     {
         <ul class="menus">
-            @if (Model.Role < Role.Guest)
+            @if (Model.Role == Role.Company)
             { 
                 <li>@Html.ActionLink(Resource.ShareWL, "ShareRateWL", "Report")</li>
-            }
-            @if (Model.Role == Role.Company)
-            { 
-                <li>@Html.ActionLink(Resource.Win, "WinReport", "Order")</li>
-                        
-            }
-            @if (Model.Role != Role.Guest)
-            {
-                <li>@Html.ActionLink(Resource.Guest, "Member", "Report")</li>
-            }
-@*else
-                {
-                    <li>@Html.ActionLink(Resource.WinLost, "MemberWL", "Report") </li>
-                }*@
-            @if (Model.Role == Role.Company)
-            {
-                <li>@Html.ActionLink(Resource.DropWater, "DropWater", "Log")</li>
             }
         </ul>
     }

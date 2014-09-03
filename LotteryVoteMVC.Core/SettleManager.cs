@@ -275,11 +275,14 @@ namespace LotteryVoteMVC.Core
                     var shareWl = results.Find(it => it.UserId == child.User.ParentId);
                     wl.User = shareWl.User;
                     wl.ShareRate = shareWl.User.UserInfo.RateGroup.ShareRate;
+                    wl.ShareRateWL = shareWl;
                     wlDict[child.User.ParentId] = wl;
                 }
                 wl.OrderCount += child.OrderCount;
                 wl.BetTurnover += child.BetTurnover;
                 wl.WinLost += child.WinLost;
+                wl.CompanyWL += child.CompanyWL;
+                wl.ShareRateWL.CompanyWL += child.CompanyWL;
                 wl.TotalCommission += child.ParentCommission.Where(it => it.Role == wl.User.Role).Sum(it => it.Commission);
                 wl.TotalWinLost = wl.TotalCommission + wl.WinLost;
                 SumParentCommission(wl, child.ParentCommission.Where(it => it.Role < wl.User.Role));
@@ -326,9 +329,10 @@ namespace LotteryVoteMVC.Core
                 wl.ShareRate = result.User.UserInfo.RateGroup.ShareRate;
                 wl.OrderCount = result.OrderCount;
                 wl.BetTurnover = result.SumTurnover;
-                wl.TotalWinLost = result.TotalWinLost;
-                wl.WinLost = result.MemberWinLost;
+                wl.TotalWinLost = result.SumWinLost;
+                wl.WinLost = result.SumWinLost - result.Commission;
                 wl.TotalCommission = result.Commission;
+                decimal superComm = 0;
                 List<MemberWLParentCommission> parentComms = new List<MemberWLParentCommission>();
                 for (int i = (int)Role.Company; i < (int)Role.Guest; i++)
                 {
@@ -338,8 +342,13 @@ namespace LotteryVoteMVC.Core
                     comm.RoleId = i;
                     comm.Commission = UserBetOrderDic[result.User.UserId].Select(it => GetOAC(it.OrderId, (Role)i).CommAmount).Sum();
                     parentComms.Add(comm);
+                    if (i == (int)Role.Super)
+                        superComm = comm.Commission;
                 }
                 wl.ParentCommission = parentComms;
+                //公司输赢=（会员总输赢-会员佣金+super佣金）*（1-会员分成）
+                wl.CompanyWL = (wl.WinLost + superComm) * (decimal)(1 - wl.ShareRate);
+                result.CompanyWL = wl.CompanyWL;
                 list.Add(wl);
             }
             return list;
@@ -775,6 +784,8 @@ namespace LotteryVoteMVC.Core
                     wl.BetTurnover += wlItem.BetTurnover;
                     wl.TotalCommission += wlItem.TotalCommission;
                     wl.WinLost += wlItem.WinLost;
+                    wl.TotalWinLost += wlItem.TotalWinLost;
+                    wl.CompanyWL += wlItem.CompanyWL;
                 }
             }
             return list;
@@ -798,6 +809,7 @@ namespace LotteryVoteMVC.Core
                     wl.OrderCount += wlItem.OrderCount;
                     wl.BetTurnover += wlItem.BetTurnover;
                     wl.WinLost += wlItem.WinLost;
+                    wl.CompanyWL += wlItem.CompanyWL;
                     wl.TotalComm += wlItem.TotalComm;
                     wl.TotalWinLost += wlItem.TotalWinLost;
                 }

@@ -81,7 +81,7 @@
             </td>
             <td>@Resource.AvailableGivenCredit
             </td>
-            @if (ViewBag.User.Role < Role.Agent)
+            @if (ViewBag.Matrix.Role == Role.Company)
             {
                 <td>@Resource.ShareRate
                 </td>
@@ -122,7 +122,7 @@
             </td>
             <td>@user.UserInfo.AvailableGivenCredit.ToString("N")
             </td>
-            @if (ViewBag.User.Role < Role.Agent)
+            @if (ViewBag.Matrix.Role == Role.Company)
             {
                 <td>@string.Format("{0:P0}", user.UserInfo.RateGroup.ShareRate)
                 </td>
@@ -142,7 +142,7 @@
                     <span>/</span>
                     <a class="edit" href="javascript:editLimit(@user.UserId,'@user.UserName')">@Resource.Limit</a> 
                 }
-                @if (ViewBag.Matrix.Role == Role.Company)
+                @if (ViewBag.Matrix.Role == Role.Company && user.Role != Role.Shadow)
                 {
                     <span>/</span>
                     <a target="_blank" href="/DropWater/UserBetAuto/@user.UserId">连注</a>

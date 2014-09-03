@@ -145,9 +145,12 @@
             <td class="rows">
                 @Resource.Name
             </td>
+            @if (LoginCenter.CurrentUser.Role == Role.Company)
+            {
             <td class="rows">
                 @Resource.ShareRate
             </td>
+            }
             <td class="rows">
                 @Resource.BetCount
             </td>
@@ -163,7 +166,7 @@
             <td class="rows">
                 @Resource.WinLost
             </td>
-            @for (int i = (int)TargetUser.Role; i >= (int)TargetUser.Role; i--)
+            @for (int i = (int)TargetUser.Role; i >= (int)ViewBag.CurrentUser.Role; i--)
             {
                 agentComm.Add(i, 0);
                 <td class="rows">
@@ -192,9 +195,12 @@
                 <td>
                     @result.User.UserInfo.Name
                 </td>
+                @if (LoginCenter.CurrentUser.Role == Role.Company)
+                {
                 <td>
                     @result.ShareRate.ToString("P0")
                 </td>
+                }
                 <td>
                     @result.OrderCount
                 </td>

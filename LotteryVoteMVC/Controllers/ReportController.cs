@@ -62,6 +62,7 @@ namespace LotteryVoteMVC.Controllers
             var fromDate = GetReportDate(this.FromDate());
             var toDate = GetReportDate(this.ToDate());
             var wl = SettleManager.ListMemberWinLost(targetUser, fromDate, toDate);
+            ViewBag.CurrentUser = MatrixUser;
             ViewBag.User = targetUser;
             ViewBag.From = fromDate;
             ViewBag.To = toDate;

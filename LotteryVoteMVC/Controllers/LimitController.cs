@@ -164,7 +164,7 @@ namespace LotteryVoteMVC.Controllers
             else
             {
                 User user = UserManager.GetUser(Id);
-                if (!EditCompanySelf(user) && (user == null || user.ParentId != MatrixUser.UserId))     //只有父级用户才能修改下级的佣金
+                if (!EditCompanySelf(user) && (user == null || user.ParentId != MatrixUser.UserId) && MatrixUser.Role != Role.Company)     //只有父级用户才能修改下级的佣金
                     throw new NoPermissionException("Edit BetLimit");
                 UserLimitManager.UpdateBetLimit(user, model);
                 ActionLogger.Log(CurrentUser, user, LogResources.UpdateUserBetLimit, LogResources.GetUpdateUserBetLimit(user.UserName));
@@ -186,7 +186,7 @@ namespace LotteryVoteMVC.Controllers
             else
             {
                 User user = UserManager.GetUser(Id);
-                if (!EditCompanySelf(user) && (user == null || user.ParentId != MatrixUser.UserId))     //只有父级用户才能修改下级的佣金
+                if (!EditCompanySelf(user) && (user == null || user.ParentId != MatrixUser.UserId) && MatrixUser.Role != Role.Company)     //只有父级用户才能修改下级的佣金
                     throw new NoPermissionException("更改用户游戏限制");
                 UserLimitManager.UpdateGameLimit(user, companyType, model);
                 ActionLogger.Log(CurrentUser, user, LogResources.UpdateUserGameLimit, LogResources.GetUpdateUserGameLimit(user.UserName));

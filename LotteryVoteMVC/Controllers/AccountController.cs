@@ -60,6 +60,7 @@ namespace LotteryVoteMVC.Controllers
             var childs = UserManager.GetChilds(MatrixUser).Where(it => it.UserInfo.State == UserState.Active);
             ViewBag.Matrix = MatrixUser;
             ViewBag.User = MatrixUser;
+            ViewBag.CurrentUser = CurrentUser;
             ViewBag.Family = new[] { MatrixUser };
             return View(childs);
         }
@@ -95,6 +96,7 @@ namespace LotteryVoteMVC.Controllers
             var shadows = UserManager.GetShadows(target);
             ViewBag.User = target;
             ViewBag.Matrix = MatrixUser;
+            ViewBag.CurrentUser = CurrentUser;
             ViewBag.IsShadow = true;
             return View("Index", shadows);
         }
@@ -110,6 +112,7 @@ namespace LotteryVoteMVC.Controllers
             string sortField = collect["LastLoginTime"];
             ViewBag.User = parent;
             ViewBag.Matrix = MatrixUser;
+            ViewBag.CurrentUser = CurrentUser;
             var result = shadow ?
                 UserManager.GetShadowByCondition(username, name, state, sortField, MatrixUser) :
                 UserManager.GetUserByCondition(username, name, state, sortField, parent);

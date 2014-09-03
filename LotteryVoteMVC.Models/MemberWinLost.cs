@@ -18,6 +18,7 @@ namespace LotteryVoteMVC.Models
         public const string TOTALWINLOST = "TotalWinLost";
         public const string TOTALCOMMISSION = "TotalCommission";
         public const string WINLOST = "WinLost";
+        public const string COMPANYWL = "CompanyWL";
         public const string CREATETIME = "CreateTime";
 
         public DataRow DataRow { get; set; }
@@ -30,6 +31,7 @@ namespace LotteryVoteMVC.Models
         public decimal TotalWinLost { get; set; }
         public decimal TotalCommission { get; set; }
         public decimal WinLost { get; set; }
+        public decimal CompanyWL { get; set; }
         public DateTime CreateTime { get; set; }
         private User _user;
         /// <summary>
@@ -51,10 +53,17 @@ namespace LotteryVoteMVC.Models
                 _user = value;
             }
         }
+        /// <summary>
+        /// 计算报表的时候tmp临时存放，避免反复查找
+        /// </summary>
+        /// <value>
+        /// The share rate WL.
+        /// </value>
+        public ShareRateWL ShareRateWL { get; set; }
         public IEnumerable<MemberWLParentCommission> ParentCommission { get; set; }
     }
 
-    public class MemberWLParentCommission 
+    public class MemberWLParentCommission
     {
         public const string TABLENAME = "tb_MemberParentCommission";
         public const string ID = "Id";

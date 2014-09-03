@@ -76,7 +76,7 @@
                         }
                     }
                     <td>
-                        @if (this.HasRight((Role)ViewBag.Role - 1, "LimitController", "BetLimit") || (LoginCenter.CurrentUser.Role == Role.Company && ViewBag.Role == Role.Company))
+                        @if (this.HasRight((Role)ViewBag.Role - 1, "LimitController", "BetLimit") || LoginCenter.CurrentUser.Role == Role.Company )
                         {
                             <input type="submit" name="sub_limit" name="sub_limit" value="@Resource.Save" />
                         }
@@ -286,7 +286,7 @@
                         }
                         
                         <td>
-                            @if (this.HasRight((Role)ViewBag.Role - 1, "LimitController", "BetLimit") || (LoginCenter.CurrentUser.Role == Role.Company && ViewBag.Role == Role.Company))
+                            @if (this.HasRight((Role)ViewBag.Role - 1, "LimitController", "BetLimit") || LoginCenter.CurrentUser.Role == Role.Company)
                             {
                                 <input type="submit" name="gameSub" id="gameSub" value="@Resource.Save" />
                             }

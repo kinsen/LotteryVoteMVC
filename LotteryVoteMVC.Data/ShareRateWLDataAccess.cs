@@ -20,6 +20,7 @@ namespace LotteryVoteMVC.Data
             dt.Columns.Add(ShareRateWL.ORDERCOUNT, typeof(int));
             dt.Columns.Add(ShareRateWL.BETTURNOVER, typeof(decimal));
             dt.Columns.Add(ShareRateWL.WINLOST, typeof(decimal));
+            dt.Columns.Add(ShareRateWL.COMPANYWL, typeof(decimal));
             dt.Columns.Add(ShareRateWL.TOTALCOMM, typeof(decimal));
             dt.Columns.Add(ShareRateWL.TOTALWINLOST, typeof(decimal));
             foreach (var result in results)
@@ -32,6 +33,7 @@ namespace LotteryVoteMVC.Data
                 row[ShareRateWL.ORDERCOUNT] = result.OrderCount;
                 row[ShareRateWL.BETTURNOVER] = result.BetTurnover;
                 row[ShareRateWL.WINLOST] = result.WinLost;
+                row[ShareRateWL.COMPANYWL] = result.CompanyWL;
                 row[ShareRateWL.TOTALCOMM] = result.TotalComm;
                 row[ShareRateWL.TOTALWINLOST] = result.TotalWinLost;
                 dt.Rows.Add(row);

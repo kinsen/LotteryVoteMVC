@@ -423,6 +423,15 @@ namespace LotteryVoteMVC.Core
         #endregion
 
         #region Sheets
+        public PagedList<NumAmountRanking> GetNumAmountRanking(int companyId, int gpwId, string num, int pageIndex)
+        {
+            int start = (pageIndex - 1) * pageSize + 1;
+            int end = pageIndex * pageSize;
+            return
+                new PagedList<NumAmountRanking>(DaOrder.GetNumAmountRankings(companyId, gpwId, num, start, end), pageIndex, pageSize,
+                DaOrder.CountNumAmountRanking(companyId, gpwId, num));
+
+        }
         public PagedList<BetSheet> GetTodaySheets(User user, BetStatus status, string num, int pageIndex)
         {
             int start = (pageIndex - 1) * pageSize + 1;

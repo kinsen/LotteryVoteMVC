@@ -25,25 +25,25 @@
 }
 @{
     var supportPlayWay = new[] { PlayWay.Head, PlayWay.Last, PlayWay.Roll };
-    Func<IDictionary<int, List<BetNumContent>>, MvcHtmlString> GetAmountHtml = (contentDic) =>
+    Func<BetNumInfo, MvcHtmlString> GetAmountHtml = (betNum) =>
         {
-            string htmlFormat = "<td>{0:N}</td>";
+            string htmlFormat = "<td><a class='showDetail' company={4} pw={5} gpw={2} num={3} href='/Report/NumAmountRankingDetails?CompanyId={1}&GPWId={2}&Num={3}'>{0:N}</a></td>";
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             foreach (LotteryCompany company in ViewBag.Companys)
             {
-                if (!contentDic.ContainsKey(company.CompanyId))
+                if (!betNum.Contents.ContainsKey(company.CompanyId))
                 {
                     for (int i = 0; i < 3; i++)
-                        sb.AppendFormat(htmlFormat, 0);
+                        sb.AppendFormat("<td>{0:N}</td>", 0);
                 }
                 else
                 {
-                    var numContent = contentDic[company.CompanyId].OrderBy(it => it.GamePlayWayId);
+                    var numContent = betNum.Contents[company.CompanyId].OrderBy(it => it.GamePlayWayId);
                     foreach (var pw in supportPlayWay)
                     {
 
                         var nc = numContent.Find(it => LotteryVoteMVC.Core.Application.LotterySystem.Current.FindGamePlayWay(it.GamePlayWayId).PlayWay == pw);
-                        sb.AppendFormat(htmlFormat, nc == null ? 0 : nc.Amount);
+                        sb.AppendFormat(htmlFormat, nc == null ? 0 : nc.Amount, company.CompanyId, nc.GamePlayWayId, betNum.Num, company.Abbreviation, Resource.ResourceManager.GetString(pw.ToString()));
                     }
                 }
             }
@@ -100,9 +100,22 @@
                 <td>
                     <strong>@item.Amount.ToString("N")</strong>
                 </td>
-                @GetAmountHtml(item.Contents)
+                @GetAmountHtml(item)
             </tr>
         }
     </tbody>
 </table>
 @Html.Pager(Model)
+<script type="text/javascript">
+    $(function () {
+        $(".showDetail").click(function () {
+            var $this = $(this);
+            var company = $this.attr("company");
+            var gpw = $this.attr("gpw");
+            var pw = $this.attr("pw");
+            var num = $this.attr("num");
+            buildFrame("showDetail{0}{1}".format(company, gpw), 600, 800, $this.attr("href"), "{0} {1} {2}".format(company, pw, num), null, false, true);
+            return false;
+        });
+    });
+</script>

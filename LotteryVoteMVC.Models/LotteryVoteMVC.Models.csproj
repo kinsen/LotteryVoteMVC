@@ -52,6 +52,7 @@
     <Compile Include="Bet\BetResult.cs" />
     <Compile Include="Bet\BetSheet.cs" />
     <Compile Include="Bet\FastBetItem.cs" />
+    <Compile Include="Bet\NumAmountRanking.cs" />
     <Compile Include="Bet\OrderAncestorCommInfo.cs" />
     <Compile Include="Bulletin.cs" />
     <Compile Include="Commission\CommissionGroup.cs" />

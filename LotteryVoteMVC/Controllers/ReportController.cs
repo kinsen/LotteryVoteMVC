@@ -185,6 +185,14 @@ namespace LotteryVoteMVC.Controllers
             var result = OrderManager.GetTodayMaxAmountNum(MatrixUser, CurrentPage, GameType.ThreeDigital);
             return View("NumAmountRanking", result);
         }
+
+        [AgentAuthorize(UserState.Active)]
+        public ActionResult NumAmountRankingDetails(int CompanyId, int GPWId, string Num)
+        {
+            var result = OrderManager.GetNumAmountRanking(CompanyId, GPWId, Num, CurrentPage);
+            return View("NumAmountRankingDetails", result);
+        }
+
         [AgentAuthorize(UserState.Active)]
         public ActionResult EachLevel(int? RoleId, int? UserId)
         {

@@ -59,5 +59,14 @@ WHERE UR.{4}=@{4} AND (CONVERT(char(10),SR.{5},120) BETWEEN CONVERT(char(10),@Fr
                 new SqlParameter("FromDate", fromDate),
                 new SqlParameter("ToDate", toDate));
         }
+
+        public int CountSettleCountByCompany(int companyId, DateTime date)
+        {
+            string sql = string.Format(@"SELECT COUNT(0) FROM {0} WHERE {1}=@{1} AND CONVERT(char(10),{2},120)=CONVERT(char(10),@{2},120)",
+                ShareRateWL.TABLENAME, ShareRateWL.COMPANYID, ShareRateWL.CREATETIME);
+            object count = base.ExecuteScalar(sql, new SqlParameter(ShareRateWL.COMPANYID, companyId),
+                new SqlParameter(ShareRateWL.CREATETIME, date));
+            return Convert.ToInt32(count);
+        }
     }
 }

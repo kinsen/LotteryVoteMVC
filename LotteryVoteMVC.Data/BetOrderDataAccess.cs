@@ -202,9 +202,15 @@ WHERE RowNumber BETWEEN {7} AND {8}", BetOrder.TABLENAME, BetSheet.TABLENAME, Be
             return base.ExecuteList<BetOrder>(sql, new SqlParameter(BetSheet.USERID, userId),
                 new SqlParameter(BetOrder.CREATETIME, date));
         }
-        public IEnumerable<NumAmountRanking> GetNumAmountRankings(int companyId, int gpwId, string num, int startRow, int endRow)
+        public IEnumerable<NumAmountRanking> GetNumAmountRankings(int userId, int companyId, int gpwId, string num, int startRow, int endRow)
         {
-            string sql = string.Format(@"SELECT * FROM 
+            string sql = string.Format(@";WITH USERTABLE AS
+	(
+		SELECT * FROM tb_User  WHERE {4}=@{4}
+		UNION ALL
+		SELECT B.* FROM tb_User AS B,USERTABLE AS C WHERE B.parentId=C.UserId and B.UserId>C.UserId
+	)
+SELECT * FROM 
 (
      SELECT ROW_NUMBER() OVER(ORDER BY SUM(bo.Amount) desc) AS RowNumber,u.UserName,SUM(bo.Amount) AS Amount 
      FROM {0} bo
@@ -214,11 +220,12 @@ WHERE RowNumber BETWEEN {7} AND {8}", BetOrder.TABLENAME, BetSheet.TABLENAME, Be
      and bo.CompanyId=@CompanyId and bo.GamePlayWayId=@GamePlayWayId and bo.Num=@Num
      group by u.UserName
 ) T
-WHERE RowNumber BETWEEN {5} AND {6}", BetOrder.TABLENAME, BetSheet.TABLENAME, BetSheet.SHEETID, User.TABLENAME, User.USERID, startRow, endRow);
+WHERE RowNumber BETWEEN {5} AND {6}", BetOrder.TABLENAME, BetSheet.TABLENAME, BetSheet.SHEETID, "USERTABLE", User.USERID, startRow, endRow);
 
             return ExecuteList<NumAmountRanking>(sql, new SqlParameter("CompanyId", companyId),
                 new SqlParameter("GamePlayWayId", gpwId),
-                new SqlParameter("Num", num));
+                new SqlParameter("Num", num),
+                new SqlParameter("UserId", userId));
         }
         public IEnumerable<BetOrder> GetOrders(int userId, int companyId, BetStatus status, DateTime date)
         {
@@ -606,19 +613,26 @@ where bo.{8}=@{8} and CONVERT(char(10),bs.{9},120) BETWEEN CONVERT(char(10),@{10
             object count = base.ExecuteScalar(sql, paramList.ToArray());
             return Convert.ToInt32(count);
         }
-        public int CountNumAmountRanking(int companyId, int gpwId, string num)
+        public int CountNumAmountRanking(int userId, int companyId, int gpwId, string num)
         {
-            string sql = string.Format(@"SELECT COUNT(distinct bs.UserId)
+            string sql = string.Format(@";WITH USERTABLE AS
+	(
+		SELECT * FROM tb_User  WHERE {3}=@{3}
+		UNION ALL
+		SELECT B.* FROM tb_User AS B,USERTABLE AS C WHERE B.parentId=C.UserId and B.UserId>C.UserId
+	)
+SELECT COUNT(distinct bs.UserId)
      FROM {0} bo
      join {1} bs on bs.{2}=bo.{2}
-     join {3} u on u.{4}=bs.{4}
+     join USERTABLE u on u.{3}=bs.{3}
      where CAST(bs.CreateTime as DATE)=CAST(GETDATE() AS DATE) and bs.Status=1
      and bo.CompanyId=@CompanyId and bo.GamePlayWayId=@GamePlayWayId and bo.Num=@Num
-     ", BetOrder.TABLENAME, BetSheet.TABLENAME, BetSheet.SHEETID, User.TABLENAME, User.USERID);
+     ", BetOrder.TABLENAME, BetSheet.TABLENAME, BetSheet.SHEETID, User.USERID);
 
             object count = ExecuteScalar(sql, new SqlParameter("CompanyId", companyId),
                 new SqlParameter("GamePlayWayId", gpwId),
-                new SqlParameter("Num", num));
+                new SqlParameter("Num", num),
+                new SqlParameter("UserId", userId));
             return Convert.ToInt32(count);
         }
         public int CountMaxAmountOrderByNum(int userId, int[] gameplayways, BetStatus invalidStatus, DateTime date)

@@ -14,7 +14,7 @@
     padding-bottom: 3000px;
     float: left;
     width: 150px;
-    background: #c83335;
+    background: #45648A;
 }
 .bet-main
 {
@@ -57,7 +57,7 @@
 {
     font: bold 11px Arial;
     color: white;
-    background: #c83335 url(images/nut.png) no-repeat 5px 2px;
+    background: #45648A url(images/nut.png) no-repeat 5px 2px;
     margin-bottom: 0;
     text-transform: uppercase;
     padding: 2px 0 2px 20px;
@@ -82,7 +82,7 @@
     color: #f5ed14;
     display: block;
     padding: 0px 0 0px 20px;
-    background: #c83335 url(images/arr.png) no-repeat 7px 4px;
+    background: #45648A url(images/arr.png) no-repeat 7px 4px;
 }
 
 .urbangreymenu ul li a:visited

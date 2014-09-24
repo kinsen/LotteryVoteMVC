@@ -1,4 +1,4 @@
-﻿div.betBar{height: 108px; width: 100%; background: url(Images/betBarBg.gif);  overflow: hidden}
+﻿div.betBar{height: 108px; width: 100%; background: url(Images/betBarBg.gif);  overflow: hidden;padding-bottom:10px}
 .main #amountBoard
 {
     float: left;
@@ -7,6 +7,8 @@
     height:109px;
     width: 330px;
     background:url(Images/betBoardBg.gif);
+    margin-top:5px;
+    margin-left:5px;
 }
 #amountBoard #date
 {

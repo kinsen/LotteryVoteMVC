@@ -189,7 +189,7 @@ namespace LotteryVoteMVC.Controllers
         [AgentAuthorize(UserState.Active)]
         public ActionResult NumAmountRankingDetails(int CompanyId, int GPWId, string Num)
         {
-            var result = OrderManager.GetNumAmountRanking(CompanyId, GPWId, Num, CurrentPage);
+            var result = OrderManager.GetNumAmountRanking(MatrixUser, CompanyId, GPWId, Num, CurrentPage);
             return View("NumAmountRankingDetails", result);
         }
 

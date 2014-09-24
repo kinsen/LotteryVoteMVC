@@ -43,7 +43,10 @@
                     {
 
                         var nc = numContent.Find(it => LotteryVoteMVC.Core.Application.LotterySystem.Current.FindGamePlayWay(it.GamePlayWayId).PlayWay == pw);
-                        sb.AppendFormat(htmlFormat, nc == null ? 0 : nc.Amount, company.CompanyId, nc.GamePlayWayId, betNum.Num, company.Abbreviation, Resource.ResourceManager.GetString(pw.ToString()));
+                        if (nc != null)
+                            sb.AppendFormat(htmlFormat, nc == null ? 0 : nc.Amount, company.CompanyId, nc.GamePlayWayId, betNum.Num, company.Abbreviation, Resource.ResourceManager.GetString(pw.ToString()));
+                        else
+                            sb.AppendFormat("<td>{0:N}</td>", 0);
                     }
                 }
             }

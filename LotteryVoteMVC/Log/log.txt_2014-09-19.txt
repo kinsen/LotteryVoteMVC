@@ -1,4 +1,4 @@
-2014-09-24 22:43:30,867 [8] 反序列化公告 ERROR 
+2014-09-18 20:44:11,873 [8] 反序列化公告 ERROR 
 System.IO.FileNotFoundException: 未能找到文件“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”。
 文件名:“E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC\Config\bulletin.config”
    在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)

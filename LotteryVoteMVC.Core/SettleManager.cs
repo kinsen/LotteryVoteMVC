@@ -157,7 +157,8 @@ namespace LotteryVoteMVC.Core
         /// </returns>
         public bool CanSettle(int companyId)
         {
-            return DaSettle.CountSettleCountByCompany(companyId, DateTime.Today) == 0;
+            //return DaSettle.CountSettleCountByCompany(companyId, DateTime.Today) == 0;
+            return DaShareRateWL.CountSettleCountByCompany(companyId, DateTime.Today) == 0;
         }
         /// <summary>
         /// 结算指定公司注单

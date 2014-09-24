@@ -49,7 +49,8 @@ div .header
     height: 102px;
     min-width: 990px;
     width: 100%;
-    background: url("../../images/banner.gif") no-repeat;
+    background: url("../../images/banner.jpg") no-repeat;
+    background-color:#3392e4;
 }
 marquee
 {
@@ -66,13 +67,13 @@ div .main
     display:block;
     overflow: hidden;
 }
-span#logo{width:147px; height:62px; display:block; position:absolute; left:80px; top:30px; }
+span#logo{width:147px; height:62px; display:block; position:absolute; left:80px; top:30px; display:none}
 .menubar
 {
     width: 100%;
     height: 39px;
     line-height:20px;
-    background: url(../../Images/menuBG.gif); /*     background: #6D6E70;*/
+    background: url(../../Images/bg-main-navigation.png); /*     background: #6D6E70;*/
 }
 .menubar ul
 {
@@ -183,7 +184,7 @@ div.language
 .flag
 {
     width: 75px;
-    height: 55px;
+    height: 50px;
     display: block;
     float: left;
     margin: 0px 5px;

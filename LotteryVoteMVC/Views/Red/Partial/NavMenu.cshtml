@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "NavMenu";
     var controller = ViewContext.RouteData.Values["controller"].ToString();
+    var action = ViewContext.RouteData.Values["action"].ToString();
+    var sheetNav = new[] { "CompanyAmountRanking", "NumAmountRanking", "ThreeDNumAmountRanking", "Cancel", "EachLevel" };
 }
 <div id="menubar" class="menubar">
     <ul id="menus" class="menus">
@@ -75,7 +77,7 @@
             <li>@Html.ActionLink(Resource.SubUser, "Shadow", "Account")</li>
         </ul>
     }
-    else if (controller == "Report")
+    else if (controller == "Report" && !sheetNav.Contains(action))
     {
         <ul class="menus">
             @if (Model.Role == Role.Company)
@@ -84,7 +86,7 @@
             }
         </ul>
     }
-    else if (controller == "Sheet")
+    else if (controller == "Sheet" || (controller == "Report" && sheetNav.Contains(action)))
     { 
         <ul class="menus">
             @if (Model.Role == Role.Company)

@@ -105,19 +105,13 @@
 <div id="searchBar">
     @using (Html.BeginForm())
     {
-        if (LoginCenter.CurrentUser.Role == Role.Company)
-        {
+        
         <span>@Resource.From</span>
         @Html.TextBox("FromDate", DateTime.Today.ToShortDateString())
         <span>@Resource.To</span>
         @Html.TextBox("ToDate", DateTime.Today.ToShortDateString())
         <input type="submit" name="search" id="search" value="@Resource.Search" />
-        }
-        else
-        { 
-        @Html.Hidden("FromDate", DateTime.Today.ToShortDateString())
-        @Html.Hidden("ToDate", DateTime.Today.ToShortDateString())
-        }
+        
         <input type="button" name="today" id="today" value="@Resource.Today" />
         <input type="button" name="yesterday" id="yesterday" value="@Resource.Yesterday" />
         <input type="button" name="thisweek" id="thisweek" value="@Resource.ThisWeek" />

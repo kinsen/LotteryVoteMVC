@@ -12,8 +12,9 @@
 }
 #amountBoard #date
 {
-    width: 100%; /*background: #CACACC;*/
-    color: #FFAB63;
+    width: 100%;
+    margin-top:10px;
+    margin-left:10px;
     font-weight: bold;
 }
 #amountBoard #date span
@@ -22,13 +23,13 @@
     }
 #amountBoard #timeBar{width:260px; text-align:center;padding:5px 0px;}
 #amountBoard #currentTime{width: 170px;font-size: 20px; color: #fff; text-align:center}
-#amountBoard .abMount{color:#fff; font-size:14px; margin-top:5px; width:250px;}
+#amountBoard .abMount{color:#fff; font-size:14px; margin-top:5px;margin-left:10px; width:250px;}
 .abMount #outstanding{float:right; color:#DFAA06;}
 .abMount #betCredit{float:right; color:#DFAA06;}
 #openCompany{float: left; height: 97px; margin-left: 5px; color: #000; font-weight:bold}
 #openCompany span{color:#FC6E02;}
-.main #command .bigSubmit{width:170px; height:29px; background:url(images/button_on.gif);border:none; color:#fff;}
-.main #command .bigReset{width:170px; height:29px; background:url(images/button_down.gif);border:none; color:#fff;}
+.main #command .bigSubmit{width:170px; height:29px; background:url(images/button_on_green.gif);border:none; color:#fff;}
+.main #command .bigReset{width:170px; height:29px; background:url(images/button_down_red.gif);border:none; color:#fff;}
 .main #command
 {
     width: 350px;

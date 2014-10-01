@@ -88,6 +88,9 @@ span#logo{width:147px; height:62px; display:block; position:absolute; left:80px;
     border-right: dotted 1px #C41719;
     z-index: 999;
 }
+#menus li a{color:#fff;}
+#menus li.current a,#menus li a:hover{background-color: #768596;padding: 8px 20px;}
+
 .menubar ul.menus li a
 {
     padding: 9px 20px;
@@ -174,12 +177,13 @@ div#userInfo
 {
     float:left;
     padding-left: 10px;
-    color:#000;
+    color:#fff;
 }
 div#userInfo span{display:block;}
 div.language
 {
     float:left;
+    color:#fff;
 }
 .flag
 {

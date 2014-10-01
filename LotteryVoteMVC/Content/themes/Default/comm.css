@@ -96,7 +96,7 @@ span#logo{width:147px; height:62px; display:block; position:absolute; left:80px;
 background-image: none;
 }
 #menus li a{color:#fff;}
-#menus li a:hover{background-color: #768596;padding: 8px 20px;}
+#menus li.current a,#menus li a:hover{background-color: #768596;padding: 8px 20px;}
 .menubar ul.menus li a
 {
     padding: 9px 20px;

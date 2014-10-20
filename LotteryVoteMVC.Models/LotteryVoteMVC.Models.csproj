@@ -71,6 +71,7 @@
     <Compile Include="Log\ActionLog.cs" />
     <Compile Include="Log\SystemError.cs" />
     <Compile Include="MemberWinLost.cs" />
+    <Compile Include="OutCome.cs" />
     <Compile Include="RollbackAmount.cs" />
     <Compile Include="SettleResult.cs" />
     <Compile Include="ShareRateWL.cs" />

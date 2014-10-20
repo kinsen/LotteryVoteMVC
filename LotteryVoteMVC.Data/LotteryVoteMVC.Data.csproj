@@ -73,6 +73,7 @@
     <Compile Include="MemberWinLostDataAccess.cs" />
     <Compile Include="NumLengthDataAccess.cs" />
     <Compile Include="OrderAncestorCommInfoDataAccess.cs" />
+    <Compile Include="OutcomeDataAccess.cs" />
     <Compile Include="RollbackAmountDataAccess.cs" />
     <Compile Include="SettleResultDataAccess.cs" />
     <Compile Include="ShadowAuthorizeActionDataAccess.cs" />

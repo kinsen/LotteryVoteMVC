@@ -9,13 +9,15 @@
 </head>
 <body>
     <center>
+        <div style="background:url(@Url.Content("~/Content/Images/no.gif")) no-repeat;width:800px;height:600px;margin-top:50px">
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
         <h1>
-            <span style="text-decoration: none; color: Green">@Resource.NoPermission</span>
+            <span style="text-decoration: none; color: #fff">@Resource.NoPermission</span>
         </h1>
         <h5>
-            <a href="/">首页</a> <a href="@((Request.UrlReferrer ?? Request.Url).ToString())">
+            <a style="color:#fff" href="/">首页</a> <a style="color:#fff" href="@((Request.UrlReferrer ?? Request.Url).ToString())">
                 上一页</a></h5>
-        <img src="@Url.Content("~/Content/Images/no.jpg")" />
+        </div>
     </center>
 </body>
 </html>

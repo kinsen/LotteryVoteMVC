@@ -5,3 +5,10 @@ E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\log4net.dll
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\log4net.xml
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Debug\LotteryVoteMVC.Utility.dll
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Debug\LotteryVoteMVC.Utility.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\LotteryVoteMVC.Utility.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\LotteryVoteMVC.Utility.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\log4net.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\bin\Debug\log4net.xml
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Debug\ResolveAssemblyReference.cache
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Debug\LotteryVoteMVC.Utility.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Utility\obj\Debug\LotteryVoteMVC.Utility.pdb

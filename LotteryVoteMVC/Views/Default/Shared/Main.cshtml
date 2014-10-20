@@ -56,9 +56,12 @@
                         <div class="langDesc">
                             <span>中文</span><span>Việt</span><span>English</span></div>
                     </div>
-                    @{ var list = LotteryVoteMVC.Helpers.ThemeHelper.GetSelectedList(ViewContext.RequestContext.HttpContext.Items["themeName"].ToString());
-}
-                    @Html.DropDownList("Theme", list)
+                    @if (controller.CurrentUser.Role == LotteryVoteMVC.Models.Role.Guest)
+                    {
+                        var list = LotteryVoteMVC.Helpers.ThemeHelper.GetSelectedList(ViewContext.RequestContext.HttpContext.Items["themeName"].ToString());
+
+                        @Html.DropDownList("Theme", list)
+                    }
                     <script language="javascript" type="text/javascript">
                         $(function () {
                             $('#Theme').change(function () {

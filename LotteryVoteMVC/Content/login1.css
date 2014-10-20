@@ -1,34 +1,38 @@
-﻿body{background:#2c8eea}
+﻿body{background:#244950}
 center div
 {
-    background: url(images/loginBG_blue.gif);
-    width: 990px;
+    margin-top:100px;
+    background: url(images/loginBG_Guest.jpg) no-repeat;
+    width: 1000px;
     height: 800px;
 }
 table
 {
     border: none;
-    top: 260px;
+    top: 150px;
     position: relative;
-    width:440px;
+    width:300px;
 }
 table th
 {
-    color: #2F6EB3;
+    color: #fff;
     font-size: 20px;
     text-align: left;
 }
 table td
 {
     text-align: left;
-    color: #fff;
+    color: #00ffff;
     font-weight: bold;
-    height: 36px;
 }
+table td label{min-width:50px;display:inline-block;}
 body table input[type='text'],body table  input[type='password']
 {
-    width: 85%;
-    *width:130px;
+    width: 254px;
+    height:44px;
+    border:none;
+    color:#fff;
+    background:url(images/login_input.png) no-repeat;
 }
 body pre
 {
@@ -46,15 +50,15 @@ body pre span.btn
     padding-right:2px;
     display:block;
     }
-body pre  input[type='submit']
+body input[type='submit'].login
 {
-    background: url(images/loginBtn_blue.gif);
-    height: 42px;
-    width: 153px;
+    background: url(images/login_btn.jpg);
+    height: 40px;
+    width: 251px;
     border: none;
     font-weight: bold;
-    color: #fff;
-    font-size: 25px;
+    color: #00ff00;
+    font-size: 16px;
 }
 select{width:97%;}
 dd{margin-left:40px; padding-top:0px;}

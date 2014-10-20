@@ -799,6 +799,33 @@ namespace LotteryVoteMVC.Resources {
         }
         
         /// <summary>
+        ///   查找类似 下级净金额 的本地化字符串。
+        /// </summary>
+        public static string JuniorNetAmount {
+            get {
+                return ResourceManager.GetString("JuniorNetAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下级总输赢 的本地化字符串。
+        /// </summary>
+        public static string JuniorTotalWinLost {
+            get {
+                return ResourceManager.GetString("JuniorTotalWinLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下级赢 的本地化字符串。
+        /// </summary>
+        public static string JuniorWin {
+            get {
+                return ResourceManager.GetString("JuniorWin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 尾 的本地化字符串。
         /// </summary>
         public static string Last {
@@ -957,6 +984,15 @@ namespace LotteryVoteMVC.Resources {
         public static string MemberGameLimit {
             get {
                 return ResourceManager.GetString("MemberGameLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 会员资料 的本地化字符串。
+        /// </summary>
+        public static string MemberInfo {
+            get {
+                return ResourceManager.GetString("MemberInfo", resourceCulture);
             }
         }
         
@@ -1245,6 +1281,15 @@ namespace LotteryVoteMVC.Resources {
         public static string OrderNum {
             get {
                 return ResourceManager.GetString("OrderNum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 输赢结果 的本地化字符串。
+        /// </summary>
+        public static string Outcome {
+            get {
+                return ResourceManager.GetString("Outcome", resourceCulture);
             }
         }
         

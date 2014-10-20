@@ -30,7 +30,7 @@
                 <table id="betTable" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
                     <tbody>
                         <tr>
-                            <td colspan="18" align="center" bgcolor="#FFFF99">
+                            <td colspan="18" align="center" bgcolor="#FFCC33">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
                                     <tbody>
                                         <tr>
@@ -43,7 +43,7 @@
                                                     <font><font>
                                                         <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
                                                     <font><font>
-                                                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                                                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command reset_btn"></font></font>
                                                 }
                                             </td>
                                         </tr>
@@ -207,13 +207,13 @@
     </tbody>
     <tfoot>
         <tr>
-            <th align="right" bgcolor="#FFFF99">
+            <th align="right" bgcolor="#FFCC33">
                 @using (Html.BeginForm("RollParlay", "Bet"))
                 {
                     <font><font>
                         <input type="submit" name="submit" value="@Resource.Submit" class="input-command"></font></font>
                     <font><font>
-                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command"></font></font>
+                        <input type="reset" name="cancel" value="@Resource.Reset" class="input-command reset_btn"></font></font>
                 }
             </th>
         </tr>

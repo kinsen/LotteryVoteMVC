@@ -23,7 +23,7 @@
     }
 #amountBoard #timeBar{width:260px; text-align:center;padding:5px 0px;}
 #amountBoard #currentTime{width: 170px;font-size: 20px; color: #fff; text-align:center}
-#amountBoard .abMount{color:#fff; font-size:14px; margin-top:5px;margin-left:10px; width:250px;}
+#amountBoard .abMount{color:#fff; font-size:14px; margin-left:10px; width:250px;}
 .abMount #outstanding{float:right; color:#DFAA06;}
 .abMount #betCredit{float:right; color:#DFAA06;}
 #openCompany{float: left; height: 97px; margin-left: 5px; color: #000; font-weight:bold}
@@ -58,7 +58,7 @@ tbody td.gameEnd
 }
 thead td
 {
-    background: #FAF5D7;
+    background: #ffcf31;
     text-align: center;
     color: #9A544C;
     height: 38px;
@@ -68,7 +68,7 @@ thead td
 tr#title td
 {
     background: url(images/shadow1.gif) repeat-x;
-    background-color:#FAF5D7;
+    background-color:#ffcf31;
     height: 25px;
     color: #000100;
     font-weight: bold;
@@ -107,7 +107,7 @@ tr.even td
 }
 tr td.roll7
 {
-    background-color:#F08A30;    
+    background-color:#73ae57;    
 }
 table#betTable tbody tr:hover td {background: #67ACE5;color: #fff;}
 .turnover

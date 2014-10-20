@@ -79,6 +79,7 @@ var selectNav = function () {
         "report:threednumamountranking": 3,
         "report:cancel": 3,
         "report:eachlevel": 3,
+        "report:outcome":4,
         "report:memberwinlost": 4,
         "report:shareratewl": 4,
         "limit:uppermonitor": 5,

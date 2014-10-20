@@ -9,3 +9,14 @@ E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\log4net.xml
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\ResolveAssemblyReference.cache
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.dll
 E:\ZhenCong\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Data.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Data.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Models.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Utility.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\log4net.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Models.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\LotteryVoteMVC.Utility.pdb
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\bin\Release\log4net.xml
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\ResolveAssemblyReference.cache
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.dll
+C:\Project\LotteryVoteMVC\LotteryVoteMVC.Data\obj\Release\LotteryVoteMVC.Data.pdb

@@ -17,7 +17,7 @@
     <script src="@Url.Content("~/Scripts/Customer/ajaxHelper.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Customer/loginBase.js")" type="text/javascript"></script>
     <link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/comm.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/red/comm.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/login2.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         var refreshVerifyCode = function () {
@@ -35,19 +35,20 @@
             {
                 <table>
                     <tr>
-                        <th colspan="4" style="height: 50px">
-                            @Login.AgentWelcomeString
-                        </th>
-                    </tr>
-                    <tr>
                         <td>
+                            <label>
                             @Login.UserNameLabel
+                            </label>
                         </td>
                         <td>
                             @Html.TextBoxFor(it => it.UserName)
                         </td>
+                    </tr>
+                    <tr>
                         <td>
+                            <label>
                             @Login.PasswordLabel
+                            </label>
                         </td>
                         <td>
                             @Html.PasswordFor(it => it.Password)
@@ -55,13 +56,19 @@
                     </tr>
                     <tr>
                         <td>
+                            <label>
                             @Login.LanguageLabel
+                            </label>
                         </td>
                         <td>
                             @Html.Partial("Language")
                         </td>
+                    </tr>
+                    <tr>
                         <td>
+                            <label>
                             @Login.VerifyCode
+                            </label>
                         </td>
                         <td>
                             @Html.TextBoxFor(it => it.VerifyCode, new { @class = "verifyCode", maxlength = 5 })
@@ -71,13 +78,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="height: 40px; text-align: center">
+                        <td></td>
+                        <td colspan="2">
+                        <br />
+                        <input type="submit" name="submit" class="shadow login" id="submit" value="@Login.LoginField" />
                         </td>
                     </tr>
                 </table>
-                <pre style="position: relative; top: 250px">
-                        <input type="submit" name="submit" class="shadow" id="submit" value="@Login.LoginField" />
-                </pre>
             }
         </div>
     </center>

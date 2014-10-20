@@ -804,4 +804,19 @@
   <data name="ShareWL" xml:space="preserve">
     <value>ShareWL</value>
   </data>
+  <data name="Outcome" xml:space="preserve">
+    <value>Outcome</value>
+  </data>
+  <data name="JuniorNetAmount" xml:space="preserve">
+    <value>JuniorNetAmount</value>
+  </data>
+  <data name="JuniorTotalWinLost" xml:space="preserve">
+    <value>JuniorTotalWL</value>
+  </data>
+  <data name="JuniorWin" xml:space="preserve">
+    <value>JuniorWin</value>
+  </data>
+  <data name="MemberInfo" xml:space="preserve">
+    <value>Member Info</value>
+  </data>
 </root>

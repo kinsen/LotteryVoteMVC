@@ -81,5 +81,6 @@ namespace LotteryVoteMVC.Models
                 _user = value;
             }
         }
+        public OutCome OutCome { get; set; }
     }
 }

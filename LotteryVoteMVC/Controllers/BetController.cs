@@ -76,12 +76,16 @@ namespace LotteryVoteMVC.Controllers
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
         public ActionResult MultiD(CompanyType? type)
         {
+            if (Theme != "Red")
+                return Redirect("/Bet");
             return this.Index(type);
         }
 
         [UserAuthorize(UserState.Active, Role.Guest)]
         public ActionResult FastBet2D()
         {
+            if (Theme != "Default")
+                return Redirect("/Bet");
             var companys = TodayLotteryCompany.Instance.GetOpenCompany();
             ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.Where(it => it.GameType == GameType.TwoDigital && it.PlayWay != PlayWay.Roll7);
             WriteCompanyNumLenToClient(companys);
@@ -100,6 +104,8 @@ namespace LotteryVoteMVC.Controllers
         [UserAuthorize(UserState.Active, Role.Guest)]
         public ActionResult FastBet3D()
         {
+            if (Theme != "Default")
+                return Redirect("/Bet");
             var companys = TodayLotteryCompany.Instance.GetOpenCompany();
             ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.Where(it => it.GameType == GameType.ThreeDigital && it.PlayWay != PlayWay.Roll7);
             WriteCompanyNumLenToClient(companys);
@@ -155,6 +161,8 @@ namespace LotteryVoteMVC.Controllers
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
         public ActionResult Roll7()
         {
+            if (Theme != "Default")
+                return Redirect("/Bet");
             var companys = TodayLotteryCompany.Instance.GetOpenCompany().Where(it => it.CompanyType != CompanyType.Hanoi);
             ViewBag.Regions = new[] { Region.South.ToString(), Region.Middle.ToString(), Region.North.ToString() };
             ViewBag.GamePlayWays = LotterySystem.Current.GamePlayWays.ToList();
@@ -174,6 +182,8 @@ namespace LotteryVoteMVC.Controllers
         [UserAuthorize(Models.UserState.Active, Role.Guest)]
         public ActionResult ABRollParlay()
         {
+            if (Theme != "Default")
+                return Redirect("/Bet");
             var openCompanys = TodayLotteryCompany.Instance.GetOpenCompany();
             var companys = TodayLotteryCompany.Instance.GetOpenCompany()
                 .Where(it => it.CompanyType == CompanyType.EighteenA).ToList();

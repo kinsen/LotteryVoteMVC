@@ -801,4 +801,19 @@
   <data name="ShareWL" xml:space="preserve">
     <value>分成输赢</value>
   </data>
+  <data name="JuniorNetAmount" xml:space="preserve">
+    <value>下级净金额</value>
+  </data>
+  <data name="JuniorTotalWinLost" xml:space="preserve">
+    <value>下级总输赢</value>
+  </data>
+  <data name="JuniorWin" xml:space="preserve">
+    <value>下级赢</value>
+  </data>
+  <data name="MemberInfo" xml:space="preserve">
+    <value>会员资料</value>
+  </data>
+  <data name="Outcome" xml:space="preserve">
+    <value>输赢结果</value>
+  </data>
 </root>

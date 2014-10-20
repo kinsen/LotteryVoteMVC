@@ -84,6 +84,21 @@ namespace LotteryVoteMVC.Controllers
             return View(wl);
         }
 
+        [AgentAuthorize(UserState.Active)]
+        public ActionResult OutCome(int? Id)
+        {
+            User targetUser;
+            if (!(Id.HasValue && UserManager.IsParent(MatrixUser.UserId, Id.Value, out targetUser)))
+                targetUser = MatrixUser;
+            var fromDate = GetReportDate(this.FromDate());
+            var toDate = GetReportDate(this.ToDate());
+            var wl = SettleManager.ListOutcome(targetUser, fromDate, toDate);
+            ViewBag.User = targetUser;
+            ViewBag.From = fromDate;
+            ViewBag.To = toDate;
+            return View(wl);
+        }
+
 
         [AgentAuthorize(UserState.Active)]
         public ActionResult WinLost(int? Id)

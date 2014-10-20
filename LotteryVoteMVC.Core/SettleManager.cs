@@ -45,6 +45,16 @@ namespace LotteryVoteMVC.Core
                 return _daShareRateWL;
             }
         }
+        private OutcomeDataAccess _daOutcome;
+        public OutcomeDataAccess DaOutCome
+        {
+            get
+            {
+                if (_daOutcome == null)
+                    _daOutcome = new OutcomeDataAccess();
+                return _daOutcome;
+            }
+        }
         public BetManager BetManager
         {
             get
@@ -186,6 +196,9 @@ namespace LotteryVoteMVC.Core
                     foreach (var wl in winlost)
                         comms.AddRange(wl.ParentCommission);
                     DaMemberWL.InsertParentCommission(comms);
+
+                    var outcomes = ShareRateWLs.Select(it => it.OutCome);
+                    DaOutCome.Insert(outcomes);
                 }
                 finally
                 {
@@ -212,6 +225,7 @@ namespace LotteryVoteMVC.Core
                     //DaSettle.Delete(companyId, DateTime.Today);
                     DaMemberWL.Delete(companyId, DateTime.Today);
                     DaShareRateWL.Delete(companyId, DateTime.Today);
+                    DaOutCome.Delete(companyId, DateTime.Today);
                     AllOrders = BetManager.ResettleBetOrder(companyId).ToList();
                     BetUsers = UserManager.GetBetUsers();
                     var companys = BetUsers.Where(it => it.Role == Role.Company);// UserManager.DaUser.GetUserByRole(Models.Role.Company);
@@ -226,6 +240,9 @@ namespace LotteryVoteMVC.Core
                     foreach (var wl in winlost)
                         comms.AddRange(wl.ParentCommission);
                     DaMemberWL.InsertParentCommission(comms);
+
+                    var outcomes = ShareRateWLs.Select(it => it.OutCome);
+                    DaOutCome.Insert(outcomes);
 
                 }
                 finally
@@ -426,6 +443,9 @@ namespace LotteryVoteMVC.Core
             wl.User = user;
             wl.UserId = user.UserId;
             wl.ShareRate = user.UserInfo.RateGroup.ShareRate;
+            OutCome outcome = new OutCome { UserId = user.UserId };
+            outcome.WinOrders = new List<BetOrder>();
+            wl.OutCome = outcome;
             bool isFirst = true;
             foreach (var order in orderList)
             {
@@ -439,7 +459,11 @@ namespace LotteryVoteMVC.Core
                 wl.SumTurnover += order.Turnover;
                 wl.SumWinLost += order.DrawResult;
                 wl.Commission += order.Commission;
+                outcome.NetAmount += order.NetAmount;
+                if (order.DrawResult > 0)
+                    outcome.WinOrders.Add(order);
             }
+
 
             //如果分成是0，则说明没有占成数，所以分成应该是0
             var shareRate = (decimal)(1 - user.UserInfo.RateGroup.ShareRate);
@@ -450,11 +474,23 @@ namespace LotteryVoteMVC.Core
             wl.TotalComm = wl.Commission * shareRate;       //总佣金=本层总佣金*分成
             wl.TotalWinLost = wl.WinLost + wl.TotalComm;    //总输赢=输赢+总佣金
 
+            outcome.CompanyId = wl.CompanyId;
+            outcome.OrderCount = wl.OrderCount;
+            outcome.Turnover = wl.SumTurnover;
+            outcome.JuniorNetAmount = outcome.NetAmount; //会员的本级净金额=下级的净金额
+            outcome.JustWin = outcome.WinOrders.Count == 0 ? 0 : outcome.WinOrders.Sum(it => it.DrawResult + it.NetAmount);   //纯赢=输赢+净金额
+            outcome.JuniorJustWin = outcome.JustWin;    //会员的下级纯赢=本级纯赢
+            outcome.TotalWinLost = outcome.JuniorTotalWinLost = outcome.NetAmount - outcome.JustWin;
+
             return wl;
         }
         private ShareRateWL CalcUserShareRateWL(User user, List<ShareRateWL> childWL)
         {
             ShareRateWL wl = new ShareRateWL();
+            wl.OutCome = new OutCome { UserId = user.UserId };
+            var winOrders = new List<BetOrder>();
+            wl.OutCome.WinOrders = winOrders;
+
             wl.UserId = user.UserId;
             wl.User = user;
             wl.ShareRate = user.UserInfo.RateGroup.ShareRate;
@@ -471,6 +507,11 @@ namespace LotteryVoteMVC.Core
                 wl.SumWinLost += item.SumWinLost;
                 wl.BetTurnover += item.BetTurnover;
                 wl.WinLost += item.WinLost;
+
+                winOrders.AddRange(item.OutCome.WinOrders);
+                wl.OutCome.JuniorJustWin += item.OutCome.JustWin;
+                wl.OutCome.JuniorNetAmount += item.OutCome.NetAmount;
+                wl.OutCome.JuniorTotalWinLost += item.OutCome.TotalWinLost;
             }
 
             //用户总佣金，累加子用户所有订单中该用户的佣金        各级总佣金=注单佣金×会员分成
@@ -479,6 +520,9 @@ namespace LotteryVoteMVC.Core
                 var comm = GetOAC(order.OrderId, user.Role).CommAmount;
                 wl.Commission += comm;
                 wl.TotalComm += comm * (decimal)(1 - order.User.UserInfo.RateGroup.ShareRate);
+
+                //净金额=金额-本级佣金
+                wl.OutCome.NetAmount += (order.Turnover - comm);
             }
             //var userTotalComm = UserBetOrderDic[user.UserId]
             //    .Select(it => GetOAC(it.OrderId, user.Role).CommAmount * (decimal)(it.User.UserInfo.RateGroup.ShareRate == 0 ? 1 : it.User.UserInfo.RateGroup.ShareRate))
@@ -486,6 +530,12 @@ namespace LotteryVoteMVC.Core
 
             //wl.TotalComm = userTotalComm;
             wl.TotalWinLost = wl.TotalComm + wl.WinLost;
+
+            wl.OutCome.CompanyId = wl.CompanyId;
+            wl.OutCome.OrderCount = wl.OrderCount;
+            wl.OutCome.Turnover = wl.SumTurnover;
+            wl.OutCome.JustWin = wl.OutCome.WinOrders.Sum(it => it.DrawResult + it.NetAmount);   //纯赢=输赢+净金额
+            wl.OutCome.TotalWinLost = wl.OutCome.NetAmount - wl.OutCome.JustWin;
 
             return wl;
         }
@@ -705,6 +755,11 @@ namespace LotteryVoteMVC.Core
             var shareRateWL = DaShareRateWL.ListWinLost(user, fromDate, toDate);
             return MergerWL(shareRateWL);
         }
+        public IEnumerable<OutCome> ListOutcome(User user, DateTime fromDate, DateTime toDate)
+        {
+            var outcomes = DaOutCome.ListOutCome(user, fromDate, toDate);
+            return MergerOutCome(outcomes);
+        }
 
         public PagedList<SettleResult> GetMemberSettleResult(User user, DateTime fromDate, DateTime toDate, string orderField, string orderType, int pageIndex)
         {
@@ -813,6 +868,34 @@ namespace LotteryVoteMVC.Core
                     wl.CompanyWL += wlItem.CompanyWL;
                     wl.TotalComm += wlItem.TotalComm;
                     wl.TotalWinLost += wlItem.TotalWinLost;
+                }
+            }
+            return list;
+        }
+        private IList<OutCome> MergerOutCome(IEnumerable<OutCome> source)
+        {
+            List<OutCome> list = new List<OutCome>();
+            foreach (var gp in source.GroupBy(it => it.UserId))
+            {
+                OutCome wl = null;
+                bool isFirst = true;
+                foreach (var wlItem in gp)
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        wl = wlItem;
+                        list.Add(wl);
+                        continue;
+                    }
+                    wl.OrderCount += wlItem.OrderCount;
+                    wl.Turnover += wlItem.Turnover;
+                    wl.NetAmount += wlItem.NetAmount;
+                    wl.JuniorNetAmount += wlItem.JuniorNetAmount;
+                    wl.TotalWinLost += wlItem.TotalWinLost;
+                    wl.JuniorTotalWinLost += wlItem.JuniorTotalWinLost;
+                    wl.JustWin += wlItem.JustWin;
+                    wl.JuniorJustWin += wlItem.JuniorJustWin;
                 }
             }
             return list;

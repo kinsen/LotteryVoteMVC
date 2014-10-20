@@ -18,12 +18,13 @@ body input[type='submit'], input[type='button'], input[type='reset']
 {
     padding: 0px;
     height: 25px;
-    border: solid 1px #FC8100;
+    border: solid 1px #339933;
     padding-left: 10px;
     padding-right: 10px;
-    background: #FC8002;
+    background: #339933;
     color: #fff;
 }
+body input[type='reset'].reset_btn{background:#ef2829;margin-right:115px;}
 a.New
 {
     width:24px;
@@ -220,7 +221,7 @@ div#searchBar
     color:#696969;
     margin-bottom:10px;
     border:dashed 1px #FC8100;
-    background:#F3F2C2;
+    background:#ffcf31;
 }
 div#searchBar span
 {
@@ -257,7 +258,7 @@ div#searchBar input[type='submit'], div#searchBar input[type='button']
     border: solid 1px #FC8100;
     padding-left:10px;
     padding-right:10px;
-    background:#FC8002;
+    background:#339933;
     color:#fff;
 }
 
